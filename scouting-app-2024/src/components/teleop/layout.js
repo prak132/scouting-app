@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AmpButton from './ampButton.js';
 import SpeakerButton from './speakerButton.js';
 import Teams from './teamNumbers.js';
+import Scored from './scored.js'
 
 const TeleopLayout = () => {
     const [ampSelected, setAmpSelected] = useState(false);
@@ -16,7 +17,7 @@ const TeleopLayout = () => {
       setSpeakerSelected(!speakerSelected);
       setAmpSelected(false);
     };
-  
+
     const elapsedTime = 2.23;
 
     return (
@@ -35,7 +36,7 @@ const TeleopLayout = () => {
             <AmpButton onSelect={handleAmpSelect} isSelected={ampSelected} />
             <SpeakerButton onSelect={handleSpeakerSelect} isSelected={speakerSelected} />
             <Teams />
-
+            <Scored />
         </div>
     </div>
 
