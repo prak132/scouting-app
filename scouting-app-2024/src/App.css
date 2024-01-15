@@ -1,6 +1,25 @@
+body {
+  background: #000614;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.teleop-text{
+  text-align: left;
+}
+
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -14,7 +33,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000614;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,6 +46,13 @@
 .App-link {
   color: #61dafb;
 }
+
+/*test.App-telop-text{
+  background: linear-gradient(177deg, #FFF 2.26%, rgba(255, 255, 255, 0.00) 165.48%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}*/
 
 @keyframes App-logo-spin {
   from {
