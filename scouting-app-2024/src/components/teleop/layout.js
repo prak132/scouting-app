@@ -35,6 +35,7 @@ const TeleopLayout = () => {
             <AmpButton onSelect={handleAmpSelect} isSelected={ampSelected} />
             <SpeakerButton onSelect={handleSpeakerSelect} isSelected={speakerSelected} />
             <Teams />
+
         </div>
     </div>
 
