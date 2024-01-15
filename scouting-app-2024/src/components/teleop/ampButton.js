@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-const AmpButton = ({ onSelect }) => {
-    const [isSelected, setIsSelected] = useState(false);
+const AmpButton = ({ onSelect, isSelected }) => {
     const handleMouseDown = () => {
-        setIsSelected(true);
+        onSelect();
     };
-    const handleMouseUp = () => {
-        if (isSelected) {
-            onSelect();
-        }
-        setIsSelected(false);
-    };
+
     return (
         <div
             type="ampButton"
             onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
             style={{
                 display: "flex",
                 alignItems: "center",

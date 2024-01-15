@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import AmpButton from './ampButton.js';
 import SpeakerButton from './speakerButton.js';
 
 const TeleopLayout = () => {
-    const handleAmpButton = () => {
-        console.log("test1");
+    const [ampSelected, setAmpSelected] = useState(false);
+    const [speakerSelected, setSpeakerSelected] = useState(false);
+  
+    const handleAmpSelect = () => {
+      setAmpSelected(!ampSelected);
+      setSpeakerSelected(false);
     };
-
-    const handleSpeakerButton = () => {
-        console.log("test2");
+  
+    const handleSpeakerSelect = () => {
+      setSpeakerSelected(!speakerSelected);
+      setAmpSelected(false);
     };
+  
     const elapsedTime = 2.23;
 
     return (
     <div>
         <div type="teleop-text" style={{ display: "flex", alignItems: "center", justifyContent: "center", marginRight: '10px' }}>
-        <div type = "teleop-text" style={{ background: 'linear-gradient(#FFFFFF, #FFFFFF00)', color: 'white', fontSize: 48, fontWeight: '700', wordWrap: 'break-word', paddingRight: '220px', letterSpacing: '3px', backgroundClip: 'text', paddingTop: '178px'}}>
+        <div type = "teleop-text" style={{ background: 'linear-gradient(#FFFFFF, #FFFFFF00)', fontSize: 48, fontWeight: '700', wordWrap: 'break-word', paddingRight: '220px', letterSpacing: '3px', backgroundClip: 'text', paddingTop: '178px', webkitBackgroundClip: 'text'}}>
             Teleop
         </div>
         </div>
@@ -25,8 +31,8 @@ const TeleopLayout = () => {
         </div>
 
         <div>
-          <AmpButton onSelect={handleAmpButton} />
-          <SpeakerButton onSelect={handleSpeakerButton} />
+            <AmpButton onSelect={handleAmpSelect} isSelected={ampSelected} />
+            <SpeakerButton onSelect={handleSpeakerSelect} isSelected={speakerSelected} />
         </div>
     </div>
 
