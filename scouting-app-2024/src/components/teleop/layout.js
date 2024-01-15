@@ -23,12 +23,12 @@ const TeleopLayout = () => {
     return (
     <div>
         <div type="teleop-text" style={{ display: "flex", alignItems: "center", justifyContent: "center", marginRight: '10px' }}>
-            <div type = "teleop-text" style={{color:"white",fontSize: 48, fontWeight: '700', wordWrap: 'break-word', paddingRight: '220px', letterSpacing: '3px', paddingTop: '178px'}}>
+            <div type = "teleop-text" style={{color:"white",fontSize: 48, fontWeight: '700', wordWrap: 'break-word', paddingRight: '210px', letterSpacing: '3px', paddingTop: '178px'}}>
             Teleop
             </div>
         </div>
 
-        <div style={{color: 'rgba(255, 255, 255, 0.50)', display: "flex", alignItems: "center", justifyContent: "center", marginRight: '200px', fontSize: 20, fontWeight: '400', wordWrap: 'break-word'}}>
+        <div style={{color: 'rgba(255, 255, 255, 0.50)', display: "flex", alignItems: "center", justifyContent: "center", marginRight: '180px', fontSize: 20, fontWeight: '400', wordWrap: 'break-word'}}>
             Scoring • Timer: {elapsedTime}s
         </div>
 
