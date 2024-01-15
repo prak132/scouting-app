@@ -1,25 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 body {
+  font-family: "Poppins", sans-serif;
   background: #000614;
+  overflow-x: hidden;
+  padding-left: 7vw;
+  padding-right: 7vw;
 }
 
 button:hover {
   cursor: pointer;
 }
 
-.center{
+.center {
   position: absolute;
   top: 50%;
   left: 50%;
 }
 
-.teleop-text{
+.teleop-text {
   text-align: left;
 }
 
 .App {
   text-align: center;
 }
-
 
 .App-logo {
   height: 40vmin;
@@ -61,4 +66,56 @@ button:hover {
   to {
     transform: rotate(360deg);
   }
+}
+
+.unselectedBTN {
+  border-radius: 10px;
+  width: 86vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 11.7vh;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #2f3953;
+  background: rgba(217, 217, 217, 0);
+  box-shadow: 0px 0px 510px 5px rgba(255, 255, 255, 0.25);
+  transition: all;
+  margin-bottom: 2vh;
+  animation-duration: 1s;
+}
+
+.selectedBTN {
+  border-radius: 10px;
+  width: 86vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 11.7vh;
+  color: rgba(255, 255, 255);
+  transition: all;
+  animation-duration: 1s;
+  border-radius: 10px;
+  margin-bottom: 2vh;
+  border: 1px solid #fff;
+  background: rgba(145, 145, 145, 0.2);
+  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.25);
+}
+
+.teamBTN {
+  border-radius: 10px;
+  border: 1px solid #2f3953;
+  background: rgba(217, 217, 217, 0);
+  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.25);
+  width: 25vw;
+  height: 25vw;
+}
+
+.teamBTNSelected {
+  width: 25vw;
+  height: 25vw;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  background: rgba(145, 145, 145, 0.2);
+  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+  color: "white";
 }
