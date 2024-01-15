@@ -35,27 +35,21 @@ const TeleopLayout = () => {
   const elapsedTime = 2.23;
 
   return (
-    <div>
-      <div
-        type="teleop-text"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginRight: "10px",
-        }}
-      >
+    <div
+      style={{
+        paddingTop: "20vh",
+      }}
+    >
+      <div type="teleop-text">
         <div
           type="teleop-text"
           className="title"
           style={{
             color: "white",
-            fontSize: 48,
+            fontSize: "10vw",
             fontWeight: "700",
             wordWrap: "break-word",
-            paddingRight: "210px",
-            letterSpacing: "3px",
-            paddingTop: "178px",
+            marginBottom: "-0.25vh",
           }}
         >
           Teleop
@@ -64,13 +58,8 @@ const TeleopLayout = () => {
       <div
         style={{
           color: "rgba(255, 255, 255, 0.50)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginRight: "180px",
-          fontSize: 20,
-          fontWeight: "400",
-          wordWrap: "break-word",
+          width: "100vw",
+          fontSize: "4vw",
         }}
       >
         Scoring • Timer: {elapsedTime}s

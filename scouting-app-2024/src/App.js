@@ -1,9 +1,8 @@
-import './App.css';
-import React, { useState } from 'react';
-import StartLayout from './components/start/layout.js';
-import AutoLayout from './components/auto/layout.js';
-import TeleopLayout from './components/teleop/layout.js';
-import PageButtons from './components/navigationButtons.js';
+import "./App.css";
+import React from "react";
+import AutoLayout from "./components/auto/layout.js";
+import TeleopLayout from "./components/teleop/layout.js";
+import EndGame from "./components/endgame/index.js";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,15 +25,8 @@ function App() {
       return <PageComponent key={currentPage} />;
     }
   };
-  
-  const elapsedTime = 3000;
-  
-  return (
-    <div>
-      {choosePage(elapsedTime)}
-      <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
-    </div>
-  );
+  const elapsedTime = 1501;
+  return <div>{choosePage(elapsedTime)}</div>;
 }
 
 export default App;

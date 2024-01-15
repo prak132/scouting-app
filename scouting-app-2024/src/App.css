@@ -4,8 +4,11 @@ body {
   font-family: "Poppins", sans-serif;
   background: #000614;
   overflow-x: hidden;
+  overflow-y: hidden;
   padding-left: 7vw;
   padding-right: 7vw;
+  display: flex;
+  flex-direction: column;
 }
 
 button:hover {
