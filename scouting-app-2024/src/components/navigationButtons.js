@@ -9,7 +9,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
           </button>
       </div>
       <div type="rightButton" style={{ display: "flex", justifyContent: "flex-start", alignItems: "left", marginBottom: "2vh", marginTop: "2vh", width: '18px', height: '31px', color: '#000614', backgroundColor:'#000614', }}>
-              <button onClick={onRightButtonClick} style={{color: '#FFF', fontFamily: 'Poppins', fontSize: '24px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal', backgroundColor: '#000614', border: 'none', marginTop: '300px'}}>
+              <button onClick={onRightButtonClick} style={{color: '#FFF', fontFamily: 'Poppins', fontSize: '24px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal', backgroundColor: '#000614', border: 'none', marginTop: '-90px', marginLeft: '1207px', paddingBottom:'20000px'}}>
                    {'>'}
               </button>
         </div>
