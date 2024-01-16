@@ -1,0 +1,42 @@
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+
+  }
+  
+.NextButton {
+    width: 115px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.50);
+    background: #000614;
+    box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.24);
+    
+}
+  .textbox-container {
+    position: relative;
+  }
+  
+  .glowing-textbox {
+    width: 350px;
+    height: 30px;
+    flex-shrink: 0;    
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.50);
+    background: rgba(217, 217, 217, 0.00);
+    box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.50);
+    
+  }
+  
+  .glowing-textbox:focus {
+    border-radius: 20px;
+    border: 1px solid #FFF;
+    background: rgba(145, 145, 145, 0.20);
+    box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.50);    
+  }

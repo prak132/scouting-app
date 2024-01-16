@@ -6,13 +6,7 @@ const teamnums = [
   { Aliance: "B", number: 254 },
 ];
 
-const TeamNumbers = () => {
-  const [selectedTeam, setSelectedTeam] = useState(null);
-
-  const handleTeamSelect = (number) => {
-    setSelectedTeam(number === selectedTeam ? null : number);
-  };
-
+const TeamNumbers = ({ onSelect, selectedTeam }) => {
   return (
     <div
       style={{
@@ -32,7 +26,7 @@ const TeamNumbers = () => {
           <div key={index} style={{ margin: "10px" }}>
             <button
               type="button"
-              onMouseDown={() => handleTeamSelect(team.number)}
+              onMouseDown={() => onSelect(team.number)}
               className={
                 selectedTeam === team.number ? "teamBTNSelected" : "teamBTN"
               }

@@ -15,6 +15,7 @@ const AmpButton = ({ onSelect, isSelected }) => {
         justifyContent: "center",
         marginBottom: "2vh",
         marginTop: "2vh",
+        cursor: "pointer",
       }}
     >
       <div className={isSelected ? "selectedBTN" : "unselectedBTN"}>

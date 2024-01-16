@@ -15,6 +15,7 @@ const SpeakerButton = ({ onSelect, isSelected }) => {
         justifyContent: "center",
         height: "10vh",
         margin: 0,
+        cursor: "pointer",
       }}
     >
       <div className={isSelected ? "selectedBTN" : "unselectedBTN"}>

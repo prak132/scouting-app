@@ -3,8 +3,15 @@ import AmpButton from "./ampButton.js";
 import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Scored from "./scored.js";
+import UndoInfo from "./undoinfo.js";
 
 const TeleopLayout = () => {
+  const [selectedTeam, setSelectedTeam] = useState(null);
+
+  const handleTeamSelect = (number) => {
+    setSelectedTeam(number === selectedTeam ? null : number);
+  };
+
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
 
@@ -16,6 +23,13 @@ const TeleopLayout = () => {
   const handleSpeakerSelect = () => {
     setSpeakerSelected(!speakerSelected);
     setAmpSelected(false);
+  };
+
+  const scored = () => {
+    if (selectedTeam && (ampSelected || speakerSelected)) {
+      return `${ampSelected ? "Amp" : "Speaker"}`;
+    }
+    return null;
   };
 
   const elapsedTime = 2.23;
@@ -68,10 +82,18 @@ const TeleopLayout = () => {
           onSelect={handleSpeakerSelect}
           isSelected={speakerSelected}
         />
-        <Teams />
-        <Scored />
+        <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
+        <UndoInfo />
+        <Scored placed={scored()} teamnum={selectedTeam} />
+        <pageButtons />
+        
+      </div>
+      <div>
+        <hr style={{color: "#313B54", width:"430px", width: '100%', height: '100%', justifyContent: 'center', alignItems: 'right', gap: 291, display: 'inline-flex'}}></hr>
+        
       </div>
     </div>
+    
   );
 };
 
