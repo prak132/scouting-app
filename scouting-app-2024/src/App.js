@@ -15,17 +15,20 @@ function App() {
     setCurrentPage((prevPage) => (prevPage < pages.length - 1 ? prevPage + 1 : 0));
   };
   const choosePage = (elapsedTime) => {
+    const PageComponent = pages[currentPage];
     if (elapsedTime === 0) {
-      return <StartLayout />
+      return <StartLayout key={currentPage} />;
     } else if (elapsedTime < 1500 && elapsedTime > 0) {
-      return <TeleopLayout />;
+      return <TeleopLayout key={currentPage} />;
     } else if (elapsedTime > 15000) {
-      return <AutoLayout />;
+      return <AutoLayout key={currentPage} />;
     } else {
-      return <TeleopLayout />;
+      return <PageComponent key={currentPage} />;
     }
   };
-  const elapsedTime = 1501;
+  
+  const elapsedTime = 3000;
+  
   return (
     <div>
       {choosePage(elapsedTime)}
