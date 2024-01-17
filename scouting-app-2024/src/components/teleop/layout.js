@@ -78,7 +78,7 @@ const TeleopLayout = () => {
         
       </div>
       <div>
-        <hr style={{color: "#313B54", width:"430px", width: '100%', height: '100%', justifyContent: 'center', alignItems: 'right', gap: 291, display: 'inline-flex'}}></hr>
+        <hr style={{color: "#313B54", width: '100%', height: '100%', justifyContent: 'center', alignItems: 'right', gap: 291, display: 'inline-flex'}}></hr>
         
       </div>
     </div>

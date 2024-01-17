@@ -30,7 +30,7 @@ function App() {
   };
   const elapsedTime = 1501;
   return (
-    <div style={{ position: 'relative', minHeight: '100vh' }}>
+    <div >
       <div>{choosePage(elapsedTime)}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
     </div>
