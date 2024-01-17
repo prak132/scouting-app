@@ -1,8 +1,10 @@
+import React, { useState } from "react";
 import "./App.css";
-import React from "react";
 import AutoLayout from "./components/auto/layout.js";
 import TeleopLayout from "./components/teleop/layout.js";
 import EndGame from "./components/endgame/index.js";
+import PageButtons from "./components/navigationButtons";
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,7 +28,12 @@ function App() {
     }
   };
   const elapsedTime = 1501;
-  return <div>{choosePage(elapsedTime)}</div>;
+  return (
+    <div style={{ position: 'relative', minHeight: '100vh' }}>
+      <div>{choosePage(elapsedTime)}</div>
+      <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
+    </div>
+  );
 }
 
 export default App;

@@ -2,14 +2,12 @@ import React from 'react';
 
 const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
   return (
-    <div>
-      <div type="leftButton" style={{ display: "flex", justifyContent: "flex-start", alignItems: "right", marginBottom: "2vh", marginTop: "2vh", width: '18px', height: '31px', color: '#000614', backgroundColor:'#000614'}}>
-        <button onClick={onLeftButtonClick} style={{ color: '#FFF', fontFamily: 'Poppins', fontSize: '24px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal', backgroundColor: '#000614', border: 'none', gap: 291, display: 'inline-flex' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'fixed', left: '50%', bottom: '0', marginBottom: '2vh' }}>
+      <div style={{ width: '430px', height: '53px', backgroundColor: '#000614', margin: '2vh' }}>
+        <button onClick={onLeftButtonClick} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: '#FFF', fontFamily: 'Poppins', fontSize: '24px', backgroundColor: '#000614', border: 'none' }}>
           {'<'}
         </button>
-      </div>
-      <div type="rightButton" style={{ display: "flex", justifyContent: "flex-start", alignItems: "left", marginBottom: "2vh", marginTop: "2vh", height: '31px', color: '#000614', backgroundColor:'#000614' }}>
-        <button onClick={onRightButtonClick} style={{ color: '#FFF', fontFamily: 'Poppins', fontSize: '24px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal', backgroundColor: '#000614', border: 'none', marginTop: '-90px', marginLeft: '1207px', paddingBottom:'20000px' }}>
+        <button onClick={onRightButtonClick} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', color: '#FFF', fontFamily: 'Poppins', fontSize: '24px', backgroundColor: '#000614', border: 'none' }}>
           {'>'}
         </button>
       </div>
@@ -18,3 +16,6 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
 };
 
 export default PageButtons;
+
+
+
