@@ -13,6 +13,10 @@ const TextBox = () => {
     setMatchValue(e.target.value);
   };
 
+  const handleNextButtonClick = () => {
+    console.log("test1");
+  };
+
   return (
     <div className="center-container">
       <div className="textbox-container">
@@ -20,7 +24,7 @@ const TextBox = () => {
           type="text"
           value={nameValue}
           onChange={handleNameChange}
-          className="glowing-textbox"
+          className="glowing-textbox text"
           placeholder="Name"
         />
       </div>
@@ -29,17 +33,17 @@ const TextBox = () => {
           type="text"
           value={matchValue}
           onChange={handleMatchChange}
-          className="glowing-textbox"
+          className="glowing-textbox text"
           placeholder="Match #"
         />
       </div>
-        <input
-            type="button"
-            value={nameValue}
-            onChange={handleNameChange}
-            className="NextButton"
-            placeholder="Next >"
-          />
+      <button
+        type="button"
+        onClick={handleNextButtonClick}
+        className="NextButton"
+      >
+        Next {">"}
+      </button>
     </div>
   );
 };

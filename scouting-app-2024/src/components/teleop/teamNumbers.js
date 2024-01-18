@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const teamnums = [
   { Aliance: "B", number: 1678 },
@@ -11,12 +11,10 @@ const TeamNumbers = ({ onSelect, selectedTeam }) => {
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
         marginTop: "2vh",
         width: "86vw",
-        justifyContent: "space-evenly",
-        alignItems: "center",
+        justifyContent: "space-evenly center",
       }}
     >
       <div

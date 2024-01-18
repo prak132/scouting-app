@@ -37,7 +37,7 @@ const TeleopLayout = () => {
   return (
     <div
       style={{
-        paddingTop: "20vh",
+        paddingTop: "15vh",
       }}
     >
       <div type="teleop-text">
