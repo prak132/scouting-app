@@ -5,6 +5,7 @@ import Teams from "./teamNumbers.js";
 import Scored from "./scored.js";
 import UndoInfo from "./undoinfo.js";
 
+
 const TeleopLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
 
@@ -35,11 +36,15 @@ const TeleopLayout = () => {
   const elapsedTime = 2.23;
 
   return (
+    
+
     <div
       style={{
         paddingTop: "15vh",
       }}
     >
+
+    
       <div type="teleop-text">
         <div
           type="teleop-text"
@@ -78,12 +83,12 @@ const TeleopLayout = () => {
         
       </div>
       <div>
-        <hr style={{color: "#313B54", width: '100%', height: '100%', justifyContent: 'center', alignItems: 'right', gap: 291, display: 'inline-flex'}}></hr>
+        
         
       </div>
     </div>
     
   );
-};
+};//<hr style={{color: "#313B54", width: '100%', height: '100%', justifyContent: 'center', alignItems: 'right', gap: 291, display: 'inline-flex'}}></hr>
 
 export default TeleopLayout;
