@@ -12,7 +12,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
       const isNarrowWidth = window.innerWidth <= 450;
       const isShortHeight = window.innerHeight < 881;
 
-      setHasContent(window.scrollY > 0); 
+      setHasContent(window.scrollY > 0);
 
       if (window.innerWidth > 700 && hasContent) {
         setIsAtBottom(scrolledToBottom);
@@ -25,7 +25,6 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
     window.addEventListener('scroll', handleScrollAndResize);
     window.addEventListener('resize', handleScrollAndResize);
 
-    
     handleScrollAndResize();
 
     return () => {
@@ -36,31 +35,26 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
 
   return (
     <div>
-      
-      <div style={{  marginTop: '120px' }}>
-        
-      </div>
+      <div style={{ marginTop: '120px' }}></div>
 
-      
       {isAtBottom && (
         <div
           style={{
             position: 'fixed',
-            bottom: '10px', 
-            left: 0,
-            right: 0,
+            bottom: '10px',
+            left: '50px',  // Adjusted left positioning
+            right: '50px', // Adjusted right positioning
             backgroundColor: 'transparent',
-            width: '100%', 
             display: 'flex',
-            flexDirection: 'column-reverse', 
+            flexDirection: 'column-reverse',
             alignItems: 'center',
-            zIndex: 9999, 
+            zIndex: 9999,
           }}
         >
           <div
             style={{
-              width: '100%', 
-              minWidth: '430px', 
+              width: '100%',
+              minWidth: '430px',
               margin: '2vh',
               display: 'flex',
               justifyContent: 'space-between',
