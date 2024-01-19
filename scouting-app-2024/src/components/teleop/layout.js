@@ -28,6 +28,11 @@ const TeleopLayout = () => {
 
   const scored = () => {
     if (selectedTeam && (ampSelected || speakerSelected)) {
+      setTimeout(() => {
+        setAmpSelected(false);
+        setSpeakerSelected(false);
+        setSelectedTeam(null);
+      }, 1000); 
       return `${ampSelected ? "Amp" : "Speaker"}`;
     }
     return null;
@@ -79,7 +84,6 @@ const TeleopLayout = () => {
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
         <UndoInfo />
         <Scored placed={scored()} teamnum={selectedTeam} />
-        <pageButtons />
         
       </div>
       <div>
