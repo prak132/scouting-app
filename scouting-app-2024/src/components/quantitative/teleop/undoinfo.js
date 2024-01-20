@@ -8,7 +8,7 @@ const UndoInfo = ({ onRedoClick, onInfoClick }) => {
       width: '100%',
       height: '100%', 
       display: 'inline-flex', 
-      marginTop: 10 
+      marginTop: 20 
     }}>
       <button onClick={onRedoClick} style={{
          border: 'none',
