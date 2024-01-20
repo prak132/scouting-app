@@ -4,11 +4,11 @@ import AutoLayout from "./components/auto/layout.js";
 import TeleopLayout from "./components/quantitative/teleop/layout.js";
 import StartLayout from "./components/start/layout.js";
 import PageButtons from "./components/navigationButtons";
-
+import QualTeleopLayout from "./components/qualitative/teleop/layout.js";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
-  const pages = [StartLayout, TeleopLayout, AutoLayout];
+  const pages = [StartLayout, TeleopLayout, AutoLayout, QualTeleopLayout];
   const handleLeftButtonClick = () => {
     setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : pages.length - 1));
   };

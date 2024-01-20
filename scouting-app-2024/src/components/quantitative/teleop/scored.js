@@ -16,6 +16,7 @@ const Scored = ({ placed, teamnum }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center'
+          
         }}>
           <div style={{ width: '100%', gap: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ width: '6vh', height: '6vh', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

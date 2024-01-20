@@ -32,7 +32,7 @@ const TeleopLayout = () => {
         setAmpSelected(false);
         setSpeakerSelected(false);
         setSelectedTeam(null);
-      }, 500); 
+      }, 750); 
       return `${ampSelected ? "Amp" : "Speaker"}`;
     }
     return null;

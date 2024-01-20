@@ -21,7 +21,7 @@ const TeamNumbers = ({ onSelect, selectedTeam }) => {
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         {teamnums.map((team, index) => (
-          <div key={index} style={{ margin: "10px" }}>
+          <div key={index} style={{ margin: "7px" }}>
             <button
               type="button"
               onMouseDown={() => onSelect(team.number)}
