@@ -3,12 +3,18 @@ import RedoMark from "./assets/redo.svg";
 import ExclamationMark from "./assets/exclamation.svg";
 
 const UndoInfo = ({ onRedoClick, onInfoClick }) => {
-
-
-
   return (
-    <div style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', gap: 291, display: 'inline-flex' }}>
-      <button onClick={onRedoClick} style={{ border: 'none', background: 'none', padding: 0, margin: 0 }}>
+    <div style={{
+      width: '100%',
+      height: '100%', 
+      display: 'inline-flex', 
+      marginTop: 10 
+    }}>
+      <button onClick={onRedoClick} style={{
+         border: 'none',
+         background: 'none', 
+         padding: 0, 
+         margin: 0 }}>
         <div style={{ justifyContent: 'center', alignItems: 'center', gap: 12, display: 'flex' }}>
           <div style={{ width: 36, height: 36, position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ width: 36, height: 36, borderRadius: '50%', border: '1px rgba(255, 255, 255, 0.70) solid', overflow: 'hidden' }}>
@@ -16,8 +22,8 @@ const UndoInfo = ({ onRedoClick, onInfoClick }) => {
             </div>
           </div>
         </div>
-      </button>
-      <button onClick={onInfoClick} style={{ border: 'none', background: 'none', padding: 0, margin: 0 }}>
+       </button>
+      <button onClick={onInfoClick} style={{ border: 'none', background: 'none', padding: 0, margin: 0, marginLeft: 'auto' }}>
         <div style={{ width: 36, height: 36, position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div style={{ width: 36, height: 36, borderRadius: '50%', border: '1px rgba(255, 255, 255, 0.70) solid', overflow: 'hidden' }}>
             <img src={ExclamationMark} alt="Exclamation" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

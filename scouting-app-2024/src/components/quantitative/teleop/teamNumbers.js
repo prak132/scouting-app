@@ -14,39 +14,18 @@ const TeamNumbers = ({ onSelect, selectedTeam }) => {
         alignItems: "center",
         marginTop: "2vh",
         width: "86vw",
-        justifyContent: "space-evenly center",
       }}
     >
       <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: 'space-between', width: '100%' }}
       >
         {teamnums.map((team, index) => (
-          <div key={index} style={{ margin: "7px" }}>
+          <div key={index} style={{  }}>
             <button
               type="button"
               onMouseDown={() => onSelect(team.number)}
               className={
                 selectedTeam === team.number ? "teamBTNSelected" : "teamBTN"
-              }
-              style={
-                {
-                  // width: 110,
-                  // height: 109,
-                  // background:
-                  //   selectedTeam === team.number
-                  //     ? "rgba(145.25, 145.25, 145.25, 0.20)"
-                  //     : "rgba(217, 217, 217, 0)",
-                  // boxShadow: "0px 0px 30px 5px rgba(255, 255, 255, 0.30)",
-                  // borderRadius: 10,
-                  // border:
-                  //   selectedTeam === team.number
-                  //     ? "1px white solid"
-                  //     : "1px #2F3953 solid",
-                  // display: "flex",
-                  // alignItems: "center",
-                  // justifyContent: "center",
-                  // cursor: "pointer",
-                }
               }
             >
               <div

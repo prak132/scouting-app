@@ -109,13 +109,13 @@ button:hover {
   border: 1px solid #2f3953;
   background: rgba(217, 217, 217, 0);
   box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.25);
-  width: 25vw;
-  height: 25vw;
+  width: 28vw;
+  height: 28vw;
 }
 
 .teamBTNSelected {
-  width: 25vw;
-  height: 25vw;
+  width: 28vw;
+  height: 28vw;
   border-radius: 10px;
   border: 1px solid #fff;
   background: rgba(145, 145, 145, 0.2);

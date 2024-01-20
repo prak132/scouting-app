@@ -8,7 +8,6 @@ import UndoInfo from "./undoinfo.js";
 
 const TeleopLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
-
   const handleTeamSelect = (number) => {
     setSelectedTeam(number === selectedTeam ? null : number);
   };

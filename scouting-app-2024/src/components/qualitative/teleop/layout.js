@@ -1,4 +1,6 @@
 import React from "react";
+// eslint-disable-next-line
+import QualitativeTable from "./qualitativeTable.js";
 
 const QualTeleopLayout = () => {
   return (
@@ -33,7 +35,7 @@ const QualTeleopLayout = () => {
       >
         Qualitiative • Timer: 
       </div>
-
+      <QualitativeTable />
       <div type = "notes">
 
 
