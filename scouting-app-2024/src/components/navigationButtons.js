@@ -1,49 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
-  const [isAtBottom, setIsAtBottom] = useState(true);
-  const [hasContent, setHasContent] = useState(false);
-
-  useEffect(() => {
-    const handleScrollAndResize = () => {
-      const scrolledToBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
-
-      const isNarrowWidth = window.innerWidth <= 450;
-      const isShortHeight = window.innerHeight < 881;
-
-      setHasContent(window.scrollY > 0);
-
-      if (window.innerWidth > 700 && hasContent) {
-        setIsAtBottom(scrolledToBottom);
-        return;
-      }
-
-      setIsAtBottom(isNarrowWidth || isShortHeight || scrolledToBottom);
-    };
-
-    window.addEventListener('scroll', handleScrollAndResize);
-    window.addEventListener('resize', handleScrollAndResize);
-
-    handleScrollAndResize();
-
-    return () => {
-      window.removeEventListener('scroll', handleScrollAndResize);
-      window.removeEventListener('resize', handleScrollAndResize);
-    };
-  }, [hasContent]);
+  
 
   return (
     <div>
       <div style={{ marginTop: '120px' }}></div>
 
-      {isAtBottom && (
+       (
         <div
           style={{
             position: 'fixed',
             bottom: '10px',
-            left: '50px',  // Adjusted left positioning
-            right: '50px', // Adjusted right positioning
+            left: '100px',
+            right: '100px',
             backgroundColor: 'transparent',
             display: 'flex',
             flexDirection: 'column-reverse',
@@ -98,7 +68,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
             </button>
           </div>
         </div>
-      )}
+      )
     </div>
   );
 };

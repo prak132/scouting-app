@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import AutoLayout from "./components/auto/layout.js";
-import TeleopLayout from "./components/teleop/layout.js";
-/* import EndGame from "./components/endgame/index.js"; */
+import TeleopLayout from "./components/quantitative/teleop/layout.js";
 import StartLayout from "./components/start/layout.js";
 import PageButtons from "./components/navigationButtons";
 
