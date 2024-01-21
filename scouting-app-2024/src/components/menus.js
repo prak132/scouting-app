@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from "./assets/monkeylogo.svg";
 import "./menu.css";
 
-const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
+const PageButtons = ({ onTopButtonClick, onMiddleButtonClick, onBottomButtonClick }) => {
   return (
     <div>
         <div className='topBar'>

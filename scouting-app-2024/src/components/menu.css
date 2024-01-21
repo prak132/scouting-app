@@ -23,7 +23,15 @@
 
 .button {
     margin-left: auto;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     height: 40px;
     width: 40px;
+    background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%);;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.button:focus {
+    outline: none;
 }
