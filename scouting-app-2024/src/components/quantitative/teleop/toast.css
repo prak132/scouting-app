@@ -1,0 +1,76 @@
+.toastNotif {
+    visibility: hidden;
+    border-radius: 10px;
+    border: 1px solid #B9FFE6;
+    background: #1E232E;
+    box-shadow: 0px 0px 42.3px 2px rgba(185, 255, 230, 0.10) inset, 0px 0px 42.3px 5px rgba(185, 255, 230, 0.25);
+    position: absolute;
+    width: 360px;
+    height: 60px;
+    bottom: 100px;
+    max-width: 70%;
+    left: 50%; 
+    transform: translateX(-50%); 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+#toastContents {
+    display: inline-flex;
+    color: #B9FFE6;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 5%;
+}
+
+.animate {
+    visibility: visible;
+    animation:
+     fadein 0.3s, 
+     expand 0.3s 0.3s,
+     stay 1s 0.6s, 
+     fadeout 0.4s 1s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 100px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 100px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 300px} 
+    to {min-width: 350px}
+}
+
+@keyframes expand {
+    from {min-width: 300px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 350px} 
+    to {min-width: 350px}
+}
+
+@keyframes stay {
+    from {min-width: 350px}
+    to {min-width: 350px}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 100px; opacity: 1;} 
+    to {bottom: 140px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 100px; opacity: 1;}
+    to {bottom: 140px; opacity: 0;}
+}

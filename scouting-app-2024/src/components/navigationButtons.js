@@ -1,30 +1,23 @@
 import React from 'react';
 
 const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
-  
-
   return (
-    <div>
-      <div style={{ marginTop: '120px' }}></div>
-
-       (
         <div
           style={{
-            position: 'fixed',
-            bottom: '10px',
-            left: '100px',
-            right: '100px',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
             backgroundColor: 'transparent',
             display: 'flex',
             flexDirection: 'column-reverse',
             alignItems: 'center',
+            width: '100%',
             zIndex: 9999,
           }}
         >
           <div
             style={{
-              width: '100%',
-              minWidth: '430px',
+              minWidth: '100%',
               margin: '2vh',
               display: 'flex',
               justifyContent: 'space-between',
@@ -37,7 +30,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
                 top: 0,
                 left: 0,
                 right: 0,
-                height: '1px',
+                height: '2px',
                 backgroundColor: '#313B54',
               }}
             ></div>
@@ -47,9 +40,10 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
               style={{
                 color: '#FFF',
                 fontFamily: 'Poppins',
-                fontSize: '4vw',
+                fontSize: '6vw',
                 backgroundColor: 'transparent',
                 border: 'none',
+                margin: 10,
               }}
             >
               {'<'}
@@ -59,17 +53,16 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
               style={{
                 color: '#FFF',
                 fontFamily: 'Poppins',
-                fontSize: '4vw',
+                fontSize: '6vw',
                 backgroundColor: 'transparent',
                 border: 'none',
+                margin: 10,
               }}
             >
               {'>'}
             </button>
           </div>
         </div>
-      )
-    </div>
   );
 };
 

@@ -34,9 +34,11 @@ const TeamNumbers = ({ onSelect, selectedTeam }) => {
                     selectedTeam === team.number
                       ? "rgba(255, 255, 255, 1)"
                       : "rgba(255, 255, 255, 0.50)",
-                  fontSize: 26,
-                  fontWeight: "700",
-                  wordWrap: "break-word",
+                    fontFamily: 'Poppins',
+                    fontSize: '26px',
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    lineHeight: 'normal',
                 }}
               >
                 {team.number}

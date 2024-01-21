@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AmpButton from "./ampButton.js";
 import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
-import Scored from "./scored.js";
+import Notif from "./toast.js";
 import UndoInfo from "./undoinfo.js";
-
 
 const TeleopLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [ampSelected, setAmpSelected] = useState(false);
+  const [speakerSelected, setSpeakerSelected] = useState(false);
+  
+  let [launchNotif, setLaunchNotif] = useState(false);
+
   const handleTeamSelect = (number) => {
     setSelectedTeam(number === selectedTeam ? null : number);
   };
-
-  const [ampSelected, setAmpSelected] = useState(false);
-  const [speakerSelected, setSpeakerSelected] = useState(false);
 
   const handleAmpSelect = () => {
     setAmpSelected(!ampSelected);
@@ -25,25 +26,27 @@ const TeleopLayout = () => {
     setAmpSelected(false);
   };
 
+
   const scored = () => {
     if (selectedTeam && (ampSelected || speakerSelected)) {
       setTimeout(() => {
         setAmpSelected(false);
         setSpeakerSelected(false);
-        setSelectedTeam(null);
-      }, 250);
+        setSelectedTeam(null); //this causes amp to change to speaker after 300ms but too bad ig
+      }, 300);
     }
+    return 'bouta kms' + ' scored ' + `${ampSelected ? "Amp" : "Speaker"}`;
   };
   
-  const scoreNotif = () => {
-    scored();
-    return `${ampSelected ? "Amp" : "Speaker"}`;
-  };
 
+  function callNotif() {
+    if (selectedTeam && (ampSelected || speakerSelected)) {
+      return true;
+    };
+    return null;
+  };
 
   const elapsedTime = 2.23;
-
-  
 
   return (
     <div
@@ -51,8 +54,6 @@ const TeleopLayout = () => {
         paddingTop: "15vh",
       }}
     >
-
-    
       <div type="teleop-text">
         <div
           type="teleop-text"
@@ -86,7 +87,7 @@ const TeleopLayout = () => {
         />
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
         <UndoInfo />
-        <Scored placed={scored()} teamnum={selectedTeam} />
+        <Notif contents={scored()} launchNotif={callNotif()} />
         
       </div>
       <div>
