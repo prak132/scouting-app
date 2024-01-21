@@ -5,14 +5,13 @@ const RectangleWithText = () => {
     <div style={{ display: 'left', justifyContent: 'flex-end' }}>
       <div
         style={{
-          width: '430px',
+          width: '100%',
           height: 'auto',
           textAlign: 'center',
           backgroundColor: '#00000000',
           padding: '20px',
           boxSizing: 'border-box',
-          overflow: 'hidden',
-          borderTop: '2px solid #2F3953'
+          borderTop: '4px solid #2F3953',
         }}
       >
         <h2
@@ -33,7 +32,7 @@ const RectangleWithText = () => {
         </h2>
         <textarea
           style={{
-            width: '364px',
+            width: '100%',
             height: '198px',
             boxSizing: 'border-box',
             marginTop: '10px',
@@ -43,13 +42,15 @@ const RectangleWithText = () => {
             fontStyle: 'normal',
             fontWeight: '600',
             lineHeight: 'normal',
-            border: 'none',
+            border: '1px solid #2F3953',
             color: '#FFFFFF4D',
             textAlign: 'left',
             verticalAlign: 'top',
             boxShadow: '0px 0px 51px 5px rgba(255, 255, 255, 0.25)',
             overflow: 'auto',  
             resize: 'none',  
+            padding: '10px',
+            borderRadius: '10px',
           }}
           placeholder="Describe driver abilities. Make sure to add team number as well"
         />

@@ -4,7 +4,7 @@ const QualitativeTable = () => {
   const [rows, setRows] = useState(Array.from({ length: 5 }, (_, index) => index + 1));
 
   const addRow = () => {
-    setRows([...rows, rows.length + 1]);
+    setRows([rows.length + 1, ...rows]);
   };
 
   return (
@@ -13,8 +13,8 @@ const QualitativeTable = () => {
         className="scrollable-container"
         style={{
           height: '272px',
-          overflowY: 'auto',
           backgroundColor: '#000614',
+          overflowY: 'auto',
           padding: '13px',
         }}
       >
@@ -24,18 +24,20 @@ const QualitativeTable = () => {
               className="team-select"
               style={{
                 width: '100px',
-                marginRight: '12px',
+                height: '44px',
+                flexShrink: '0',
                 padding: '8px',
                 backgroundColor: '#000614',
                 border: '1px solid #2F3953',
                 borderRadius: '10px',
                 color: 'rgba(255, 255, 255, 0.25)',
                 fontFamily: 'Poppins',
+                background: 'rgba(217, 217, 217, 0.00)',
                 fontSize: '16px',
                 fontStyle: 'normal',
                 fontWeight: '600',
                 lineHeight: 'normal',
-                boxShadow: '0px 0px 51px 5px rgba(255, 255, 255, 0.25)',
+                boxShadow: '0px 0px 20px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               <option value="team1">Team 1</option>
@@ -45,15 +47,18 @@ const QualitativeTable = () => {
             <select
               className="defense-select"
               style={{
-                width: '140px',
+                width: '60%',
+                marginLeft: '12px',
+                height: '44px',
                 padding: '8px',
                 fontFamily: 'poppins',
                 fontSize: '16px',
                 color: '#FFFFFF40',
                 backgroundColor: '#000614',
+                background: 'rgba(217, 217, 217, 0.00)',
                 border: '1px solid #2F3953',
-                borderRadius: '4px',
-                boxShadow: '0px 0px 51px 5px rgba(255, 255, 255, 0.25)',
+                borderRadius: '10px',
+                boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               <option value="option1">Option 1</option>
@@ -75,12 +80,12 @@ const QualitativeTable = () => {
             backgroundColor: '#A1A3A8',
             color: 'white',
             fontFamily: 'poppins',
-            fontSize: '32px',
+            fontSize: '20px',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '50%',
             cursor: 'pointer',
-            width: '66px',
-            height: '66px',
+            width: '56px',
+            height: '56px',
             flexShrink: '0',
             strokeWidth: '2px',
             stroke: '#2F343F',

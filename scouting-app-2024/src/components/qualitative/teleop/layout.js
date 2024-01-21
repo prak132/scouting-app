@@ -30,11 +30,11 @@ const QualTeleopLayout = () => {
       <div
         style={{
           color: "rgba(255, 255, 255, 0.50)",
-          width: "100vw",
+          width: "70vw",
           fontSize: "4vw",
         }}
       >
-        Qualitiative • Timer: 
+        Qualitiative
       </div>
       <QualitativeTable />
       <RectangleWithText />
