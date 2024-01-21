@@ -80,7 +80,7 @@ const TextBox = () => {
       <button
         type="button"
         onClick={handleNextButtonClick}
-        className="NextButton"
+        className="NextButton Next"
       >
         Next {">"}
       </button>

@@ -8,8 +8,9 @@
 
 .button-container {
   display: flex;
-  gap: 10px;
-  margin-top: 17px;
+  position: relative;
+  width: 374px;
+  max-width: 87%;
 }
 
 .NextButton {
@@ -20,45 +21,67 @@
   border: 2px solid rgba(255, 255, 255, 0.50);
   background: #000614;
   box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.24);
-  color: grey;
-  font-size: 20px;
   padding-right: 30px;
-  margin-top: 17px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.50);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .BlueButton,
 .RedButton {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 175px;
+  padding-left: 12px;
+  max-width: 49%;
+  width: 220px;
   border: 2px solid transparent;
   box-shadow: 0px 0px 100.9px 5px transparent;
   cursor: pointer;
-  color: #C4C4C4;
   transition: background-color 0.3s ease;
+  color: rgba(255, 255, 255, 0.50);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .BlueButton {
-  border: 2px solid rgb(0, 0, 186);
-  box-shadow: 0px 0px 100.9px 5px blue;
+  border: 2px solid rgb(46, 73, 131);
+  box-shadow: 0px 0px 50px 5px rgb(44, 63, 137);
+  background: #000a2d;
+  position: relative;
+  left: 0;
 }
 
 .RedButton {
-  border: 2px solid rgb(180, 0, 0);
-  box-shadow: 0px 0px 100.9px 5px red;
+  border: 2px solid rgb(131, 46, 94);
+  box-shadow: 0px 0px 50px 5px rgb(137, 44, 111);
+  background: rgb(36, 0, 19);
+  margin-left: auto;
 }
 
 .BlueButton.active {
-  background-color: rgb(0, 0, 135);
+  background-color: rgb(42, 67, 121);
 }
 
 .RedButton.active {
-  background-color: rgb(122, 0, 0);
+  background-color: rgb(121, 42, 86);
 }
 
 .textbox-container {
+  display: flex;
   position: relative;
+  width: 500px;
+  max-width: 100%;
+}
+
+.Next {
+  margin-top: 40px;
 }
 
 .glowing-textbox {
@@ -72,6 +95,14 @@
   box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.50);  
   font-size: 20px;
   margin-top: 15px;
+  max-width: 80%;
+  margin: auto;
+  color: rgba(255, 255, 255, 0.50);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .glowing-textbox:focus {
@@ -79,6 +110,13 @@
   border: 1px solid #FFF;
   background: rgba(145, 145, 145, 0.20);
   box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.50);
+}
+
+.glowing-dropdown {
+  display: flex;
+  position: relative;
+  width: 500px;
+  max-width: 100%;
 }
 
 .glowing-dropdown-input {
@@ -91,7 +129,15 @@
   background: rgba(217, 217, 217, 0.00);
   box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.50);  
   font-size: 20px;
-  margin-top: 7px;
+  margin-top: 15px;
+  max-width: 80%;
+  margin: auto;
+  color: rgba(255, 255, 255, 0.50);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .glowing-dropdown-input:focus {
