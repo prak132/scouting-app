@@ -42,7 +42,7 @@ const TeleopLayout = () => {
           setSelectedTeam(null);
         };
 
-        setTimeout(resetValues, 300);
+        setTimeout(resetValues, 30);
       }
     };
 
