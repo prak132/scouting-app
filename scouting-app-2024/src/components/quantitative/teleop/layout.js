@@ -27,17 +27,27 @@ const TeleopLayout = () => {
   };
 
 
-  const scored = () => {
-    if (selectedTeam && (ampSelected || speakerSelected)) {
-      setTimeout(() => {
-        setAmpSelected(false);
-        setSpeakerSelected(false);
-        setSelectedTeam(null); //this causes amp to change to speaker after 300ms but too bad ig
-      }, 300);
-    }
-    return 'bouta kms' + ' scored ' + `${ampSelected ? "Amp" : "Speaker"}`;
-  };
-  
+  const [storedTeam, setStoredTeam] = useState('846');
+  const [storedElement, setStoredElement] = useState('Amp');
+
+  useEffect(() => {
+    const scored = () => {
+      if (selectedTeam && (ampSelected || speakerSelected)) {
+        setStoredTeam(selectedTeam);
+        setStoredElement(`${ampSelected ? "Amp" : "Speaker"}`);
+
+        const resetValues = () => {
+          setAmpSelected(false);
+          setSpeakerSelected(false);
+          setSelectedTeam(null);
+        };
+
+        setTimeout(resetValues, 300);
+      }
+    };
+
+    scored();
+  }, [selectedTeam, ampSelected, speakerSelected]);
 
   function callNotif() {
     if (selectedTeam && (ampSelected || speakerSelected)) {
@@ -87,7 +97,7 @@ const TeleopLayout = () => {
         />
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
         <UndoInfo />
-        <Notif contents={scored()} launchNotif={callNotif()} />
+        <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
         
       </div>
       <div>

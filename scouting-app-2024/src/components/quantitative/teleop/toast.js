@@ -3,35 +3,37 @@ import Check from "./assets/check.svg";
 import "./toast.css";
 
 const Notif = ({ contents, launchNotif }) => {
-  const [animate, setAnimate] = useState(false);
-
-  const startAnimation = () => {
-    setAnimate(true);
-    setTimeout(() => {
-      setAnimate(false);
-    }, 1200);
-  };
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     if (launchNotif) {
-      startAnimation();
+
+      const newNotification = {
+        id: new Date().getTime(),
+        contents: contents,
+      };
+
+      setNotifications((prevNotifications) => [...prevNotifications, newNotification]);
+
+      setTimeout(() => {
+        setNotifications((prevNotifications) =>
+          prevNotifications.filter((notification) => notification.id !== newNotification.id)
+        );
+      }, 1200);
     }
-  }, [launchNotif]);
+  }, [launchNotif, contents]);
 
   return (
     <div>
-      {true && (
-        <div>
-          <div className={`toastNotif ${animate ? 'animate' : 'toastNotif'}`}>
-            <img src={Check} alt="check" />
-            <div id="toastContents">
-              {contents}
-            </div>
-          </div>
+      {notifications.map((notification) => (
+        <div key={notification.id} className="toastNotif animate">
+          <img src={Check} alt="check" />
+          <div id="toastContents">{notification.contents}</div>
         </div>
-      )}
+      ))}
     </div>
   );
 };
 
 export default Notif;
+
