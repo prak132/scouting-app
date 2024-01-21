@@ -31,17 +31,21 @@ const TeleopLayout = () => {
         setAmpSelected(false);
         setSpeakerSelected(false);
         setSelectedTeam(null);
-      }, 750); 
-      return `${ampSelected ? "Amp" : "Speaker"}`;
+      }, 250);
     }
-    return null;
   };
+  
+  const scoreNotif = () => {
+    scored();
+    return `${ampSelected ? "Amp" : "Speaker"}`;
+  };
+
 
   const elapsedTime = 2.23;
 
-  return (
-    
+  
 
+  return (
     <div
       style={{
         paddingTop: "15vh",
@@ -67,7 +71,7 @@ const TeleopLayout = () => {
       <div
         style={{
           color: "rgba(255, 255, 255, 0.50)",
-          width: "100vw",
+          width: "70vw",
           fontSize: "4vw",
         }}
       >

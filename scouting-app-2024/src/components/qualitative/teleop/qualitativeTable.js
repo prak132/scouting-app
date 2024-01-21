@@ -8,37 +8,51 @@ const QualitativeTable = () => {
   };
 
   return (
-    <div className="container" style={{ backgroundColor: '#000614', padding: '13px' }}>
+    <div
+      className="scrollable-container"
+      style={{
+        height: '272px',
+        overflowY: 'auto',
+        backgroundColor: '#000614',
+        padding: '13px',
+      }}
+    >
       {rows.map((row) => (
         <div key={row} className="row" style={{ marginBottom: '13px' }}>
-          <input
-            type="text"
-            className="textbox"
-            placeholder="Team #"
+          <select
+            className="team-select"
             style={{
+              width: '100px',
               marginRight: '12px',
               padding: '8px',
               backgroundColor: '#000614',
               border: '1px solid #2F3953',
-              borderRadius: '4px',
+              borderRadius: '10px',
               color: 'rgba(255, 255, 255, 0.25)',
               fontFamily: 'Poppins',
               fontSize: '16px',
               fontStyle: 'normal',
               fontWeight: '600',
-              lineHeight: 'normal' 
+              lineHeight: 'normal',
+              boxShadow: '0px 0px 51px 5px rgba(255, 255, 255, 0.25)'
             }}
-          />
+          >
+            <option value="team1">Team 1</option>
+            <option value="team2">Team 2</option>
+            <option value="team3">Team 3</option>
+          </select>
           <select
-            className="scroll-menu"
+            className="defense-select"
             style={{
+              width: '140px',
               padding: '8px',
               fontFamily: 'poppins',
               fontSize: '16px',
-              color: 'white',
+              color: '#FFFFFF40',
               backgroundColor: '#000614',
-              border: '1px solid #ccc',
+              border: '1px solid #2F3953',
               borderRadius: '4px',
+              boxShadow: '0px 0px 51px 5px rgba(255, 255, 255, 0.25)'
             }}
           >
             <option value="option1">Option 1</option>
@@ -53,14 +67,21 @@ const QualitativeTable = () => {
         onClick={addRow}
         style={{
           marginTop: '13px',
+          marginLeft:'287px',
           padding: '10px',
-          backgroundColor: '#4CAF50',
+          backgroundColor: '#A1A3A8',
           color: 'white',
           fontFamily: 'poppins',
-          fontSize: '16px',
+          fontSize: '32px',
           border: 'none',
-          borderRadius: '4px',
+          borderRadius: '8px',
           cursor: 'pointer',
+          width: '66px',
+          height: '66px',
+          flexShrink: '0',
+          strokeWidth: '2px',
+          stroke: '#2F343F',
+          
         }}
       >
         +

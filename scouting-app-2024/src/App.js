@@ -6,6 +6,18 @@ import StartLayout from "./components/start/layout.js";
 import PageButtons from "./components/navigationButtons";
 import QualTeleopLayout from "./components/qualitative/teleop/layout.js";
 
+/* 
+1 - team {i} - {j}
+2 - map press {i}
+3 - endgame team {i} - {j}
+
+var stack = [];
+stack.push(1);
+stack.push(2);
+stack.pop();
+console.log(stack);
+*/
+
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const pages = [StartLayout, TeleopLayout, AutoLayout, QualTeleopLayout];

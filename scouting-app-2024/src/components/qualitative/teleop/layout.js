@@ -1,6 +1,7 @@
 import React from "react";
-// eslint-disable-next-line
+
 import QualitativeTable from "./qualitativeTable.js";
+import RectangleWithText from "./notesBox.js"
 
 const QualTeleopLayout = () => {
   return (
@@ -36,6 +37,7 @@ const QualTeleopLayout = () => {
         Qualitiative • Timer: 
       </div>
       <QualitativeTable />
+      <RectangleWithText />
       <div type = "notes">
 
 
