@@ -1,26 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { fetchDataAndSaveToFile } from "./data.js";
+import React, { useState } from "react";
 import "./TextBox.css";
+import matchesData from "./data.json";
 
 const TextBox = () => {
-  const [matchesData, setMatchesData] = useState([]);
   const [nameValue, setNameValue] = useState("");
   const [eventValue, setEventValue] = useState("");
   const [matchValue, setMatchValue] = useState("");
-
-  useEffect(() => {
-    const eventData = {
-      "Los Angeles Regional": { key: "2023cala"},
-      "Chezy Champs": { key: "2023cc"},
-      "Silicon Valley Regional": { key: "2023casj"},
-    };
-
-    const selectedEvent = "Los Angeles Regional";
-    const selectedEventData = eventData[selectedEvent];
-    const authKey = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw';
-
-    fetchDataAndSaveToFile(selectedEventData.key, authKey);
-  }, []);
+  const [activeButton, setActiveButton] = useState(null);
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
@@ -29,10 +15,7 @@ const TextBox = () => {
   const handleEventChange = (e) => {
     const selectedEvent = e.target.value;
     setEventValue(selectedEvent);
-    const selectedEventData = eventData[selectedEvent];
-    fetchDataAndSaveToFile(selectedEventData.key, authKey);
   };
-
 
   const handleMatchChange = (e) => {
     setMatchValue(e.target.value);
@@ -44,10 +27,12 @@ const TextBox = () => {
 
   const handleBlueButtonClick = () => {
     console.log("bluee");
+    setActiveButton("blue");
   };
 
   const handleRedButtonClick = () => {
     console.log("redd");
+    setActiveButton("red");
   };
 
   return (
@@ -62,43 +47,36 @@ const TextBox = () => {
         />
       </div>
       <div className="glowing-dropdown" style={{ marginTop: "7px" }}>
-        <select
-          value={eventValue}
-          onChange={handleEventChange}
-        >
-          {Object.keys(eventData).map((eventName, index) => (
-            <option key={index} value={eventName}>
-              {eventName}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="glowing-dropdown" style={{ marginTop: "7px" }}>
-        <select
+        <input
+          type="text"
+          list="matchOptions"
           value={matchValue}
           onChange={handleMatchChange}
-        >
+          placeholder="Select a match"
+          className="glowing-dropdown-input text"
+        />
+        <datalist id="matchOptions">
           {matchesData.map((matchKey, index) => (
-            <option key={index} value={matchKey}>
-              {matchKey}
-            </option>
+            <option key={index} value={matchKey} />
           ))}
-        </select>
+        </datalist>
       </div>
-      <button
-        type="button"
-        onClick={handleBlueButtonClick}
-        className="NextButton"
-      >
-        Blue
-      </button>
-      <button
-        type="button"
-        onClick={handleRedButtonClick}
-        className="NextButton"
-      >
-        Red
-      </button>
+      <div className="button-container">
+        <button
+          type="button"
+          onClick={handleBlueButtonClick}
+          className={`NextButton BlueButton ${activeButton === "blue" ? "active" : ""}`}
+        >
+          Blue
+        </button>
+        <button
+          type="button"
+          onClick={handleRedButtonClick}
+          className={`NextButton RedButton ${activeButton === "red" ? "active" : ""}`}
+        >
+          Red
+        </button>
+      </div>
       <button
         type="button"
         onClick={handleNextButtonClick}
