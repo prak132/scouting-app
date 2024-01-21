@@ -11,6 +11,7 @@ const RectangleWithText = () => {
           backgroundColor: '#00000000',
           padding: '20px',
           boxSizing: 'border-box',
+          overflow: 'hidden',
         }}
       >
         <h2

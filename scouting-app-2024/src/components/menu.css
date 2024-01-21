@@ -1,0 +1,29 @@
+.topBar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    margin-top: 15px;
+    width: 87%;
+}
+
+.logo {
+    display: flex;
+    position: relative;
+    width: 15%;
+    margin-bottom: auto;
+}
+
+.topButtons {
+    display: flex;
+    position: relative;
+    width: 15%;
+    margin-left: auto;
+    flex-direction: column;
+}
+
+.button {
+    margin-left: auto;
+    margin-bottom: 5px;
+    height: 40px;
+    width: 40px;
+}

@@ -4,6 +4,7 @@ import AutoLayout from "./components/auto/layout.js";
 import TeleopLayout from "./components/quantitative/teleop/layout.js";
 import StartLayout from "./components/start/layout.js";
 import PageButtons from "./components/navigationButtons";
+import MenuElements from "./components/menus.js";
 import QualTeleopLayout from "./components/qualitative/teleop/layout.js";
 
 /* 
@@ -42,6 +43,7 @@ function App() {
   const elapsedTime = 1501;
   return (
     <div >
+      <MenuElements/>
       <div>{choosePage(elapsedTime)}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
     </div>
