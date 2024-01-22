@@ -100,14 +100,14 @@ const TextBox = () => {
           onClick={handleQuantitativeButtonClick}
           className={'NextButton QuantitativeButton'}
         >
-          Quantitative
+          Quant
         </button>
         <button
           type="button"
           onClick={handleQualitiativeButtonClick}
           className={'NextButton QualitiativeButton'}
         >
-          Qualitiative
+          Qual
         </button>
       </div>
       <button

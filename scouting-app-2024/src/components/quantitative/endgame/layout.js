@@ -5,7 +5,7 @@ import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
 import UndoInfo from "./undoinfo.js";
 
-const TeleopLayout = () => {
+const EndGameLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
@@ -107,6 +107,6 @@ const TeleopLayout = () => {
     </div>
     
   );
-};//<hr style={{color: "#313B54", width: '100%', height: '100%', justifyContent: 'center', alignItems: 'right', gap: 291, display: 'inline-flex'}}></hr>
+};
 
-export default TeleopLayout;
+export default EndGameLayout;
