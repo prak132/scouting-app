@@ -4,7 +4,7 @@ blueidapidocs: https://www.thebluealliance.com/apidocs/v3
 # todo
 - [x] fix navbar
 - [x] navbar function
-- [ ] start page fix/design
+- [x] start page fix/design
 - [ ] add the random squiggle things
 - [ ] start auto page
 - [ ] add functions to undo and info button
