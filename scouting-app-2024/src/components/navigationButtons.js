@@ -10,7 +10,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
         display: 'flex',
         flexDirection: 'column-reverse',
         alignItems: 'center',
-        width: '87%',
+        width: '86%',
         zIndex: 9999,
       }}
     >

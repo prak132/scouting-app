@@ -35,3 +35,16 @@
 .button:focus {
     outline: none;
 }
+
+.yellowOverlayShown {
+    width: 10000px;
+    height: 10000px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-image: linear-gradient(rgb(255, 221, 0), rgb(255, 175, 77));
+}
+
+.yellowOverlayHidden {
+    visibility: hidden;
+}

@@ -33,7 +33,7 @@ const RectangleWithText = () => {
         <textarea
           style={{
             width: '100%',
-            height: '198px',
+            height: '10rem',
             boxSizing: 'border-box',
             marginTop: '10px',
             backgroundColor: '#000614',

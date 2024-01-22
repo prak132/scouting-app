@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./TextBox.css";
-import matchesData from "./data.json";
+import matchesData from "./team.json";
+import matchDetails from "./match.json";
 
 const TextBox = () => {
   const [nameValue, setNameValue] = useState("");
@@ -21,10 +22,6 @@ const TextBox = () => {
     setMatchValue(e.target.value);
   };
 
-  const handleNextButtonClick = () => {
-    console.log("test1");
-  };
-
   const handleBlueButtonClick = () => {
     console.log("bluee");
     setActiveButton("blue");
@@ -34,6 +31,26 @@ const TextBox = () => {
     console.log("redd");
     setActiveButton("red");
   };
+  const handleQualitiativeButtonClick = () => {
+    console.log("Qualitiative");
+  };
+
+  const handleQuantitativeButtonClick = () => {
+    console.log("Quantitative");
+  };
+
+
+  const handleNextButtonClick = () => {
+    const selectedMatch = matchDetails[matchValue];
+    if (selectedMatch) {
+      const alliance = activeButton === "blue" ? "blue" : "red";
+      const teamKeys = selectedMatch.alliances[alliance].team_keys;
+      console.log(`${alliance} alliance in ${matchValue}:`, teamKeys);
+    } else {
+      console.log(`Match details not found for ${matchValue}`);
+    }
+  };
+
 
   return (
     <div className="center-container">
@@ -75,6 +92,22 @@ const TextBox = () => {
           className={`NextButton RedButton ${activeButton === "red" ? "active" : ""}`}
         >
           Red
+        </button>
+      </div>
+      <div className="button-container">
+        <button
+          type="button"
+          onClick={handleQuantitativeButtonClick}
+          className={'NextButton QuantitativeButton'}
+        >
+          Quantitative
+        </button>
+        <button
+          type="button"
+          onClick={handleQualitiativeButtonClick}
+          className={'NextButton QualitiativeButton'}
+        >
+          Qualitiative
         </button>
       </div>
       <button

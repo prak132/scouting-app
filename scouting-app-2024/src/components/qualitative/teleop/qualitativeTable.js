@@ -37,7 +37,7 @@ const QualitativeTable = () => {
                 fontStyle: 'normal',
                 fontWeight: '600',
                 lineHeight: 'normal',
-                boxShadow: '0px 0px 20px 1px rgba(255, 255, 255, 0.1)',
+                boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               <option value="team1">Team 1</option>
@@ -73,25 +73,24 @@ const QualitativeTable = () => {
           className="addRowBtn"
           onClick={addRow}
           style={{
-            position: 'absolute',
-            top: '70%',
-            right: '99px',
+            position: 'fixed',
             padding: '10px',
             backgroundColor: '#A1A3A8',
             color: 'white',
             fontFamily: 'poppins',
             fontSize: '20px',
-            border: 'none',
+            border: '3px solid #2F3953',
             borderRadius: '50%',
             cursor: 'pointer',
-            width: '56px',
-            height: '56px',
+            width: '50px',
+            height: '50px',
             flexShrink: '0',
             strokeWidth: '2px',
             stroke: '#2F343F',
+            boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
           }}
         >
-          +
+          <div>+</div>
         </button>
       </div>
     </div>
