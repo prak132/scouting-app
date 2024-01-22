@@ -17,15 +17,15 @@
   width: 115px;
   height: 46px;
   flex-shrink: 0;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.50);
   background: #000614;
-  box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.24);
-  padding-right: 30px;
+  box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.50);
+  padding: 5px;
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -37,7 +37,7 @@
 .QualitiativeButton {
   display: flex;
   align-items: center;
-  padding-left: flex;
+  padding-left: 10px;
   max-width: 49%;
   width: 220px;
   border: 2px solid transparent;
@@ -46,53 +46,60 @@
   transition: background-color 0.3s ease;
   color: rgba(255, 255, 255, 0.50);
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
 .QuantitativeButton {
-  border: 2px solid #FF7F50;
-  box-shadow: 0px 0px 50px 5px rgb(255, 127, 80, 0.449);
-  background: #000a2d;
+  border: 2px solid #cdb03f;
+  box-shadow: 0px 0px 50px 5px rgb(255, 127, 80, 0.2);
+  background: #1d17033b;
   position: relative;
   left: 0;
 }
 
 .QualitiativeButton {
-  border: 2px solid #71c7ec;
-  box-shadow: 0px 0px 50px 5px rgba(0, 163, 195, 0.499);
-  background: #000a2d;
-  position: relative;
-  left: 7px;
+  border: 2px solid #cdb03f;
+  box-shadow: 0px 0px 50px 5px rgba(0, 163, 195, 0.2);
+  background: #1d17033b;
+  margin-left: auto;
+  text-align: center;
 }
 
 .BlueButton {
   border: 2px solid rgb(74, 131, 255);
-  box-shadow: 0px 0px 50px 5px rgb(44, 63, 137);
+  box-shadow: 0px 0px 50px 5px rgb(44, 63, 137, .6);
   background: #000a2d;
   position: relative;
   left: 0;
-  text-align: center;
-
 }
 
 .RedButton {
   border: 2px solid rgb(218, 56, 56);
-  box-shadow: 0px 0px 50px 5px rgba(176, 47, 81);
+  box-shadow: 0px 0px 50px 5px rgba(176, 47, 81, .6);
   background: rgb(36, 0, 19);
   margin-left: auto;
   text-align: center;
 }
 
 .BlueButton.active {
-  background-color: rgb(42, 67, 121);
+  background-color: rgb(18, 89, 155);
 }
 
 .RedButton.active {
-  background-color: rgb(188, 0, 28);
+  background-color: rgb(147, 18, 37);
 }
+
+.QualitiativeButton.active {
+  background-color: #8a7a3a;
+}
+
+.QuantitativeButton.active {
+  background-color: #8a7a3a;
+}
+
 
 .textbox-container {
   display: flex;
@@ -110,27 +117,26 @@
   height: 30px;
   flex-shrink: 0;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.50);
   background: rgba(217, 217, 217, 0.00);
-  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.50);  
-  font-size: 20px;
+  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.20);  
+  font-size: 18px;
   margin-top: 15px;
   max-width: 80%;
   margin: auto;
   color: rgba(255, 255, 255, 0.50);
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
 .glowing-textbox:focus {
-  border-radius: 20px;
-  border: 1px solid #FFF;
+  border-radius: 10px;
   background: rgba(145, 145, 145, 0.20);
-  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.50);
+  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.30);
 }
 
 .glowing-dropdown {
@@ -145,27 +151,26 @@
   height: 30px;
   flex-shrink: 0;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.50);
   background: rgba(217, 217, 217, 0.00);
-  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.50);  
-  font-size: 20px;
+  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.20);  
+  font-size: 18px;
   margin-top: 15px;
   max-width: 80%;
   margin: auto;
   color: rgba(255, 255, 255, 0.50);
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
 .glowing-dropdown-input:focus {
-  border-radius: 20px;
-  border: 1px solid #FFF;
+  border-radius: 10px;
   background: rgba(145, 145, 145, 0.20);
-  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.50);
+  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.30);
 }
 
 .text {

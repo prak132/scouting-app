@@ -8,6 +8,7 @@ const TextBox = () => {
   const [eventValue, setEventValue] = useState("");
   const [matchValue, setMatchValue] = useState("");
   const [activeButton, setActiveButton] = useState(null);
+  const [modeActiveButton, setModeActiveButton] = useState(null);
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
@@ -33,10 +34,12 @@ const TextBox = () => {
   };
   const handleQualitiativeButtonClick = () => {
     console.log("Qualitiative");
+    setModeActiveButton("qual");
   };
 
   const handleQuantitativeButtonClick = () => {
     console.log("Quantitative");
+    setModeActiveButton("quan");
   };
 
 
@@ -98,16 +101,16 @@ const TextBox = () => {
         <button
           type="button"
           onClick={handleQuantitativeButtonClick}
-          className={'NextButton QuantitativeButton'}
+          className={`NextButton QuantitativeButton ${modeActiveButton === "quan" ? "active" : ""}`}
         >
-          Quant
+          QAT
         </button>
         <button
           type="button"
           onClick={handleQualitiativeButtonClick}
-          className={'NextButton QualitiativeButton'}
+          className={`NextButton QualitiativeButton ${modeActiveButton === "qual" ? "active" : ""}`}
         >
-          Qual
+          QAL
         </button>
       </div>
       <button
