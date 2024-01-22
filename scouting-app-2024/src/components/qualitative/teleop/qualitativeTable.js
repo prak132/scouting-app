@@ -74,29 +74,33 @@ const QualitativeTable = () => {
         ))}
       </div>
       <button
-        className="addRowBtn"
-        onClick={addRow}
-        style={{
-          position: 'absolute',
-          right: '-10px',
-          bottom: '-20px',
-          padding: '10px',
-          backgroundColor: '#A1A3A8',
-          color: 'white',
-          fontFamily: 'poppins',
-          fontSize: '20px',
-          background: '#A1A3A8',
-          borderRadius: '50%',
-          borderWidth: '5px',
-          border: '#2F343F',
-          cursor: 'pointer',
-          width: '50px',
-          height: '50px',
-          boxShadow: '0px 0px 35px 3px rgba(255, 255, 255, 0.3)',
-        }}
-      >
-        <div style={{ color: '#2F343F', fontWeight: 'bolder'}}>+</div>
-      </button>
+  className="addRowBtn"
+  onClick={addRow}
+  style={{
+    position: 'absolute',
+    right: '-10px',
+    bottom: '-20px',
+    padding: '10px',
+    backgroundColor: '#A1A3A8',
+    color: 'white',
+    fontFamily: 'poppins',
+    fontSize: '20px',
+    background: '#A1A3A8',
+    borderRadius: '50%',
+    border: '5px solid #2F343F',
+    cursor: 'pointer',
+    width: '50px',
+    height: '50px',
+    boxShadow: '0px 0px 35px 3px rgba(255, 255, 255, 0.3)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center', // Center vertically
+    margin: 'auto', // Center horizontally
+  }}
+>
+  <div style={{ color: '#2F343F', fontWeight: 'bolder', fontSize: '20px' }}>+</div>
+</button>
+
     </div>
   );
 };

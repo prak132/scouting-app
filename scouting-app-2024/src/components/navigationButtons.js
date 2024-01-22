@@ -19,6 +19,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
         style={{
           minWidth: '100%',
           display: 'flex',
+          padding: '1.5vh',
           justifyContent: 'space-between',
           position: 'relative',
           background: '#000614',
@@ -43,7 +44,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
             fontSize: '6vw',
             backgroundColor: 'transparent',
             border: 'none',
-            margin: 20,
+            marginLeft: 20,
           }}
         >
           {'<'}
@@ -56,7 +57,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
             fontSize: '6vw',
             backgroundColor: 'transparent',
             border: 'none',
-            margin: 20,
+            marginRight: 20,
           }}
         >
           {'>'}
