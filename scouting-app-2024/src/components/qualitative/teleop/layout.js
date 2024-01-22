@@ -10,8 +10,6 @@ const QualTeleopLayout = () => {
         paddingTop: "15vh",
       }}
     >
-
-    
       <div type="teleop-text">
         <div
           type="teleop-text"
@@ -22,6 +20,9 @@ const QualTeleopLayout = () => {
             fontWeight: "700",
             wordWrap: "break-word",
             marginBottom: "-0.25vh",
+            background: '-webkit-linear-gradient(#eee, #333)',
+            webkitBackgroundClip: 'text',
+            webkitTextFillColor: 'transparent',
           }}
         >
           Teleop

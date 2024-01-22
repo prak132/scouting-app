@@ -12,14 +12,18 @@ const QualitativeTable = () => {
       <div
         className="scrollable-container"
         style={{
-          height: '272px',
+          height: '270px',
           backgroundColor: '#000614',
           overflowY: 'auto',
           padding: '13px',
         }}
       >
         {rows.map((row) => (
-          <div key={row} className="row" style={{ marginBottom: '13px' }}>
+          <div key={row} className="row" style={{
+             marginBottom: '13px',
+             display: 'flexbox',
+             justifyContent: 'space-between',
+            }}>
             <select
               className="team-select"
               style={{
@@ -47,8 +51,8 @@ const QualitativeTable = () => {
             <select
               className="defense-select"
               style={{
+                marginLeft: '10px',
                 width: '60%',
-                marginLeft: '12px',
                 height: '44px',
                 padding: '8px',
                 fontFamily: 'poppins',
@@ -65,6 +69,7 @@ const QualitativeTable = () => {
               <option value="option2">Option 2</option>
               <option value="option3">Option 3</option>
             </select>
+
           </div>
         ))}
       </div>
@@ -73,21 +78,21 @@ const QualitativeTable = () => {
           className="addRowBtn"
           onClick={addRow}
           style={{
-            position: 'fixed',
+            position: 'absolute',
+            right: '25px',
+            bottom: '38%',
             padding: '10px',
             backgroundColor: '#A1A3A8',
             color: 'white',
             fontFamily: 'poppins',
             fontSize: '20px',
-            border: '3px solid #2F3953',
+            background: 'linear-gradient(#f3f3f3, #A1A3A8)',
             borderRadius: '50%',
+            border: 'none',
             cursor: 'pointer',
-            width: '50px',
-            height: '50px',
-            flexShrink: '0',
-            strokeWidth: '2px',
-            stroke: '#2F343F',
-            boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+            width: '40px',
+            height: '40px',
+            boxShadow: '0px 0px 35px 3px rgba(255, 255, 255, 0.3)',
           }}
         >
           <div>+</div>
