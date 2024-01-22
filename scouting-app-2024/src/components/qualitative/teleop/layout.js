@@ -23,6 +23,7 @@ const QualTeleopLayout = () => {
             background: '-webkit-linear-gradient(#eee, #333)',
             webkitBackgroundClip: 'text',
             webkitTextFillColor: 'transparent',
+
           }}
         >
           Teleop

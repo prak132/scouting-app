@@ -103,14 +103,14 @@ const TextBox = () => {
           onClick={handleQuantitativeButtonClick}
           className={`NextButton QuantitativeButton ${modeActiveButton === "quan" ? "active" : ""}`}
         >
-          QAT
+          Quantitative
         </button>
         <button
           type="button"
           onClick={handleQualitiativeButtonClick}
           className={`NextButton QualitiativeButton ${modeActiveButton === "qual" ? "active" : ""}`}
         >
-          QAL
+          Qualitative
         </button>
       </div>
       <button

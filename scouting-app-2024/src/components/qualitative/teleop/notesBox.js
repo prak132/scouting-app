@@ -6,7 +6,7 @@ const RectangleWithText = () => {
       <div
         style={{
           width: '100%',
-          height: 'auto',
+          height: '24rem',
           textAlign: 'center',
           backgroundColor: '#00000000',
           padding: '20px',
@@ -33,7 +33,7 @@ const RectangleWithText = () => {
         <textarea
           style={{
             width: '100%',
-            height: '10rem',
+            height: '50%',
             boxSizing: 'border-box',
             marginTop: '10px',
             backgroundColor: '#000614',

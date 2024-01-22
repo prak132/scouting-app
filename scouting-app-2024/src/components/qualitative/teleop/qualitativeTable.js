@@ -8,28 +8,29 @@ const QualitativeTable = () => {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', height: '300px' }}>
       <div
         className="scrollable-container"
         style={{
-          height: '270px',
+          height: '100%', 
+          maxHeight: '300px',
           backgroundColor: '#000614',
-          overflowY: 'auto',
+          overflowY: 'scroll',
           padding: '13px',
         }}
       >
         {rows.map((row) => (
           <div key={row} className="row" style={{
-             marginBottom: '13px',
-             display: 'flexbox',
-             justifyContent: 'space-between',
-            }}>
+            marginBottom: '13px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}>
             <select
               className="team-select"
               style={{
                 width: '100px',
                 height: '44px',
-                flexShrink: '0',
+                flexShrink: 0,
                 padding: '8px',
                 backgroundColor: '#000614',
                 border: '1px solid #2F3953',
@@ -52,7 +53,7 @@ const QualitativeTable = () => {
               className="defense-select"
               style={{
                 marginLeft: '10px',
-                width: '60%',
+                flex: 1,
                 height: '44px',
                 padding: '8px',
                 fontFamily: 'poppins',
@@ -69,35 +70,33 @@ const QualitativeTable = () => {
               <option value="option2">Option 2</option>
               <option value="option3">Option 3</option>
             </select>
-
           </div>
         ))}
       </div>
-      <div>
-        <button
-          className="addRowBtn"
-          onClick={addRow}
-          style={{
-            position: 'absolute',
-            right: '25px',
-            bottom: '38%',
-            padding: '10px',
-            backgroundColor: '#A1A3A8',
-            color: 'white',
-            fontFamily: 'poppins',
-            fontSize: '20px',
-            background: 'linear-gradient(#f3f3f3, #A1A3A8)',
-            borderRadius: '50%',
-            border: 'none',
-            cursor: 'pointer',
-            width: '40px',
-            height: '40px',
-            boxShadow: '0px 0px 35px 3px rgba(255, 255, 255, 0.3)',
-          }}
-        >
-          <div>+</div>
-        </button>
-      </div>
+      <button
+        className="addRowBtn"
+        onClick={addRow}
+        style={{
+          position: 'absolute',
+          right: '-10px',
+          bottom: '-20px',
+          padding: '10px',
+          backgroundColor: '#A1A3A8',
+          color: 'white',
+          fontFamily: 'poppins',
+          fontSize: '20px',
+          background: '#A1A3A8',
+          borderRadius: '50%',
+          borderWidth: '5px',
+          border: '#2F343F',
+          cursor: 'pointer',
+          width: '50px',
+          height: '50px',
+          boxShadow: '0px 0px 35px 3px rgba(255, 255, 255, 0.3)',
+        }}
+      >
+        <div style={{ color: '#2F343F', fontWeight: 'bolder'}}>+</div>
+      </button>
     </div>
   );
 };

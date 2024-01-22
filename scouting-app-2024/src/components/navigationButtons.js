@@ -5,22 +5,23 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
     <div
       style={{
         position: 'fixed', 
+        left: 0,
         bottom: 0,
         backgroundColor: 'transparent',
         display: 'flex',
         flexDirection: 'column-reverse',
         alignItems: 'center',
-        width: '86%',
+        width: '100%',
         zIndex: 9999,
       }}
     >
       <div
         style={{
           minWidth: '100%',
-          margin: '2vh',
           display: 'flex',
           justifyContent: 'space-between',
           position: 'relative',
+          background: '#000614',
         }}
       >
         <div
@@ -42,7 +43,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
             fontSize: '6vw',
             backgroundColor: 'transparent',
             border: 'none',
-            margin: 10,
+            margin: 20,
           }}
         >
           {'<'}
@@ -55,7 +56,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
             fontSize: '6vw',
             backgroundColor: 'transparent',
             border: 'none',
-            margin: 10,
+            margin: 20,
           }}
         >
           {'>'}
