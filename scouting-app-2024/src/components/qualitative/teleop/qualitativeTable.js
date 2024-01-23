@@ -34,7 +34,6 @@ const QualitativeTable = () => {
           overflowY: 'scroll',
           padding: '14px',
           marginTop: '10px',
-          WebkitAppearance: 'none',
         }}
       >
         <div
@@ -47,23 +46,20 @@ const QualitativeTable = () => {
           <div
             className="team-select"
             style={{
-              width: '100px',
-              flex: 0.42,
+              flex: 0.4,
+              flexShrink: 0,
               padding: '8px',
-              paddingLeft: '7px',
+              paddingLeft: '10px',
               backgroundColor: '#000614',
               border: '1px solid #2F3953',
               borderRadius: '10px',
-              color: 'rgba(255, 255, 255, 0.3)',
+              color: 'rgba(255, 255, 255, 0.25)',
               fontFamily: 'Poppins',
               background: 'rgba(217, 217, 217, 0.00)',
               fontSize: '16px',
               fontStyle: 'normal',
-              fontWeight: '400',
               lineHeight: 'normal',
               boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
-              WebkitBoxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
-              WebkitAppearance: 'none',
             }}
           >
             Team
@@ -73,24 +69,19 @@ const QualitativeTable = () => {
             style={{
               marginLeft: '10px',
               flex: 1,
-              height: '25px',
               padding: '8px',
-              paddingLeft: '10px',
+              paddingLeft: '12px',
               fontFamily: 'poppins',
               fontSize: '16px',
-              color: 'rgba(255, 255, 255, 0.3)',
-              fontStyle: 'normal',
-              fontWeight: '400',
-              lineHeight: 'normal',
+              color: '#FFFFFF40',
               backgroundColor: '#000614',
               background: 'rgba(217, 217, 217, 0.00)',
               border: '1px solid #2F3953',
               borderRadius: '10px',
               boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
-              WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
             }}
           >
-            Defense
+            Defense Location
           </div>
           <button
             className="add-button"
@@ -99,14 +90,12 @@ const QualitativeTable = () => {
               flex: 0.1,
               marginLeft: '10px',
               backgroundColor: 'transparent',
-              color: 'rgba(255, 255, 255, 0.7)',
-              fontSize: '20px',
-              background: 'rgba(217, 217, 217, 0.00)',
               border: '1px solid #2F3953',
+              color: 'rgba(255, 255, 255, 0.7)',
+              fontSize: '25px',
+              background: 'rgba(217, 217, 217, 0.00)',
               borderRadius: '10px',
               boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
-              WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
-              WebkitAppearance: 'none',
             }}
           >
             +
@@ -127,6 +116,7 @@ const QualitativeTable = () => {
               style={{
                 width: '100px',
                 flex: 0.4,
+                flexShrink: 0,
                 padding: '8px',
                 backgroundColor: '#000614',
                 border: '1px solid #2F3953',
@@ -139,8 +129,6 @@ const QualitativeTable = () => {
                 fontWeight: '600',
                 lineHeight: 'normal',
                 boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
-                WebkitBoxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
-                WebkitAppearance: 'none',
               }}
             >
               {teamOptions}
@@ -163,7 +151,6 @@ const QualitativeTable = () => {
                 border: '1px solid #2F3953',
                 borderRadius: '10px',
                 boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
-                WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               <option value="option1">Source</option>
@@ -182,8 +169,6 @@ const QualitativeTable = () => {
                 border: '1px solid #2F3953',
                 borderRadius: '10px',
                 boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
-                WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
-                WebkitAppearance: 'none',
               }}
             >
               -
