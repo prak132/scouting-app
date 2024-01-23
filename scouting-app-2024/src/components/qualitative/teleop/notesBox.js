@@ -6,12 +6,20 @@ const RectangleWithText = () => {
       <div
         style={{
           width: '100%',
+          left: '0',
+          position: 'absolute',
+          height: '3px',
+          background: '#313B54',
+        }}
+      ></div>
+      <div
+        style={{
+          width: '100%',
           height: '24rem',
           textAlign: 'center',
           backgroundColor: '#00000000',
           padding: '20px',
           boxSizing: 'border-box',
-          borderTop: '4px solid #2F3953',
         }}
       >
         <h2

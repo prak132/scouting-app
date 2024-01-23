@@ -31,7 +31,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
             top: 0,
             left: 0,
             right: 0,
-            height: '2px',
+            height: '3px',
             backgroundColor: '#313B54',
           }}
         ></div>
