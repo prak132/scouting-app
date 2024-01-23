@@ -48,7 +48,6 @@ const QualitativeTable = () => {
             className="team-select"
             style={{
               flex: 0.4,
-              flexShrink: 0,
               padding: '8px',
               paddingLeft: '10px',
               backgroundColor: '#000614',
@@ -86,7 +85,7 @@ const QualitativeTable = () => {
               WebkitAppearance: 'none',
             }}
           >
-            Defense Location
+            Defense
           </div>
           <button
             className="add-button"
@@ -123,7 +122,6 @@ const QualitativeTable = () => {
               style={{
                 width: '100px',
                 flex: 0.4,
-                flexShrink: 0,
                 padding: '8px',
                 backgroundColor: '#000614',
                 border: '1px solid #2F3953',
