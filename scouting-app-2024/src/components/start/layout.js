@@ -1,22 +1,17 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import "./TextBox.css";
 import matchesData from "./team.json";
 import matchDetails from "./match.json";
 
 const TextBox = () => {
   const [nameValue, setNameValue] = useState("");
-  const [eventValue, setEventValue] = useState("");
   const [matchValue, setMatchValue] = useState("");
   const [activeButton, setActiveButton] = useState(null);
   const [modeActiveButton, setModeActiveButton] = useState(null);
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
-  };
-
-  const handleEventChange = (e) => {
-    const selectedEvent = e.target.value;
-    setEventValue(selectedEvent);
   };
 
   const handleMatchChange = (e) => {
@@ -49,10 +44,13 @@ const TextBox = () => {
       const alliance = activeButton === "blue" ? "blue" : "red";
       const teamKeys = selectedMatch.alliances[alliance].team_keys;
       console.log(`${alliance} alliance in ${matchValue}:`, teamKeys);
+      const teamNumbers = teamKeys.map(team => team.replace("frc", ""));
+      Cookies.set("teamNumbers", JSON.stringify(teamNumbers));
     } else {
       console.log(`Match details not found for ${matchValue}`);
     }
   };
+
 
 
   return (

@@ -9,9 +9,6 @@ const TeleopLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
-  
-  let [launchNotif, setLaunchNotif] = useState(false);
-
   const handleTeamSelect = (number) => {
     setSelectedTeam(number === selectedTeam ? null : number);
   };
