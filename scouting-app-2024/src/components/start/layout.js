@@ -109,10 +109,17 @@ const TextBox = () => {
       <button
         type="button"
         onClick={handleNextButtonClick}
-        className="NextButton Next"
+        className={`NextButton Next ${
+          nameValue.trim() !== "" &&
+          matchValue !== "" &&
+          (activeButton === "blue" || activeButton === "red") &&
+          (modeActiveButton === "quan" || modeActiveButton === "qual")
+            ? "glow"
+            : ""
+        }`}
       >
         Next {">"}
-      </button>
+    </button>
     </div>
   );
 };
