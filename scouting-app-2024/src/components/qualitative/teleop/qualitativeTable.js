@@ -24,7 +24,7 @@ const QualitativeTable = () => {
   };
 
   return (
-    <div style={{ webkitDisplay: 'flex', webkitFlexDirection: 'column', position: 'relative', height: '250px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', height: '250px' }}>
       <div
         className="scrollable-container"
         style={{
@@ -34,6 +34,7 @@ const QualitativeTable = () => {
           overflowY: 'scroll',
           padding: '14px',
           marginTop: '10px',
+          WebkitAppearance: 'none',
         }}
       >
         <div
@@ -60,6 +61,8 @@ const QualitativeTable = () => {
               fontStyle: 'normal',
               lineHeight: 'normal',
               boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
+              WebkitBoxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
+              WebkitAppearance: 'none',
             }}
           >
             Team
@@ -79,6 +82,8 @@ const QualitativeTable = () => {
               border: '1px solid #2F3953',
               borderRadius: '10px',
               boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+              WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+              WebkitAppearance: 'none',
             }}
           >
             Defense Location
@@ -96,6 +101,8 @@ const QualitativeTable = () => {
               background: 'rgba(217, 217, 217, 0.00)',
               borderRadius: '10px',
               boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+              WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+              WebkitAppearance: 'none',
             }}
           >
             +
@@ -129,6 +136,8 @@ const QualitativeTable = () => {
                 fontWeight: '600',
                 lineHeight: 'normal',
                 boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
+                WebkitBoxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
+                WebkitAppearance: 'none',
               }}
             >
               {teamOptions}
@@ -151,6 +160,7 @@ const QualitativeTable = () => {
                 border: '1px solid #2F3953',
                 borderRadius: '10px',
                 boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+                WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               <option value="option1">Source</option>
@@ -169,6 +179,8 @@ const QualitativeTable = () => {
                 border: '1px solid #2F3953',
                 borderRadius: '10px',
                 boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+                WebkitBoxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+                WebkitAppearance: 'none',
               }}
             >
               -
