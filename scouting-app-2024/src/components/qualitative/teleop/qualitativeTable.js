@@ -24,7 +24,7 @@ const QualitativeTable = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', height: '250px' }}>
+    <div style={{ webkitDisplay: 'flex', webkitFlexDirection: 'column', position: 'relative', height: '250px' }}>
       <div
         className="scrollable-container"
         style={{
