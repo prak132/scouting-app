@@ -19,21 +19,17 @@ const TextBox = () => {
   };
 
   const handleBlueButtonClick = () => {
-    console.log("bluee");
     setActiveButton("blue");
   };
 
   const handleRedButtonClick = () => {
-    console.log("redd");
     setActiveButton("red");
   };
   const handleQualitiativeButtonClick = () => {
-    console.log("Qualitiative");
     setModeActiveButton("qual");
   };
 
   const handleQuantitativeButtonClick = () => {
-    console.log("Quantitative");
     setModeActiveButton("quan");
   };
 
@@ -43,7 +39,6 @@ const TextBox = () => {
     if (selectedMatch) {
       const alliance = activeButton === "blue" ? "blue" : "red";
       const teamKeys = selectedMatch.alliances[alliance].team_keys;
-      console.log(`${alliance} alliance in ${matchValue}:`, teamKeys);
       const teamNumbers = teamKeys.map(team => team.replace("frc", ""));
       Cookies.set("teamNumbers", JSON.stringify(teamNumbers));
     } else {
