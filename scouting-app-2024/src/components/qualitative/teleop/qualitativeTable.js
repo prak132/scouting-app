@@ -19,6 +19,10 @@ const QualitativeTable = () => {
     setRows([rows.length + 1, ...rows]);
   };
 
+  const removeRow = (index) => {
+    setRows(rows.filter((_, i) => i !== index));
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', height: '250px' }}>
       <div
@@ -97,7 +101,7 @@ const QualitativeTable = () => {
             +
           </button>
         </div>
-        {rows.map((row) => (
+        {rows.map((row, index) => (
           <div
             key={row}
             className="row"
@@ -154,6 +158,7 @@ const QualitativeTable = () => {
             </select>
             <button
               className="delete-button"
+              onClick={() => removeRow(index)}
               style={{
                 flex: 0.1,
                 marginLeft: '10px',
