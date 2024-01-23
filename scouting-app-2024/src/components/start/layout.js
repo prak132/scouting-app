@@ -5,6 +5,7 @@ import matchesData from "./team.json";
 import matchDetails from "./match.json";
 
 const TextBox = () => {
+  Cookies.set("teamNumbers", JSON.stringify(["hey","go","back"]));
   const [nameValue, setNameValue] = useState("");
   const [matchValue, setMatchValue] = useState("");
   const [activeButton, setActiveButton] = useState(null);
