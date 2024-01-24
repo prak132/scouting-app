@@ -8,7 +8,6 @@ const TeamNumbers = ({ onSelect, selectedTeam }) => {
       style={{
         display: "flex",
         alignItems: "center",
-        marginTop: "2vh",
         width: "86vw",
       }}
     >

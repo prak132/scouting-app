@@ -13,7 +13,6 @@ const TrapButton = ({ onSelect, isSelected }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: "2vh",
         marginTop: "2vh",
         cursor: "pointer",
       }}

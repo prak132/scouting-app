@@ -12,7 +12,7 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
                 <button className='button bottomButton'></button>
             </div>
         </div>
-        <div className='yellowOverlay'>.</div>
+        <div className='yellowOverlay'></div>
     </div>
   );
 };
