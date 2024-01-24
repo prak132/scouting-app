@@ -6,7 +6,7 @@ import StartLayout from "./components/start/layout.js";
 import PageButtons from "./components/navigationButtons";
 import MenuElements from "./components/menus.js";
 import QualTeleopLayout from "./components/qualitative/teleop/layout.js";
-//import EndGameLayout from "./components/quantitative/endgame/layout.js";
+import EndGameLayout from "./components/quantitative/endgame/layout.js";
 
 /* 
 1 - team {i} - {j}
@@ -22,7 +22,7 @@ console.log(stack);
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
-  const pages = [StartLayout, TeleopLayout, AutoLayout, QualTeleopLayout];
+  const pages = [StartLayout, TeleopLayout, AutoLayout, QualTeleopLayout, EndGameLayout];
   const handleLeftButtonClick = () => {
     setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : pages.length - 1));
   };

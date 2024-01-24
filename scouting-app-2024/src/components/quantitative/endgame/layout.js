@@ -4,13 +4,13 @@ import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
 import UndoInfo from "./undoinfo.js";
+import TrapButton from "./trapButton.js";
 
 const EndGameLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
-  
-  let [launchNotif, setLaunchNotif] = useState(false);
+  const [trapSelected, setTrapSelected] = useState(false);
 
   const handleTeamSelect = (number) => {
     setSelectedTeam(number === selectedTeam ? null : number);
@@ -19,26 +19,34 @@ const EndGameLayout = () => {
   const handleAmpSelect = () => {
     setAmpSelected(!ampSelected);
     setSpeakerSelected(false);
+    setTrapSelected(false);
   };
 
   const handleSpeakerSelect = () => {
     setSpeakerSelected(!speakerSelected);
     setAmpSelected(false);
+    setTrapSelected(false);
   };
 
+  const handleTrapSelect = () => {
+    setTrapSelected(!trapSelected);
+    setAmpSelected(false);
+    setSpeakerSelected(false); 
+  };
 
   const [storedTeam, setStoredTeam] = useState('846');
-  const [storedElement, setStoredElement] = useState('Amp');
+  const [storedElement, setStoredElement] = useState('');
 
   useEffect(() => {
     const scored = () => {
-      if (selectedTeam && (ampSelected || speakerSelected)) {
+      if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
         setStoredTeam(selectedTeam);
-        setStoredElement(`${ampSelected ? "Amp" : "Speaker"}`);
+        setStoredElement(`${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`);
 
         const resetValues = () => {
           setAmpSelected(false);
           setSpeakerSelected(false);
+          setTrapSelected(false);
           setSelectedTeam(null);
         };
 
@@ -47,10 +55,10 @@ const EndGameLayout = () => {
     };
 
     scored();
-  }, [selectedTeam, ampSelected, speakerSelected]);
+  }, [selectedTeam, ampSelected, speakerSelected, trapSelected]);
 
   function callNotif() {
-    if (selectedTeam && (ampSelected || speakerSelected)) {
+    if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
       return true;
     };
     return null;
@@ -79,7 +87,7 @@ const EndGameLayout = () => {
             webkitTextFillColor: 'transparent',
           }}
         >
-          Teleop
+          Endgame
         </div>
       </div>
       <div
@@ -98,6 +106,7 @@ const EndGameLayout = () => {
           onSelect={handleSpeakerSelect}
           isSelected={speakerSelected}
         />
+        <TrapButton onSelect={handleTrapSelect} isSelected={trapSelected} />
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
         <UndoInfo />
         <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
@@ -108,7 +117,6 @@ const EndGameLayout = () => {
         
       </div>
     </div>
-    
   );
 };
 

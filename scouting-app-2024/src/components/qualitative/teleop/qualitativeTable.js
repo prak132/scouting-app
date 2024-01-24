@@ -81,7 +81,7 @@ const QualitativeTable = () => {
               boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
             }}
           >
-            Defense Location
+            Defense
           </div>
           <button
             className="add-button"
