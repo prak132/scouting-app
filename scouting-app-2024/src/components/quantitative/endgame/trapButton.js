@@ -7,14 +7,14 @@ const TrapButton = ({ onSelect, isSelected }) => {
 
   return (
     <div
-      type="trapButton"
+      type="TrapButton"
       onMouseDown={handleMouseDown}
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: "4vh",
-        height: '100px',
+        marginBottom: "2vh",
+        marginTop: "2vh",
         cursor: "pointer",
       }}
     >
