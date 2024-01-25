@@ -26,9 +26,9 @@ const Notif = ({ contents, launchNotif }) => {
   return (
     <div>
       {notifications.map((notification) => (
-        <div key={notification.id} className="toastNotif animate">
+        <div key={notification.id} className="toastNotifEndgame animateEndgame">
           <img src={Check} alt="check" />
-          <div id="toastContents">{notification.contents}</div>
+          <div id="toastContentsEndgame">{notification.contents}</div>
         </div>
       ))}
     </div>
