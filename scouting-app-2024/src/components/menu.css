@@ -11,6 +11,7 @@
     position: relative;
     width: 15%;
     margin-bottom: auto;
+    z-index: 9999;
 }
 
 .topButtons {
@@ -36,15 +37,30 @@
     outline: none;
 }
 
-.yellowOverlayShown {
-    width: 10000px;
-    height: 1000px;
+.yellowOverlay {
+    visibility: hidden;
     position: absolute;
-    left: 0px;
-    top: 0px;
-    background-image: linear-gradient(rgb(255, 221, 0), rgb(255, 175, 77));
+    width: 50px;
+    height: 50px;
+    background-image: linear-gradient(rgb(255, 230, 0), rgb(255, 180, 0));
+    z-index: 0;
+    transition: 0.2s ease-in-out;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.yellowOverlayHidden {
-    visibility: hidden;
+
+.buttonActive {
+    visibility: show;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 0%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    background-image: linear-gradient(rgb(255, 230, 0), rgb(255, 180, 0));
+    z-index: 0;
+    transition: 0.2s ease-in-out;
 }
