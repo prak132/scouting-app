@@ -18,11 +18,6 @@ function App() {
   const quantpages = [AutoLayout, QuantTeleopLayout, QuantEndGameLayout];
   const [currentPage, setCurrentPage] = useState(0);
 
-  useEffect(() => {
-    const newPages = modeActiveButton === 'quan' ? quantpages : qualpages;
-    setPages(newPages);
-  }, [modeActiveButton]);
-
   const handleLeftButtonClick = () => {
     setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : pages.length - 1));
   };
@@ -31,7 +26,7 @@ function App() {
     setCurrentPage((prevPage) => (prevPage < pages.length - 1 ? prevPage + 1 : 0));
   };
 
-  const [pagesxww, setPages] = useState([]);
+  const [pages, setPages] = useState([]);
   Cookies.set("teamNumbers", JSON.stringify(["hey", "go", "back"]));
   const [nameValue, setNameValue] = useState("");
   const [matchValue, setMatchValue] = useState("");
@@ -72,7 +67,14 @@ function App() {
     } else {
       console.log(`Match details not found for ${matchValue}`);
     }
+
+    setCurrentPage((prevPage) => (prevPage < pages.length - 1 ? prevPage + 1 : 0));
   };
+
+  useEffect(() => {
+    const newPages = modeActiveButton === 'quan' ? quantpages : qualpages;
+    setPages(newPages);
+  }, [modeActiveButton]);
 
   return (
     <div >
@@ -148,9 +150,6 @@ function App() {
         >
           Next {">"}
       </button>
-    </div>
-    <div>
-      {pages.length > 0 && React.createElement(pages[currentPage])}
     </div>
     <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
     </div>
