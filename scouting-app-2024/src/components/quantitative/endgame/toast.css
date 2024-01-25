@@ -1,4 +1,4 @@
-.toastNotif {
+.toastNotifEndgame {
     visibility: hidden;
     border-radius: 10px;
     border: 1px solid #B9FFE6;
@@ -15,7 +15,7 @@
     justify-content: center; 
 }
 
-#toastContents {
+#toastContentsEndgame {
     display: inline-flex;
     color: #B9FFE6;
     font-family: Poppins;
@@ -26,7 +26,7 @@
     margin: 5%;
 }
 
-.animate {
+.animateEndgame {
     visibility: visible;
     animation:
      fadein 0.3s ease-out, 
