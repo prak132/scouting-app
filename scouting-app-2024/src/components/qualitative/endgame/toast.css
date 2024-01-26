@@ -1,0 +1,81 @@
+.toastNotif {
+    visibility: hidden;
+    border-radius: 10px;
+    border: 1px solid #B9FFE6;
+    background: #1E232E;
+    box-shadow: 0px 0px 42.3px 2px rgba(185, 255, 230, 0.10) inset, 0px 0px 42.3px 5px rgba(185, 255, 230, 0.25);
+    position: absolute;
+    width: 360px;
+    height: 60px;
+    bottom: 100px;
+    max-width: 70%;
+    left: 50%; 
+    transform: translateX(-50%); 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+#toastContents {
+    display: inline-flex;
+    color: #B9FFE6;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 5%;
+}
+
+.animate {
+    visibility: visible;
+    animation:
+     fadeinTeleop 0.3s, 
+     expandTeleop 0.3s 0.3s,
+     stayTeleop 1s 0.6s, 
+     fadeoutTeleop 0.4s 1s;
+    -webkit-animation:
+     fadeinTeleop 0.3s, 
+     expandTeleop 0.3s 0.3s,
+     stayTeleop 1s 0.6s, 
+     fadeoutTeleop 0.4s 1s;
+}
+
+@-webkit-keyframes fadeinTeleop {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 100px; opacity: 1;}
+}
+
+@keyframes fadeinTeleop {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 100px; opacity: 1;}
+}
+
+@-webkit-keyframes expandTeleop {
+    from {min-width: 300px} 
+    to {min-width: 350px}
+}
+
+@keyframes expandTeleop {
+    from {min-width: 300px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes stayTeleop {
+    from {min-width: 350px} 
+    to {min-width: 350px}
+}
+
+@keyframes stayTeleop {
+    from {min-width: 350px}
+    to {min-width: 350px}
+}
+
+@-webkit-keyframes fadeoutTeleop {
+    from {bottom: 100px; opacity: 1;} 
+    to {bottom: 140px; opacity: 0;}
+}
+
+@keyframes fadeoutTeleop {
+    from {bottom: 100px; opacity: 1;}
+    to {bottom: 140px; opacity: 0;}
+}
