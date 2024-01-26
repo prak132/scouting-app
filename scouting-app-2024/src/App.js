@@ -11,15 +11,24 @@ import StartLayout from "./layout.js";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [isQuantitativeMode, setQuantitativeMode] = useState(true);
   const qualpages = [StartLayout, AutoLayout, QualTeleopLayout, QualEndGameLayout];
   const quantpages = [StartLayout, AutoLayout, QuantTeleopLayout, QuantEndGameLayout];
 
   const handleLeftButtonClick = () => {
-    setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : currentPage.length - 1));
+    setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : (isQuantitativeMode ? quantpages.length - 1 : qualpages.length - 1)));
   };
 
   const handleRightButtonClick = () => {
-    setCurrentPage((prevPage) => (prevPage < currentPage.length - 1 ? prevPage + 1 : 0));
+    setCurrentPage((prevPage) => (prevPage < (isQuantitativeMode ? quantpages.length - 1 : qualpages.length - 1) ? prevPage + 1 : 0));
+  };
+
+  const handleQualitativeButtonClick = () => {
+    setQuantitativeMode(false);
+  };
+
+  const handleQuantitativeButtonClick = () => {
+    setQuantitativeMode(true);
   };
 
   const choosePage = () => {
@@ -27,11 +36,13 @@ function App() {
     return <PageComponent key={currentPage} />;
   };
 
-  const isQuantitativeMode = true;
-
   return (
     <div>
-      <MenuElements/>
+      <MenuElements />
+      <StartLayout
+        onQualitativeButtonClick={handleQualitativeButtonClick}
+        onQuantitativeButtonClick={handleQuantitativeButtonClick}
+      />
       <div>{choosePage()}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
     </div>

@@ -4,7 +4,7 @@ import "./TextBox.css";
 import matchesData from "./data/team.json";
 import matchDetails from "./data/match.json";
 
-const TextBox = () => {
+const TextBox = ({ onQualitativeButtonClick, onQuantitativeButtonClick }) => {
   Cookies.set("teamNumbers", JSON.stringify(["hey","go","back"]));
   const [nameValue, setNameValue] = useState("");
   const [matchValue, setMatchValue] = useState("");
@@ -28,10 +28,12 @@ const TextBox = () => {
   };
   const handleQualitiativeButtonClick = () => {
     setModeActiveButton("qual");
+    onQualitativeButtonClick();
   };
 
   const handleQuantitativeButtonClick = () => {
     setModeActiveButton("quan");
+    onQuantitativeButtonClick();
   };
 
 
