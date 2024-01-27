@@ -59,19 +59,6 @@ const AutoLayout = () => {
         ))}
       </div>
     </div>
-<<<<<<< HEAD
-    <div className="svg-bounding">
-      <img src={BlueAuto} alt="auto-img" className="auto-map"></img>
-      <button className="note-button"></button>
-    </div>
-    <div className="position-bounds">
-        <div className="position-button blue-left">^</div>
-        <div className="position-button blue-center">^</div>
-        <div className="position-button blue-right">^</div>
-      </div>
-    </div>
-=======
->>>>>>> c5abf8e (posbuttons for auto)
   );
 };
 
