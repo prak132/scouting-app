@@ -5,7 +5,7 @@ import matchesData from "./data/team.json";
 import matchDetails from "./data/match.json";
 
 
-const TextBox = ({ setQuantitativeMode }) => {
+const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
  Cookies.set("teamNumbers", JSON.stringify(["hey", "go", "back"]));
  const [nameValue, setNameValue] = useState("");
  const [matchValue, setMatchValue] = useState("");
@@ -34,15 +34,20 @@ const TextBox = ({ setQuantitativeMode }) => {
 
 
  const handleQualitiativeButtonClick = () => {
-   setModeActiveButton("qual");
-   setQuantitativeMode(false); // Update mode to qualitative
- };
+    setModeActiveButton("qual");
+    if (setQuantitativeMode) {
+      setQuantitativeMode(false);
+    }
+  };
 
 
- const handleQuantitativeButtonClick = () => {
-   setModeActiveButton("quan");
-   setQuantitativeMode(true); // Update mode to quantitative
- };
+
+  const handleQuantitativeButtonClick = () => {
+    setModeActiveButton("quan");
+    if (setQuantitativeMode) {
+      setQuantitativeMode(true);
+    }
+  };
 
 
  const handleNextButtonClick = () => {
@@ -52,9 +57,11 @@ const TextBox = ({ setQuantitativeMode }) => {
      const teamKeys = selectedMatch.alliances[alliance].team_keys;
      const teamNumbers = teamKeys.map((team) => team.replace("frc", ""));
      Cookies.set("teamNumbers", JSON.stringify(teamNumbers));
-   } else {
-     console.log(`Match details not found for ${matchValue}`);
-   }
+    } else {
+      console.log(`Match details not found for ${matchValue}`);
+    } if (onNextButtonClick) {
+      onNextButtonClick();
+    }
  };
 
 
@@ -144,5 +151,3 @@ const TextBox = ({ setQuantitativeMode }) => {
 
 
 export default TextBox;
-
-
