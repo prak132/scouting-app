@@ -7,7 +7,6 @@ import QualTeleopLayout from "./components/qualitative/teleop/layout.js";
 import QualEndGameLayout from "./components/qualitative/endgame/layout.js";
 import PageButtons from "./components/navigationButtons";
 import MenuElements from "./components/menus.js";
-// import StartLayout from "./layout.js";
 import TextBox from "./layout.js";
 
 function App() {
@@ -28,16 +27,16 @@ function App() {
 
   const handleSetQuantitativeMode = (mode) => {
     setIsQuantitativeMode(mode);
-    setCurrentPage(0);
   };
 
   const handleNextButtonClick = () => {
     setShowTextBox(false);
+    setCurrentPage(0);
   };
 
   const choosePage = () => {
     const PageComponent = isQuantitativeMode ? quantpages[currentPage] : qualpages[currentPage];
-    return <div>{PageComponent && <PageComponent key={currentPage} />}</div>;
+    return !showTextBox && <div>{PageComponent && <PageComponent key={currentPage} />}</div>;
   };
 
   return (
@@ -49,5 +48,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

@@ -1,14 +1,16 @@
 import React from "react";
+import BlueAuto from './assets/blue_auto.svg';
+import './layout.css';
 
 const AutoLayout = () => {
   const elapsedTime = 2.23;
   return (
     <div>
-          <div
+      <div
       style={{
         paddingTop: "15vh",
       }}
-    >
+      >
       <div type="teleop-text">
         <div
           type="teleop-text"
@@ -36,6 +38,9 @@ const AutoLayout = () => {
       >
         Scoring • Timer: {elapsedTime}s
       </div>
+    </div>
+    <div className="svg-bounding">
+      <img src={BlueAuto} alt="auto-img" className="auto-map"></img>
     </div>
     </div>
       
