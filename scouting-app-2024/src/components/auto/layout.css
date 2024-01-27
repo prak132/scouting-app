@@ -1,15 +1,24 @@
 .svg-bounding {
     display: flex;
-    width: 100%;
-    height: 200px;
+    position: relative;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 326px;
+    height: 440px;
     border: 3.5px solid #FFF;
+    border-radius: 3%;
     background:  white -108.767px 0px / 129.239% 100% no-repeat;
     overflow: hidden;
 }
 
 .auto-map {
+    position: relative;
+    margin: auto;
     top: 0;
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 106%;
+    right: 3%;
+    height: 600px;
+    top: -155px;
 }
