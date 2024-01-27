@@ -22,7 +22,7 @@ const QualTeleopLayout = () => {
             marginBottom: "-0.25vh",
             background: '-webkit-linear-gradient(#eee, #333)',
             webkitBackgroundClip: 'text',
-            webkitTextFillColor: 'transparent',
+            WebkitTextFillColor: 'transparent',
 
           }}
         >

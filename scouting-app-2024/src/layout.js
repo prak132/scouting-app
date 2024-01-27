@@ -74,6 +74,7 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
          onChange={handleNameChange}
          className="glowing-textbox text"
          placeholder="Name"
+         id="nameInput"
        />
      </div>
      <div className="glowing-dropdown" style={{ marginTop: "7px" }}>
@@ -84,6 +85,7 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
          onChange={handleMatchChange}
          placeholder="Select a match"
          className="glowing-dropdown-input text"
+         id="matchInput"
        />
        <datalist id="matchOptions">
          {matchesData.map((matchKey, index) => (

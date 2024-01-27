@@ -7,7 +7,7 @@ import QualTeleopLayout from "./components/qualitative/teleop/layout.js";
 import QualEndGameLayout from "./components/qualitative/endgame/layout.js";
 import PageButtons from "./components/navigationButtons";
 import MenuElements from "./components/menus.js";
-import StartLayout from "./layout.js";
+// import StartLayout from "./layout.js";
 import TextBox from "./layout.js";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
   const [isQuantitativeMode, setIsQuantitativeMode] = useState(true);
   const [showTextBox, setShowTextBox] = useState(true);
 
-  const qualpages = [StartLayout, AutoLayout, QualTeleopLayout, QualEndGameLayout];
-  const quantpages = [StartLayout, AutoLayout, QuantTeleopLayout, QuantEndGameLayout];
+  const qualpages = [AutoLayout, QualTeleopLayout, QualEndGameLayout];
+  const quantpages = [AutoLayout, QuantTeleopLayout, QuantEndGameLayout];
 
   const handleLeftButtonClick = () => {
     setCurrentPage(prevPage => (prevPage > 0 ? prevPage - 1 : (isQuantitativeMode ? quantpages : qualpages).length - 1));
@@ -28,7 +28,7 @@ function App() {
 
   const handleSetQuantitativeMode = (mode) => {
     setIsQuantitativeMode(mode);
-    setCurrentPage(1);
+    setCurrentPage(0);
   };
 
   const handleNextButtonClick = () => {

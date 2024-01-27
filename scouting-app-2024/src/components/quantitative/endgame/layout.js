@@ -83,8 +83,8 @@ const EndGameLayout = () => {
             wordWrap: "break-word",
             marginBottom: "-0.25vh",
             background: '-webkit-linear-gradient(#eee, #333)',
-            webkitBackgroundClip: 'text',
-            webkitTextFillColor: 'transparent',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
           }}
         >
           Endgame

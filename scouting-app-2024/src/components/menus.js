@@ -89,7 +89,6 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
   const [yellowMode, setYellowMode] = useState(0);
 
   const handleLogoClick = () => {
-    console.log('big yellow');
     setYellowMode(!yellowMode);
   };
 

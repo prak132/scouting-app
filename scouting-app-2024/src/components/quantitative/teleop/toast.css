@@ -30,52 +30,52 @@
 .animate {
     visibility: visible;
     animation:
-     fadein 0.3s, 
-     expand 0.3s 0.3s,
-     stay 1s 0.6s, 
-     fadeout 0.4s 1s;
-     -webkit-animation:
-     fadein 0.3s, 
-     expand 0.3s 0.3s,
-     stay 1s 0.6s, 
-     fadeout 0.4s 1s;
+     fadeinTeleop 0.3s, 
+     expandTeleop 0.3s 0.3s,
+     stayTeleop 1s 0.6s, 
+     fadeoutTeleop 0.4s 1s;
+    -webkit-animation:
+     fadeinTeleop 0.3s, 
+     expandTeleop 0.3s 0.3s,
+     stayTeleop 1s 0.6s, 
+     fadeoutTeleop 0.4s 1s;
 }
 
-@-webkit-keyframes fadein {
+@-webkit-keyframes fadeinTeleop {
     from {bottom: 0; opacity: 0;} 
     to {bottom: 100px; opacity: 1;}
 }
 
-@keyframes fadein {
+@keyframes fadeinTeleop {
     from {bottom: 0; opacity: 0;}
     to {bottom: 100px; opacity: 1;}
 }
 
-@-webkit-keyframes expand {
+@-webkit-keyframes expandTeleop {
     from {min-width: 300px} 
     to {min-width: 350px}
 }
 
-@keyframes expand {
+@keyframes expandTeleop {
     from {min-width: 300px}
     to {min-width: 350px}
 }
-@-webkit-keyframes stay {
+@-webkit-keyframes stayTeleop {
     from {min-width: 350px} 
     to {min-width: 350px}
 }
 
-@keyframes stay {
+@keyframes stayTeleop {
     from {min-width: 350px}
     to {min-width: 350px}
 }
 
-@-webkit-keyframes fadeout {
+@-webkit-keyframes fadeoutTeleop {
     from {bottom: 100px; opacity: 1;} 
     to {bottom: 140px; opacity: 0;}
 }
 
-@keyframes fadeout {
+@keyframes fadeoutTeleop {
     from {bottom: 100px; opacity: 1;}
     to {bottom: 140px; opacity: 0;}
 }
