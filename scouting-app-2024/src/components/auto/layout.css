@@ -49,6 +49,7 @@
     height: 46px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .note-button {
@@ -60,4 +61,11 @@
     background: rgba(0, 0, 0, 0);
     border-radius: 50%;
     border: 6px solid orange;
+}
+.position-button.selected {
+    border: 1px solid #fff;
+    background: rgba(145, 145, 145, 0.2);
+    box-shadow: 0px 0px 30px 4px rgba(255, 255, 255, 0.3);
+    color: "white";
+    transition: .2s;
 }
