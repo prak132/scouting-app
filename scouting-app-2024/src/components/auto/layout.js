@@ -21,7 +21,8 @@ const AutoLayout = () => {
             fontWeight: "700",
             wordWrap: "break-word",
             marginBottom: "-0.25vh",
-            background: '-webkit-linear-gradient(#eee, #333)',
+            background: 'linear-gradient(#fff, #333)',
+            background: '-webkit-linear-gradient(#fff, #333)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
@@ -41,6 +42,11 @@ const AutoLayout = () => {
     </div>
     <div className="svg-bounding">
       <img src={BlueAuto} alt="auto-img" className="auto-map"></img>
+    </div>
+    <div className="position-bounds">
+        <div className="position-button blue-left">^</div>
+        <div className="position-button blue-center">^</div>
+        <div className="position-button blue-right">^</div>
     </div>
     </div>
       
