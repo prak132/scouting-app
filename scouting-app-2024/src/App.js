@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { initializeBluetooth, transferDataToDevice } from './Bluetooth.js';
+import Cookies from "js-cookie";
+import { initializeBluetooth, transferDataToDevice, handleIncomingData } from './Bluetooth.js';
 import "./App.css";
 import AutoLayout from "./components/auto/layout.js";
 import QuantTeleopLayout from "./components/quantitative/teleop/layout.js";
@@ -39,24 +40,32 @@ function App() {
     const PageComponent = isQuantitativeMode ? quantpages[currentPage] : qualpages[currentPage];
     return !showTextBox && <div>{PageComponent && <PageComponent key={currentPage} />}</div>;
   };
-  
+
+  const handleDataReceived = (receivedData) => {
+    const decodedData = new TextDecoder().decode(receivedData.buffer);
+    console.log('Received data:', decodedData);
+    const parsedData = JSON.parse(decodedData);
+    console.log('Parsed data as JSON:', parsedData);
+  };
+      
+
   const sendDataToBluetooth = async () => {
     try {
+      const userData = Cookies.get("teamNumbers");
+      console.log('Cookie data:', userData);
       const server = await initializeBluetooth();
       if (server) {
-        const dataToSend = 'TEST'; 
-        await transferDataToDevice(server, dataToSend);
+        await transferDataToDevice(server, userData);
+        await handleIncomingData(server, handleDataReceived);
       }
     } catch (error) {
-      console.error('Error sending data to Bluetooth device:', error);
+      console.error('Error sending/receiving data to/from Bluetooth device:', error);
     }
   };
-  
-
 
   return (
     <div>
-      <MenuElements/>
+      <MenuElements />
       <button onClick={sendDataToBluetooth}>Send Data</button>
       {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} />}
       <div>{choosePage()}</div>
@@ -64,6 +73,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
