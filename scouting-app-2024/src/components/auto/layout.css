@@ -55,7 +55,7 @@
 .note-button {
     position: absolute;
     bottom: 336px;
-    left: 30px;
+    left: 40px;
     width: 40px;
     height: 40px;
     background: rgba(0, 0, 0, 0);
@@ -63,9 +63,9 @@
     border: 6px solid orange;
 }
 .position-button.selected {
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     background: rgba(145, 145, 145, 0.2);
     box-shadow: 0px 0px 30px 4px rgba(255, 255, 255, 0.3);
     color: "white";
-    transition: .2s;
+    transition: .4s;
 }

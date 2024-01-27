@@ -46,6 +46,7 @@ const AutoLayout = () => {
       </div>
       <div className="svg-bounding">
         <img src={BlueAuto} alt="auto-img" className="auto-map" />
+        <button className="note-button"></button>
       </div>
       <div className="position-bounds">
         {pos.map((position, index) => (
