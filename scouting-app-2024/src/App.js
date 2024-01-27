@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { initializeBluetooth, transferDataToDevice } from './Bluetooth.js';
 import "./App.css";
 import AutoLayout from "./components/auto/layout.js";
 import QuantTeleopLayout from "./components/quantitative/teleop/layout.js";
@@ -38,10 +39,25 @@ function App() {
     const PageComponent = isQuantitativeMode ? quantpages[currentPage] : qualpages[currentPage];
     return !showTextBox && <div>{PageComponent && <PageComponent key={currentPage} />}</div>;
   };
+  
+  const sendDataToBluetooth = async () => {
+    try {
+      const server = await initializeBluetooth();
+      if (server) {
+        const dataToSend = 'TEST'; 
+        await transferDataToDevice(server, dataToSend);
+      }
+    } catch (error) {
+      console.error('Error sending data to Bluetooth device:', error);
+    }
+  };
+  
+
 
   return (
     <div>
       <MenuElements/>
+      <button onClick={sendDataToBluetooth}>Send Data</button>
       {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} />}
       <div>{choosePage()}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} />
