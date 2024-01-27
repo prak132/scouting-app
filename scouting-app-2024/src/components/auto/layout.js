@@ -98,6 +98,7 @@ const AutoLayout = () => {
           </div>
         ))}
       </div>
+      <div className="scroll-buffer"></div>
     </div>
   );
 };

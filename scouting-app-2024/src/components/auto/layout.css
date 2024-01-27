@@ -62,10 +62,16 @@
   border-radius: 50%;
   border: 6px solid orange;
 }
+
 .position-button.selected {
   border: 2px solid #fff;
   background: rgba(145, 145, 145, 0.2);
   box-shadow: 0px 0px 30px 4px rgba(255, 255, 255, 0.3);
   color: "white";
   transition: 0.4s;
+}
+
+.scroll-buffer {
+    height: 100px;
+    width: 100%;
 }
