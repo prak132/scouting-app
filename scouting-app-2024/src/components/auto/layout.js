@@ -1,21 +1,40 @@
 import React, { useState } from "react";
-import BlueAuto from "./assets/blue_auto.svg";
+import BlueAuto from "./assets/red_auto.svg";
 import "./layout.css";
 
 const AutoLayout = () => {
   const [selectedPosition, setSelectedPosition] = useState(null);
+  const [clickedNotes, setClickedNotes] = useState([]);
   const elapsedTime = 2.23;
   const pos = ["Left", "Middle", "Right"];
+
   const handlePositionClick = (position) => {
     setSelectedPosition(position);
   };
+
+  const handleNoteClick = (noteIndex) => {
+    const isNoteClicked = clickedNotes.some((note) => note[1] === noteIndex);
+    const newClickedNotes = clickedNotes.map((note) => [...note]);
+  
+    if (isNoteClicked) {
+      const indexToRemove = newClickedNotes.findIndex((note) => note[1] === noteIndex);
+      if (indexToRemove !== -1) {
+        newClickedNotes.splice(indexToRemove, 1);
+      }
+    } else {
+      const adjustedIndex = noteIndex >= 5 ? noteIndex - 5 : noteIndex;
+      const noteArray = [noteIndex >= 5 ? 1 : 0, adjustedIndex];
+      newClickedNotes.push(noteArray);
+    }
+  
+    setClickedNotes(newClickedNotes);
+    console.log("Clicked Notes:", newClickedNotes);
+  };
+  
+
   return (
     <div>
-      <div
-        style={{
-          paddingTop: "15vh",
-        }}
-      >
+      <div style={{ paddingTop: "15vh" }}>
         <div type="teleop-text">
           <div
             type="teleop-text"
@@ -59,32 +78,38 @@ const AutoLayout = () => {
             height: "100%",
           }}
         >
-          <button className="note-button"></button>
-          <button className="note-button"></button>
-          <button className="note-button"></button>
-          <button className="note-button"></button>
-          <button className="note-button"></button>
+          {[...Array(5)].map((_, index) => (
+            <button
+              key={index}
+              className={`note-button ${clickedNotes.some((note) => note.includes(index)) ? "clicked" : ""}`}
+              onClick={() => handleNoteClick(index)}
+            ></button>
+          ))}
         </div>
+
         <div
           style={{
             position: "absolute",
             display: "flex",
             justifyContent: "space-around",
-            marginTop: "25%",
             top: "0",
             left: "0",
-            width: "100%",
             height: "100%",
             marginTop: "105%",
             width: "50%",
             marginLeft: "46%",
           }}
         >
-          <button className="note-button"></button>
-          <button className="note-button"></button>
-          <button className="note-button"></button>
+          {[...Array(3)].map((_, index) => (
+            <button
+              key={index}
+              className={`note-button ${clickedNotes.some((note) => note.includes(index + 5)) ? "clicked" : ""}`}
+              onClick={() => handleNoteClick(index + 5)}
+            ></button>
+          ))}
         </div>
       </div>
+
       <div className="position-bounds">
         {pos.map((position, index) => (
           <div
@@ -98,6 +123,7 @@ const AutoLayout = () => {
           </div>
         ))}
       </div>
+
       <div className="scroll-buffer"></div>
     </div>
   );
