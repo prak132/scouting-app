@@ -109,7 +109,7 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
         <div className='topButtons'>
           <button onClick={refreshPage} className='button topButton'></button>
           <button onClick={sendDataToBluetooth} className='button middleButton'>
-            <img src={Airplane} alt="BTE" />
+            <img alt="BTE" />
           </button>
           <Popup
             trigger={<button className='button popupButton'></button>}

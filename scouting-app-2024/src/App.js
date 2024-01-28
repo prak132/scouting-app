@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from "js-cookie";
 import "./App.css";
 import AutoLayout from "./components/auto/layout.js";
 import QuantTeleopLayout from "./components/quantitative/teleop/layout.js";
