@@ -66,18 +66,7 @@ const AutoLayout = () => {
       </div>
       <div className="svg-bounding">
         <img src={BlueAuto} alt="auto-img" className="auto-map" />
-        <div
-          style={{
-            position: "absolute",
-            display: "flex",
-            justifyContent: "space-around",
-            marginTop: "25%",
-            top: "0",
-            left: "0",
-            width: "100%",
-            height: "100%",
-          }}
-        >
+        <div className="notes-upper">
           {[...Array(5)].map((_, index) => (
             <button
               key={index}
@@ -86,20 +75,7 @@ const AutoLayout = () => {
             ></button>
           ))}
         </div>
-
-        <div
-          style={{
-            position: "absolute",
-            display: "flex",
-            justifyContent: "space-around",
-            top: "0",
-            left: "0",
-            height: "100%",
-            marginTop: "105%",
-            width: "50%",
-            marginLeft: "46%",
-          }}
-        >
+        <div className="notes-lower">
           {[...Array(3)].map((_, index) => (
             <button
               key={index}

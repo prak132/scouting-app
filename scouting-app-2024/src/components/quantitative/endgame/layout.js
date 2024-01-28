@@ -112,10 +112,7 @@ const EndGameLayout = () => {
         <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
         
       </div>
-      <div>
-        
-        
-      </div>
+      <div className="scroll-buffer"></div>
     </div>
   );
 };
