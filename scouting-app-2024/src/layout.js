@@ -7,6 +7,7 @@ import matchDetails from "./data/match.json";
 
 const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
   const bug = ["hey", "go", "back"];
+  Cookies.set("selAlliance", "1");
   Cookies.set("blueTeamNumbers", JSON.stringify(bug));
   Cookies.set("redTeamNumbers", JSON.stringify(bug));
   const [nameValue, setNameValue] = useState("");
