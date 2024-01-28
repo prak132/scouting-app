@@ -2,8 +2,9 @@ import React from "react";
 import Cookies from "js-cookie";
 
 const TeamNumbers = ({ onSelect, selectedTeam }) => {
-  const teamNumbers = JSON.parse(Cookies.get("teamNumbers")) || [];
-  return (
+  const selAlliance = Cookies.get("selAlliance");
+  const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
+    return (
     <div
       style={{
         display: "flex",
