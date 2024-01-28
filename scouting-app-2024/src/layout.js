@@ -50,19 +50,21 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
   };
 
 
- const handleNextButtonClick = () => {
-   const selectedMatch = matchDetails[matchValue];
-   if (selectedMatch) {
-     const alliance = activeButton === "blue" ? "blue" : "red";
-     const teamKeys = selectedMatch.alliances[alliance].team_keys;
-     const teamNumbers = teamKeys.map((team) => team.replace("frc", ""));
-     Cookies.set("teamNumbers", JSON.stringify(teamNumbers));
+  const handleNextButtonClick = () => {
+    const selectedMatch = matchDetails[matchValue];
+    if (selectedMatch) {
+      const blueTeamKeys = selectedMatch.alliances.blue.team_keys.map((team) =>team.replace("frc", ""));
+      const redTeamKeys = selectedMatch.alliances.red.team_keys.map((team) => team.replace("frc", ""));
+      Cookies.set("blueTeamNumbers", JSON.stringify(blueTeamKeys));
+      Cookies.set("redTeamNumbers", JSON.stringify(redTeamKeys));
     } else {
       console.log(`Match details not found for ${matchValue}`);
-    } if (onNextButtonClick) {
+    }
+    if (onNextButtonClick) {
       onNextButtonClick();
     }
- };
+  };
+  
 
 
  return (
