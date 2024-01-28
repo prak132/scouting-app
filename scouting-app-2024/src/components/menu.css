@@ -64,3 +64,19 @@
     z-index: 0;
     transition: 0.2s ease-in-out;
 }
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    height: 600px;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+.popup-content button {
+    margin-top: 10px;
+}

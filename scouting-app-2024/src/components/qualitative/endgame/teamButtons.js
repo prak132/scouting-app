@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 const RectangleWithButtons = () => {
   const [buttonColors, setButtonColors] = useState(Array(6).fill('white'));
+  const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
+  const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
 
   const handleButtonClick = (index) => {
     const newColors = [...buttonColors];

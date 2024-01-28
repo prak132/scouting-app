@@ -6,7 +6,8 @@ const EndgameTable = () => {
   const [teamOptions, setTeamOptions] = useState([]);
 
   useEffect(() => {
-    const teamNumbers = JSON.parse(Cookies.get('teamNumbers')) || [];
+    const selAlliance = Cookies.get("selAlliance");
+    const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
     const options = teamNumbers.map((team) => (
       <option key={team} value={`team${team}`}>
         {team}
