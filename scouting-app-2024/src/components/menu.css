@@ -70,14 +70,26 @@
     transition: 0.2s ease-in-out;
 }
 
-.popup-content {
+.popup {
     background-color: #0a101f;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 16px;
+    border: 3px solid rgba(245, 245, 245, 0.3);
     text-align: left;
+    margin: auto;
     color: rgba(255, 255, 255, 0.750);
-    height:430px;
-    width: 300px;
+    width: 70%;
+    overflow: scroll;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+.bottom-element {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    margin-top: 40px;
 }
 
 .popup-content button {  

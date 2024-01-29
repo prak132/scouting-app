@@ -54,6 +54,12 @@ button:hover {
   color: #61dafb;
 }
 
+.icon {
+  width: 1.8em;
+  height: 1.8em;
+  vertical-align: -0.4em;
+}
+
 /*test.App-telop-text{
   background: linear-gradient(177deg, #FFF 2.26%, rgba(255, 255, 255, 0.00) 165.48%);
   background-clip: text;
