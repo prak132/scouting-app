@@ -16,14 +16,14 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
     setYellowMode(!yellowMode);
   };
 
-  const serviceUUID = '0d641405-91e2-4c22-b81a-93621f715163';
+  const serviceUUID = '0000180f-0000-1000-8000-00805f9b34fb';
   const characteristicUUID = '00002a19-0000-1000-8000-00805f9b34fb';
 
   async function initializeBluetooth() {
     try {
       const device = await navigator.bluetooth.requestDevice({
         filters: [{namePrefix: "Prakhar"}],
-        optionalServices: ['battery_service', characteristicUUID],
+        optionalServices: [serviceUUID],
       });
       const server = await device.gatt.connect();
       logAvailableServices(server);
@@ -49,12 +49,12 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
     } catch (error) {
       console.error('Data transfer failed:', error.message);
     }
-  }  
+  } 
 
   async function handleIncomingData(server, onDataReceived) {
     try {
-      const service = await server.getPrimaryService('0000180f-0000-1000-8000-00805f9b34fb');
-      const characteristic = await service.getCharacteristic('battery_level');
+      const service = await server.getPrimaryService(serviceUUID);
+      const characteristic = await service.getCharacteristic(characteristicUUID);
       console.log('Service UUID:', service.uuid);
       console.log('Characteristic UUID:', characteristic.uuid);
       characteristic.addEventListener('characteristicvaluechanged', (event) => {
@@ -66,7 +66,6 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
       console.error('Failed to handle incoming data:', error.message);
     }
   }
-
 
   async function logAvailableServices(server) {
     try {
@@ -88,11 +87,16 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
   const handleDataReceived = (receivedData) => {
     const decodedData = new TextDecoder().decode(receivedData.buffer);
     console.log('Received data:', decodedData);
-    const parsedData = JSON.parse(decodedData);
-    console.log('Parsed data as JSON:', parsedData);
-  };  
-      
-
+    const batteryLevel = parseInt(decodedData, 10);
+    if (!isNaN(batteryLevel)) {
+      Cookies.set("batteryLevel", batteryLevel);
+      console.log('Battery Level:', batteryLevel);
+    } else {
+      console.error('Invalid data received. Expected a number.');
+    }
+  };
+  
+       
   const sendDataToBluetooth = async () => {
     play();
     try {
