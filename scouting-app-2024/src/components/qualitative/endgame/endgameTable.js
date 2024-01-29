@@ -44,59 +44,35 @@ const EndgameTable = () => {
             justifyContent: 'space-between',
           }}
         >
-          <div
-            className="team-select"
+          <select
+            className="team-select glowing-dropdown-input"
             style={{
               flex: 0.4,
               flexShrink: 0,
               padding: '8px',
-              paddingLeft: '10px',
-              backgroundColor: '#000614',
-              border: '1px solid #2F3953',
-              borderRadius: '10px',
-              color: 'rgba(255, 255, 255, 0.25)',
-              fontFamily: 'Poppins',
-              background: 'rgba(217, 217, 217, 0.00)',
-              fontSize: '16px',
-              fontStyle: 'normal',
-              lineHeight: 'normal',
-              boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
+              marginLeft: '10px',
             }}
           >
-            Team
-          </div>
-          <div
-            className="defense-select"
+            {teamOptions}
+          </select>
+          <select
+            className="defense-select glowing-dropdown-input"
             style={{
               marginLeft: '10px',
               flex: 1,
               padding: '8px',
-              paddingLeft: '12px',
               fontFamily: 'poppins',
-              fontSize: '16px',
-              color: '#FFFFFF40',
-              backgroundColor: '#000614',
-              background: 'rgba(217, 217, 217, 0.00)',
-              border: '1px solid #2F3953',
-              borderRadius: '10px',
-              boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
             }}
           >
-            Defense
-          </div>
+            <option value="option1">Source</option>
+            <option value="option2">Center</option>
+          </select>
           <button
-            className="add-button"
+            className="add-button Next glow"
             onClick={addRow}
             style={{
               flex: 0.1,
               marginLeft: '10px',
-              backgroundColor: 'transparent',
-              border: '1px solid #2F3953',
-              color: 'rgba(255, 255, 255, 0.7)',
-              fontSize: '25px',
-              background: 'rgba(217, 217, 217, 0.00)',
-              borderRadius: '10px',
-              boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
             }}
           >
             +
@@ -113,63 +89,36 @@ const EndgameTable = () => {
             }}
           >
             <select
-              className="team-select"
+              className="team-select glowing-dropdown-input"
               style={{
                 width: '100px',
                 flex: 0.4,
                 flexShrink: 0,
                 padding: '8px',
-                backgroundColor: '#000614',
-                border: '1px solid #2F3953',
-                borderRadius: '10px',
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontFamily: 'Poppins',
-                background: 'rgba(217, 217, 217, 0.00)',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '600',
-                lineHeight: 'normal',
-                boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
+                marginLeft: '10px',
               }}
             >
               {teamOptions}
             </select>
             <select
-              className="defense-select"
+              className="defense-select glowing-dropdown-input"
               style={{
                 marginLeft: '10px',
                 flex: 1,
                 height: '44px',
                 padding: '8px',
                 fontFamily: 'poppins',
-                fontSize: '16px',
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontStyle: 'normal',
-                fontWeight: '600',
-                lineHeight: 'normal',
-                backgroundColor: '#000614',
-                background: 'rgba(217, 217, 217, 0.00)',
-                border: '1px solid #2F3953',
-                borderRadius: '10px',
-                boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               <option value="option1">Source</option>
               <option value="option2">Center</option>
             </select>
             <button
-              className="delete-button"
+              className="delete-button Next glow"
               onClick={() => removeRow(index)}
               style={{
                 flex: 0.1,
                 marginLeft: '10px',
-                backgroundColor: 'transparent',
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontSize: '30px',
-                background: 'rgba(217, 217, 217, 0.00)',
-                border: '1px solid #2F3953',
-                borderRadius: '10px',
-                boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
               -
