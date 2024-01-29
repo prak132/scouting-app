@@ -1,5 +1,4 @@
 import React from "react";
-
 import EndgameTable from "./endgameTable.js";
 import EndgameButtons from "./endgameButtons.js";
 import RectangleWithButtons from "./teamButtons.js";

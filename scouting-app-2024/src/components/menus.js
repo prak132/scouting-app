@@ -16,14 +16,14 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
     setYellowMode(!yellowMode);
   };
 
-  const serviceUUID = '0000180f-0000-1000-8000-00805f9b34fb';
+  const serviceUUID = '0d641405-91e2-4c22-b81a-93621f715163';
   const characteristicUUID = '00002a19-0000-1000-8000-00805f9b34fb';
 
   async function initializeBluetooth() {
     try {
       const device = await navigator.bluetooth.requestDevice({
-        acceptAllDevices: true,
-        optionalServices: ['battery_service'],
+        filters: [{namePrefix: "Prakhar"}],
+        optionalServices: ['battery_service', characteristicUUID],
       });
       const server = await device.gatt.connect();
       logAvailableServices(server);
@@ -38,17 +38,18 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
     try {
       const service = await server.getPrimaryService(serviceUUID);
       const characteristic = await service.getCharacteristic(characteristicUUID);
-
+  
       if (characteristic.properties.read) {
         const value = await characteristic.readValue();
-        console.log('Read data:', new TextDecoder().decode(value));
+        const batteryLevel = new DataView(value.buffer).getUint8(0);
+        console.log('Battery Level:', batteryLevel);
       } else {
         console.error('Characteristic does not support read operation.');
       }
     } catch (error) {
       console.error('Data transfer failed:', error.message);
     }
-  }
+  }  
 
   async function handleIncomingData(server, onDataReceived) {
     try {
@@ -83,12 +84,13 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
     Cookies.set("redTeamNumbers", JSON.stringify(bug));
     window.location.reload(false);
   }
+  
   const handleDataReceived = (receivedData) => {
     const decodedData = new TextDecoder().decode(receivedData.buffer);
     console.log('Received data:', decodedData);
     const parsedData = JSON.parse(decodedData);
     console.log('Parsed data as JSON:', parsedData);
-  };
+  };  
       
 
   const sendDataToBluetooth = async () => {
