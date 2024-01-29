@@ -6,7 +6,8 @@ blueidapidocs: https://www.thebluealliance.com/apidocs/v3
 - [x] navbar function
 - [x] start page fix/design
 - [ ] add the random squiggle things
-- [ ] start auto page
+- [x] start auto page
+- [ ] popup of questions - auto
 - [ ] add functions to undo and info button
-- [ ] qualitative page
-- [ ] endgame page
+- [x] qualitative page
+- [x] endgame page

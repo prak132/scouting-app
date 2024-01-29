@@ -21,7 +21,7 @@ const QualTeleopLayout = () => {
             wordWrap: "break-word",
             marginBottom: "-0.25vh",
             background: '-webkit-linear-gradient(#eee, #333)',
-            webkitBackgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
 
           }}

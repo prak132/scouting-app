@@ -27,7 +27,7 @@ const EndgameButtons = () => {
             marginRight:'10px', 
             flexShrink: 0,
             marginLeft: '10px',
-            width:'192px',
+            width:'150px',
             height:'39px',
             backgroundColor: '#000614',
             border: '1px solid #2F3953',
@@ -46,7 +46,7 @@ const EndgameButtons = () => {
           <button style ={{
             marginRight:'10px', 
             flexShrink: 0,
-            width:'85px',
+            width:'150px',
             //padding: '8px',
             height:'39px',
             backgroundColor: '#000614',

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
+import useSound from 'use-sound';
 import Logo from "./assets/monkeylogo.svg";
 import "./menu.css";
 import Cookies from "js-cookie";
-import Airplane from "./assets/yourbluetoothdevicehasconnected.svg";
+import BlueetoothIcon from "./assets/blueeetooth.svg";
+import ResetIcon from "./assets/resett.svg";
+import BluetoothDeviceConnected from "./assets/ready.mp3"
 
 const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) => {
-  
+  const [play] = useSound(BluetoothDeviceConnected);
   const [yellowMode, setYellowMode] = useState(0);
 
   const handleLogoClick = () => {
@@ -89,6 +92,7 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
       
 
   const sendDataToBluetooth = async () => {
+    play();
     try {
       const userData = Cookies.get("teamNumbers");
       console.log('Cookie data:', userData);
@@ -107,19 +111,28 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
       <div className='topBar'>
         <img src={Logo} alt='funkylogo' className='logo' onClick={handleLogoClick}></img>
         <div className='topButtons'>
-          <button onClick={refreshPage} className='button topButton'></button>
+          <button onClick={refreshPage} className='button topButton'>
+            <img src={ResetIcon} alt="RESETBUTTON" />
+          </button>
           <button onClick={sendDataToBluetooth} className='button middleButton'>
-            <img alt="BTE" />
+            <img src={BlueetoothIcon} alt="BTE" />
           </button>
           <Popup
-            trigger={<button className='button popupButton'></button>}
+            trigger={<button className='button popupButton' style = {{fontSize:'26px'}}>?</button>}
             position="middle"
             modal
           >
             <div className="popup-content">
-              <h2>Choose the </h2>
-              <p>hiehiehi</p>
-              <button>close</button>
+              <h2>How To Use</h2>
+              <p>
+                <li>1. Click on either the Red or Blue alliance.</li> 
+                <li>2. Distinguish between qualitative and quantitative assessments.</li> 
+                <li>3. Complete the auto page for both categories.</li>
+                <li>4. Record each point scored for quantitative analysis.</li>
+                <li>5. Assess scoring defense for qualitative insights.</li>
+                <li>6. Fill out the endgame section based on the chosen assessment method.</li> 
+              </p>
+              <button onClick={() => {}}>close</button>
             </div>
           </Popup>
         </div>
