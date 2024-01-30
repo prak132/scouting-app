@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
-import useSound from 'use-sound';
+//import useSound from 'use-sound';
 import Logo from "./assets/monkeylogo.svg";
 import "./menu.css";
 import Cookies from "js-cookie";
-import BluetoothDeviceConnected from "./assets/ready.mp3"
+//import BluetoothDeviceConnected from "./assets/ready.mp3"
 
 const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) => {
-  const [play] = useSound(BluetoothDeviceConnected);
+  //const [play] = useSound(BluetoothDeviceConnected);
   const [yellowMode, setYellowMode] = useState(0);
 
   const handleLogoClick = () => {
@@ -16,11 +16,12 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
 
   const serviceUUID = '0000180f-0000-1000-8000-00805f9b34fb';
   const characteristicUUID = '00002a19-0000-1000-8000-00805f9b34fb';
-
+/*
   async function initializeBluetooth() {
     try {
       const device = await navigator.bluetooth.requestDevice({
-        filters: [{namePrefix: "Prakhar"}],
+        //filters: [{namePrefix: "Prakhar", "fanta"}],
+        acceptAllDevices: true,
         optionalServices: [serviceUUID],
       });
       const server = await device.gatt.connect();
@@ -31,6 +32,26 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
       return null;
     }
   }
+*/
+  async function initializeBluetooth() {
+    try {
+      const device = await navigator.bluetooth.requestDevice({
+        acceptAllDevices: true,
+        optionalServices: [serviceUUID],
+      });
+
+      console.log('Name:', device.name);
+      console.log('MAC Address:', device.id);
+
+      const server = await device.gatt.connect();
+      logAvailableServices(server);
+      return server;
+    } catch (error) {
+      console.error('Bluetooth initialization failed:', error);
+      return null;
+    }
+  }
+  
   /* 
   async function transferDataToDevice(server) {
     try {
@@ -106,7 +127,7 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
   };
 
   const retrieveDataViaBluetooth = async () => {
-    play();
+    //play();
     try {
       const server = await initializeBluetooth();
       if (server) {
