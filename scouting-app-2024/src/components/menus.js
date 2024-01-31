@@ -124,11 +124,16 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick }) 
   };
   */
   const handleDataReceived = (receivedData) => {
-    const decodedData = new TextDecoder().decode(receivedData.buffer);
-    console.log('Received data:', decodedData);
-    localStorage.setItem('receivedDataKey', decodedData);
+    try {
+      const decodedData = new TextDecoder().decode(receivedData.buffer);
+      console.log('Received data:', decodedData);
+      const dataObject = JSON.parse(decodedData);
+      localStorage.setItem('receivedDataKey', dataObject.someField);
+    } catch (error) {
+      console.error('Error processing received data:', error);
+    }
   };
-
+  
   const retrieveDataViaBluetooth = async () => {
     //play();
     try {
