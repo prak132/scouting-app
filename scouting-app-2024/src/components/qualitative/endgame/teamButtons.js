@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 
-const RectangleWithButtons = () => {
+const TeamButtons = () => {
   const [buttonColors, setButtonColors] = useState(Array(6).fill('white'));
   const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
   const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
@@ -57,4 +57,4 @@ const RectangleWithButtons = () => {
   );
 };
 
-export default RectangleWithButtons;
+export default TeamButtons;
