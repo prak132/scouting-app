@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
-const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
+const PageButtons = ({ onLeftButtonClick, onRightButtonClick, setDevMode }) => {
   const [devModeKey, setDevModeKey] = useState('');
-  // eslint-disable-next-line
-  let devmode = false;
   const fhash = (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
       h2 = 0x41c6ce57 ^ seed;
@@ -20,11 +18,14 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick }) => {
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setDevModeKey(inputValue);
-    if(fhash(inputValue) === 7067371117425878) {
+    if (fhash(inputValue) === 7067371117425878) {
       console.log("dev mode enabled");
-      devmode = true;
+      setDevMode(true);
+    } else {
+      setDevMode(false);
     }
   };
+
 
   return (
     <div
