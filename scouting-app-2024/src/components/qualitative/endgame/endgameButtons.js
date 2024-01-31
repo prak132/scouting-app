@@ -10,6 +10,7 @@ const EndgameButtons = () => {
           position: 'absolute',
           height: '3px',
           background: '#313B54',
+          display: 'relative',
         }}
       ></div>
       <div
@@ -18,17 +19,15 @@ const EndgameButtons = () => {
           height: '24rem',
           textAlign: 'center',
           backgroundColor: '#00000000',
-          padding: '20px',
+          paddingTop: '18px',
           boxSizing: 'border-box',
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'leftx4' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button style={{ 
-            marginRight:'10px', 
             flexShrink: 0,
-            marginLeft: '10px',
-            width:'150px',
-            height:'39px',
+            width:'48%',
+            height:'40px',
             backgroundColor: '#000614',
             border: '1px solid #2F3953',
             borderRadius: '10px',
@@ -39,16 +38,14 @@ const EndgameButtons = () => {
             fontStyle: 'normal',
             lineHeight: 'normal',
             boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
-            fontWeight:'700'
-            
+            fontWeight:'700',
             
             }}>Harmonize</button>
           <button style ={{
-            marginRight:'10px', 
             flexShrink: 0,
-            width:'150px',
+            width:'48%',
             //padding: '8px',
-            height:'39px',
+            height:'40px',
             backgroundColor: '#000614',
             border: '1px solid #2F3953',
             borderRadius: '10px',
@@ -60,7 +57,6 @@ const EndgameButtons = () => {
             lineHeight: 'normal',
             boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
             fontWeight:'700'
-        
         }} >Climb</button>
         </div>
       </div>

@@ -38,10 +38,11 @@ const EndGameLayout = () => {
       >
         Qualitiative
       </div>
+      <div style={{margin: 'auto'}}>
       <EndgameTable />
       <EndgameButtons />
       <RectangleWithButtons />
-      
+      </div>
       <div type = "notes">
 
 
