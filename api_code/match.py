@@ -2,26 +2,23 @@ import json
 import requests
 
 api_key = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw'
-matches_data = {}
+event_code = '2023cala'
+url = f'https://www.thebluealliance.com/api/v3/event/{event_code}/matches/keys'
 
-def get_teams_data(matchcode):
-  url = f'https://www.thebluealliance.com/api/v3/match/{matchcode}/simple'
-  headers = {'accept': 'application/json', 'X-TBA-Auth-Key': api_key}
-  response = requests.get(url, headers=headers)
-  if response.status_code == 200:
-    data = response.json()
-    matches_data[matchcode] = data
-  else:
-    print(f"Failed on: {matchcode}")
+headers = {
+    'accept': 'application/json',
+    'X-TBA-Auth-Key': api_key
+}
 
-def main():
-  with open('match.json', 'r') as f:
-    match_codes = json.load(f)
-  for matchcode in match_codes:
-    get_teams_data(matchcode)
-  with open('team.json', 'w') as outfile:
-    json.dump(matches_data, outfile, indent=2)
-  print("done")
-
-if __name__ == "__main__":
-  main()
+try:
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    if response.status_code == 200:
+        data = response.json()
+        with open('match.json', 'w') as outfile:
+            json.dump(data, outfile, indent=2)
+        print("Done!")
+    else:
+        print(f"Failed with status code {response.status_code}")
+except requests.exceptions.RequestException as e:
+    print(f"Failed. Error: {e}")

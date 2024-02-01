@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import "./TextBox.css";
-import matchesData from "./components/data/team.json";
-import matchDetails from "./components/data/match.json";
+import matchesData from "./data/match.json";
+import matchDetails from "./data/team.json";
 
 
 const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
