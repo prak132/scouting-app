@@ -1,57 +1,59 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 
-const TeamButtons = () => {
-  const [buttonColors, setButtonColors] = useState(Array(6).fill('white'));
+const TeamButtons = ({ actionTaken }) => {
+  const [blueButtonStates, setBlueButtonStates] = useState(Array(6).fill(false));
+  const [redButtonStates, setRedButtonStates] = useState(Array(6).fill(false));
+
   const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
   const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
 
-  const handleButtonClick = (index) => {
-    const newColors = [...buttonColors];
-    newColors[index] = 'blue';
-    setButtonColors(newColors);
-
-    setTimeout(() => {
-      newColors[index] = 'white';
-      setButtonColors(newColors);
-    }, 1000);
+  const handleBlueButtonClick = (index) => {
+    const newButtonStates = [...blueButtonStates];
+    newButtonStates[index] = !newButtonStates[index];
+    setBlueButtonStates(newButtonStates);
   };
 
-  const renderButtons = (teamNumbers, teamColor) => {
-    return teamNumbers.map((number, index) => (
-      <button
-        key={index}
-        style={{
-          fontSize: '20px',
-          backgroundColor: buttonColors[index],
-          borderRadius: '10px',
-          border: '1px solid #2F3953',
-          background: 'rgba(217, 217, 217, 0.00)',
-          boxShadow: '0px 0px 15px 1px rgba(255, 255, 255, 0.30)',
-          width: '32%',
-          height: '55px',
-          flexShrink: '0',
-          color: 'rgba(255, 255, 255, 0.50)',
-          fontFamily: 'Poppins',
-          fontStyle: 'normal',
-          fontWeight: '700',
-          lineHeight: 'normal',
-        }}
-        onClick={() => handleButtonClick(index)}
-      >
-        {number}
-      </button>
-    ));
+  const handleRedButtonClick = (index) => {
+    const newButtonStates = [...redButtonStates];
+    newButtonStates[index] = !newButtonStates[index];
+    setRedButtonStates(newButtonStates);
+  };
+
+  const renderButtons = (teamNumbers, buttonStates, handleClick, teamColor, borderColor) => {
+    return (
+      <div style={{ transform: 'translateY(-300px)' }}> 
+        <div style={{ border: `2px solid ${borderColor}`, borderRadius: '10px', padding: '10px', marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
+          {teamNumbers.map((number, index) => (
+            <button
+              key={index}
+              style={{
+                backgroundColor: '#000614',
+                color: buttonStates[index] ? 'white' : '#7d7d7d',
+                borderRadius: '10px',
+                border: buttonStates[index] ? '2px solid white' : '1px solid #2F3953', 
+                width: '32%',
+                height: '50px',
+                margin: '5px',
+                fontSize: '20px',
+                fontWeight: '700',
+                boxShadow: buttonStates[index] ? '0px 0px 15px 1px rgba(255, 255, 255, 0.30)' : 'none',
+              }}
+              onClick={() => handleClick(index)}
+            >
+              {number}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   return (
-    <div style={{ marginTop: '-310px' }}>
-      <div style={{ border: '2px solid #3B72FF', borderRadius: '10px', width: '100%', height: '70px', boxSizing: 'border-box', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', marginBottom: '25px' }}>
-        {renderButtons(blueTeamNumbers, 'blue')}
-      </div>
-
-      <div style={{ border: '2px solid #FF3B3B', borderRadius: '10px', width: '100%', height: '70px', boxSizing: 'border-box', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', }}>
-        {renderButtons(redTeamNumbers, 'red')}
+    <div>
+      <div>
+        {renderButtons(blueTeamNumbers, blueButtonStates, handleBlueButtonClick, 'blue', '#3B72FF')}
+        {renderButtons(redTeamNumbers, redButtonStates, handleRedButtonClick, 'red', '#FF3B3B')}
       </div>
     </div>
   );
