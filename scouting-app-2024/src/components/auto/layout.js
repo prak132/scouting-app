@@ -3,14 +3,8 @@ import BlueAuto from "./assets/red_auto.svg";
 import "./layout.css";
 
 const AutoLayout = () => {
-  const [selectedPosition, setSelectedPosition] = useState(null);
   const [clickedNotes, setClickedNotes] = useState([]);
   const elapsedTime = 2.23;
-  const pos = ["Left", "Middle", "Right"];
-
-  const handlePositionClick = (position) => {
-    setSelectedPosition(position);
-  };
 
   const handleNoteClick = (noteIndex) => {
     const isNoteClicked = clickedNotes.some((note) => note[1] === noteIndex);
@@ -85,21 +79,6 @@ const AutoLayout = () => {
           ))}
         </div>
       </div>
-
-      <div className="position-bounds">
-        {pos.map((position, index) => (
-          <div
-            key={index}
-            className={`position-button blue-${position.toLowerCase()} ${
-              selectedPosition === position ? "selected" : ""
-            }`}
-            onClick={() => handlePositionClick(position)}
-          >
-            {position}
-          </div>
-        ))}
-      </div>
-
       <div className="scroll-buffer"></div>
     </div>
   );

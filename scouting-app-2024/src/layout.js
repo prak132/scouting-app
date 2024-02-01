@@ -142,14 +142,12 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
       <button
         type="button"
         onClick={handleNextButtonClick}
+        disabled={ 
+          !(nameValue.trim() !== "" &&  matchValue !== "" && (activeButton === "blue" || activeButton === "red") && (modeActiveButton === "quan" || modeActiveButton === "qual"))
+        }
         className={`NextButton Next ${
-          nameValue.trim() !== "" &&
-          matchValue !== "" &&
-          (activeButton === "blue" || activeButton === "red") &&
-          (modeActiveButton === "quan" || modeActiveButton === "qual")
-            ? "glow"
-            : ""
-        }`}
+          nameValue.trim() !== "" &&  matchValue !== "" && (activeButton === "blue" || activeButton === "red") && (modeActiveButton === "quan" || modeActiveButton === "qual") ? "glow" : ""}`
+        }
       >
         Next {">"}
       </button>

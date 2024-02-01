@@ -135,3 +135,149 @@ button:hover {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.teamModalButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  flex-shrink: 0;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.554);
+  background: #000614;
+  box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
+  margin: 10px auto;
+  display: block;
+  color: rgba(232, 232, 232, 0.887);
+  padding: 5px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 60px;
+  line-height: normal;
+  transition: 0.3s ease;
+}
+
+.teamModalButton-glow {
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  box-shadow: 0px 0px 50px 3px rgba(231, 116, 116, 0.3); 
+  color: aliceblue;
+  font-weight: 450;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -100%;
+    top: -100%;
+    width: 300%;
+    height: 300%;
+    background-color: #399953;
+    background-repeat: no-repeat;
+    background-size: 50% 50%, 50% 50%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+    animation: rotate 4s linear infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 2px;
+    top: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background: #000614;
+    border-radius: 10px;
+  }
+}
+
+.team-numbers,
+.position-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  flex-shrink: 0;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.554);
+  background: #000614;
+  box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
+  margin: 10px auto;
+  display: block;
+  color: rgba(232, 232, 232, 0.887);
+  padding: 5px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modalthingpopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0a101f;
+  padding: 20px;
+  border-radius: 16px;
+  border: 3px solid rgba(245, 245, 245, 0.3);
+  text-align: left;
+  margin: auto;
+  color: rgba(255, 255, 255, 0.750);
+  width: 80%;
+  height: 45%;
+  overflow: scroll;
+  z-index: 999;
+}  
+
+.position-selected,
+.team-number-selected {
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid #fff;
+  background: rgba(145, 145, 145, 0.2);
+  box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.4);
+}
+
+.modal-stuff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.position-buttons-container,
+.team-numbers-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.position-buttons,
+.team-numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
