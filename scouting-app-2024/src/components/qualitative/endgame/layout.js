@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EndgameTable from "./endgameTable.js";
 import EndgameButtons from "./endgameButtons.js";
 import TeamButtons from "./teamButtons.js";
+import Cookies from 'js-cookie';
 
 const EndGameLayout = () => {
+  const [teamButtonState, setTeamButtonState] = useState({
+    blue: Array(3).fill(false),
+    red: Array(3).fill(false)
+  });
+  const [actions, setActions] = useState({ climb: [], harmonize: [] });
+  useEffect(() => {
+    console.log("Actions:", actions);
+  }, [actions]);
+  const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
+  const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
+  const handleEndgameButtonClick = (buttonName) => {
+    const selectedBlueTeams = teamButtonState.blue
+      .map((state, index) => state ? blueTeamNumbers[index] : null)
+      .filter(number => number !== null);
+    const selectedRedTeams = teamButtonState.red
+      .map((state, index) => state ? redTeamNumbers[index] : null)
+      .filter(number => number !== null);
+    setActions(prevActions => ({
+      ...prevActions,
+      [buttonName]: [...prevActions[buttonName], { blue: selectedBlueTeams, red: selectedRedTeams }]
+    }));
+    setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
+  };
+
   return (
     <div
       style={{
@@ -41,10 +66,8 @@ const EndGameLayout = () => {
       <div style={{margin: 'auto'}}>
       <div>
       <EndgameTable />
-      <EndgameButtons />
-      <TeamButtons />
-
-      
+      <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
+      <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} />
       </div>
       </div>
       <div type = "notes">

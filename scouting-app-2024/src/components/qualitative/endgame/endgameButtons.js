@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-const EndgameButtons = () => {
+const EndgameButtons = ({ onEndgameButtonClick }) => {
   const [buttonStates, setButtonStates] = useState({ harmonize: false, climb: false });
 
   const handleButtonClick = (buttonName) => {
-    setButtonStates((prevButtonStates) => ({
-      ...Object.fromEntries(Object.entries(prevButtonStates).map(([name]) => [name, name === buttonName])),
-    }));
+    onEndgameButtonClick(buttonName);
+    setButtonStates({ harmonize: false, climb: false });
   };
 
   return (

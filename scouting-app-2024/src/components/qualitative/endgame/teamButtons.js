@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Cookies from 'js-cookie';
 
-const TeamButtons = ({ actionTaken }) => {
-  const [blueButtonStates, setBlueButtonStates] = useState(Array(6).fill(false));
-  const [redButtonStates, setRedButtonStates] = useState(Array(6).fill(false));
+const TeamButtons = ({ teamButtonState, setTeamButtonState }) => {
+  const { blue: blueButtonStates, red: redButtonStates } = teamButtonState;
 
   const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
   const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
@@ -11,16 +10,16 @@ const TeamButtons = ({ actionTaken }) => {
   const handleBlueButtonClick = (index) => {
     const newButtonStates = [...blueButtonStates];
     newButtonStates[index] = !newButtonStates[index];
-    setBlueButtonStates(newButtonStates);
+    setTeamButtonState(prevState => ({ ...prevState, blue: newButtonStates }));
   };
 
   const handleRedButtonClick = (index) => {
     const newButtonStates = [...redButtonStates];
     newButtonStates[index] = !newButtonStates[index];
-    setRedButtonStates(newButtonStates);
+    setTeamButtonState(prevState => ({ ...prevState, red: newButtonStates }));
   };
 
-  const renderButtons = (teamNumbers, buttonStates, handleClick, teamColor, borderColor) => {
+  const renderButtons = (teamNumbers, buttonStates, handleClick, borderColor) => {
     return (
       <div style={{ transform: 'translateY(-300px)' }}> 
         <div style={{ border: `2px solid ${borderColor}`, borderRadius: '10px', padding: '10px', marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
