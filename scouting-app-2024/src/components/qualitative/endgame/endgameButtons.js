@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 
-const EndgameButtons = ({ onEndgameButtonClick }) => {
+const EndgameButtons = ({ onEndgameButtonClick, harmonizeOccurred, climbOccurred }) => {
   const [buttonStates, setButtonStates] = useState({ harmonize: false, climb: false });
 
   const handleButtonClick = (buttonName) => {
+    const newState = { harmonize: false, climb: false }; 
+    if ((buttonName === 'harmonize' && !harmonizeOccurred) || (buttonName === 'climb' && !climbOccurred)) {
+      newState[buttonName] = !buttonStates[buttonName];
+    }
+    setButtonStates(newState);
     onEndgameButtonClick(buttonName);
-    setButtonStates({ harmonize: false, climb: false });
   };
 
   return (
     <div style={{ position: 'relative' }}>
-      
       <div
         style={{
           width: '100%',
@@ -21,8 +24,6 @@ const EndgameButtons = ({ onEndgameButtonClick }) => {
           display: 'relative',
         }}
       ></div>
-
-      
       <div
         style={{
           width: '100%',
@@ -33,43 +34,39 @@ const EndgameButtons = ({ onEndgameButtonClick }) => {
           boxSizing: 'border-box',
         }}
       >
-        
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          
           <button
             style={{
               width: '48%',
               height: '40px',
-              backgroundColor: 'rgba(217, 217, 217, 0.00)',
-              border: buttonStates.harmonize ? '2px solid white' : '1px solid #2F3953', // White border when clicked
+              backgroundColor: harmonizeOccurred ? 'rgba(217, 217, 217, 0.50)' : 'rgba(217, 217, 217, 0.00)',
+              border: buttonStates.harmonize ? '2px solid white' : '1px solid #2F3953',
               borderRadius: '10px',
-              color: buttonStates.harmonize ? 'white' : '#7d7d7d', // Gray text color
+              color: buttonStates.harmonize ? 'white' : '#7d7d7d',
               fontFamily: 'Poppins',
               fontSize: '20px',
               fontStyle: 'normal',
               lineHeight: 'normal',
-              boxShadow: buttonStates.harmonize ? '2px 0px 22px 1px rgba(255, 255, 255, 0.1)' : 'none', // No shadow when not clicked
+              boxShadow: buttonStates.harmonize ? '2px 0px 22px 1px rgba(255, 255, 255, 0.1)' : 'none',
               fontWeight: '700',
             }}
             onClick={() => handleButtonClick('harmonize')}
           >
             Harmonize
           </button>
-
-          
           <button
             style={{
               width: '48%',
               height: '40px',
-              backgroundColor: 'rgba(217, 217, 217, 0.00)',
-              border: buttonStates.climb ? '2px solid white' : '1px solid #2F3953', // White border when clicked
+              backgroundColor: climbOccurred ? 'rgba(217, 217, 217, 0.50)' : 'rgba(217, 217, 217, 0.00)',
+              border: buttonStates.climb ? '2px solid white' : '1px solid #2F3953',
               borderRadius: '10px',
-              color: buttonStates.climb ? 'white' : '#7d7d7d', // Gray text color
+              color: buttonStates.climb ? 'white' : '#7d7d7d',
               fontFamily: 'Poppins',
               fontSize: '20px',
               fontStyle: 'normal',
               lineHeight: 'normal',
-              boxShadow: buttonStates.climb ? '2px 0px 22px 1px rgba(255, 255, 255, 0.1)' : 'none', // No shadow when not clicked
+              boxShadow: buttonStates.climb ? '2px 0px 22px 1px rgba(255, 255, 255, 0.1)' : 'none',
               fontWeight: '700',
             }}
             onClick={() => handleButtonClick('climb')}
