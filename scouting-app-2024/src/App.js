@@ -54,21 +54,21 @@ function App() {
     setIsModalOpen(false);
   }
 
+  
+  const handleSelectPosition = (position) => {
+    setSelectedPosition(position);
+  };
+  
+  const handleSelectTeamNumber = (number) => {
+    setSelectedTeamNumber(number);
+  };
+  
   const choosePage = () => {
     let pages = isQuantitativeMode ? quantpages : qualpages;
     if (devMode) {pages = [...pages, DevPage];}
     const PageComponent = pages[currentPage];
-    return !showTextBox && <div>{PageComponent && <PageComponent key={currentPage} />}</div>;
+    return !showTextBox && <div>{PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} />}</div>;
   };
-
-  const handleSelectPosition = (position) => {
-    setSelectedPosition(position);
-  };
-
-  const handleSelectTeamNumber = (number) => {
-    setSelectedTeamNumber(number);
-  };
-
   
 
   return (

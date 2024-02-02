@@ -85,6 +85,16 @@
     margin-left: 43%;
 }
 
+.position-left .note-button {
+}
+
+.position-middle .note-button {
+}
+
+.position-right .note-button {
+}
+
+
 .notes-upper {
     position: absolute;
     display: flex;

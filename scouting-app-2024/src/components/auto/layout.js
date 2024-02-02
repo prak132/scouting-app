@@ -1,10 +1,24 @@
-import React, { useState } from "react";
-import BlueAuto from "./assets/red_auto.svg";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import "./layout.css";
+import red_auto from "./assets/red_auto.svg";
+import blue_auto from "./assets/blue_auto.svg";
+import Notif from "./toast.js";
 
-const AutoLayout = () => {
+const AutoLayout = ({ selectedPosition }) => {
   const [clickedNotes, setClickedNotes] = useState([]);
+  const [showNotif, setShowNotif] = useState(false);
+  const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
+  let notesLowerClass = `notes-lower ${
+    selectedPosition === "Left" ? "position-left" : 
+    selectedPosition === "Middle" ? "position-middle" : 
+    selectedPosition === "Right" ? "position-right" : ""}`;  
   const elapsedTime = 2.23;
+  useEffect(() => {
+    const alliance = Cookies.get("selAlliance");
+    setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
+  }, []);
+
 
   const handleNoteClick = (noteIndex) => {
     const isNoteClicked = clickedNotes.some((note) => note[1] === noteIndex);
@@ -22,12 +36,15 @@ const AutoLayout = () => {
     }
   
     setClickedNotes(newClickedNotes);
+    setShowNotif(true);
+    setTimeout(() => setShowNotif(false), 1200);
     console.log("Clicked Notes:", newClickedNotes);
   };
   
 
   return (
     <div>
+      <Notif contents="Note Scored" launchNotif={showNotif} />
       <div style={{ paddingTop: "15vh" }}>
         <div type="teleop-text">
           <div
@@ -59,7 +76,7 @@ const AutoLayout = () => {
         </div>
       </div>
       <div className="svg-bounding">
-        <img src={BlueAuto} alt="auto-img" className="auto-map" />
+        <img src={autoMapSrc} alt="auto-img" className="auto-map" />
         <div className="notes-upper">
           {[...Array(5)].map((_, index) => (
             <button
@@ -69,7 +86,7 @@ const AutoLayout = () => {
             ></button>
           ))}
         </div>
-        <div className="notes-lower">
+        <div className={notesLowerClass}>
           {[...Array(3)].map((_, index) => (
             <button
               key={index}
