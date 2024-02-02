@@ -37,39 +37,35 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
 
 
   const handleQualitiativeButtonClick = () => {
-      setModeActiveButton("qual");
-      if (setQuantitativeMode) {
-        setQuantitativeMode(false);
-      }
-    };
+    setModeActiveButton("qual");
+    if (setQuantitativeMode) {
+      setQuantitativeMode(false);
+    }
+  };
 
 
 
-    const handleQuantitativeButtonClick = () => {
-      setModeActiveButton("quan");
-      if (setQuantitativeMode) {
-        setQuantitativeMode(true);
-      }
-    };
+  const handleQuantitativeButtonClick = () => {
+    setModeActiveButton("quan");
+    if (setQuantitativeMode) {
+      setQuantitativeMode(true);
+    }
+  };
 
 
-    const handleNextButtonClick = () => {
-      const selectedMatch = matchDetails[matchValue];
-      if (selectedMatch) {
-        const alliance = activeButton === "blue" ? "blue" : "red";
-        const blueTeamKeys = selectedMatch.alliances.blue.team_keys.map((team) =>team.replace("frc", ""));
-        const redTeamKeys = selectedMatch.alliances.red.team_keys.map((team) => team.replace("frc", ""));
-        Cookies.set("blueTeamNumbers", JSON.stringify(blueTeamKeys));
-        Cookies.set("redTeamNumbers", JSON.stringify(redTeamKeys));
-        Cookies.set("selAlliance", alliance === "blue" ? "0" : "1");
-      } else {
-        console.log(`Match details not found for ${matchValue}`);
-      }
-    
-      if (onNextButtonClick) {
-        onNextButtonClick();
-      }
-    };
+  const handleNextButtonClick = () => {
+    const selectedMatch = matchDetails[matchValue];
+    if (selectedMatch) {
+      const teamKeys = selectedMatch[activeButton].map(team => team.replace("frc", ""));
+      Cookies.set(`${activeButton}TeamNumbers`, JSON.stringify(teamKeys));
+      Cookies.set("selAlliance", activeButton === "blue" ? "0" : "1");
+    } else {
+      console.log(`Match details not found for ${matchValue}`);
+    }
+    if (onNextButtonClick) {
+      onNextButtonClick();
+    }
+  };
 
   return (
     <div className="center-container">

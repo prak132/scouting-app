@@ -53,12 +53,41 @@
 }
 
 .note-button {
+  margin: 0 14px;
   width: 40px;
   height: 40px;
   background: rgba(0, 0, 0, 0);
   border-radius: 50%;
   border: 6px solid orange;
 }
+
+.notes-upper, .notes-lower {
+  position: absolute;
+  justify-content: space-around;
+}
+
+.notes-upper {
+  top: 14.3%;
+  left: 0;
+  width: 100%;
+}
+
+.notes-lower {
+  position: absolute;
+  bottom: 13.5%;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  padding-right: 14px;
+}
+
+.note-button-hidden {
+  opacity: 0;
+  cursor: default;
+}
+
+
 
 .position-button.selected {
   border: 2px solid #fff;
@@ -73,17 +102,7 @@
     width: 100%;
 }
 
-.notes-lower {
-    position: absolute;
-    display: flex;
-    justify-content: space-around;
-    top: 0;
-    left: 0;
-    height: 100%;
-    margin-top: calc(-20vw + 394px);
-    width: 50%;
-    margin-left: 43%;
-}
+
 
 .position-left .note-button {
 }
@@ -92,16 +111,5 @@
 }
 
 .position-right .note-button {
-}
-
-
-.notes-upper {
-    position: absolute;
-    display: flex;
-    justify-content: space-around;
-    margin-top: calc(-88vw + 425px);
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+  
 }
