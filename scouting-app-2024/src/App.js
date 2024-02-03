@@ -10,6 +10,9 @@ import PageButtons from "./navigationButtons.js";
 import MenuElements from "./components/menus.js";
 import TextBox from "./layout.js";
 import DevPage from "./components/devPage.js";
+import Timer from "./timer.js";
+
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -73,6 +76,7 @@ function App() {
 
   return (
     <div>
+     
       <MenuElements />
       {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} />}
       <div>
@@ -114,6 +118,9 @@ function App() {
             <div className="overlay"></div>
           </div>
         )}
+      </div>
+      <div>
+      <Timer />
       </div>
       <div>{choosePage()}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} setDevMode={setDevMode} />

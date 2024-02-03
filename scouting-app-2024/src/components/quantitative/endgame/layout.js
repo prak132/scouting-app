@@ -6,6 +6,7 @@ import Notif from "./toast.js";
 import UndoInfo from "./undoinfo.js";
 import TrapButton from "./trapButton.js";
 
+
 const EndGameLayout = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
