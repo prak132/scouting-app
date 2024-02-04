@@ -7,7 +7,9 @@ blueidapidocs: https://www.thebluealliance.com/apidocs/v3
 - [x] start page fix/design
 - [ ] add the random squiggle things
 - [x] start auto page
-- [ ] popup of questions - auto
+- [x] popup of questions - auto
 - [ ] add functions to undo and info button
+- [ ] data storage / transfer ready
+- [ ] timer
 - [x] qualitative page
 - [x] endgame page
