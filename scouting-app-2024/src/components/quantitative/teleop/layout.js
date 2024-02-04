@@ -6,6 +6,10 @@ import Notif from "./toast.js";
 import UndoInfo from "./undoinfo.js";
 
 const TeleopLayout = () => {
+  // matrrix of teams and how they scored
+  // eslint-disable-next-line
+  const [scoredTeams, setScoredTeams] = useState([]);
+
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
@@ -24,25 +28,27 @@ const TeleopLayout = () => {
   };
 
 
-  const [storedTeam, setStoredTeam] = useState('846');
-  const [storedElement, setStoredElement] = useState('Amp');
+  const [storedTeam, setStoredTeam] = useState('');
+  const [storedElement, setStoredElement] = useState('');
 
   useEffect(() => {
     const scored = () => {
       if (selectedTeam && (ampSelected || speakerSelected)) {
+        const scoringElement = `${ampSelected ? "Amp" : "Speaker"}`;
         setStoredTeam(selectedTeam);
-        setStoredElement(`${ampSelected ? "Amp" : "Speaker"}`);
-
+        setStoredElement(scoringElement);
+        setScoredTeams(prevTeams => {
+          const newTeams = [...prevTeams, [selectedTeam, scoringElement]];
+          return newTeams;
+        });
         const resetValues = () => {
           setAmpSelected(false);
           setSpeakerSelected(false);
           setSelectedTeam(null);
         };
-
         setTimeout(resetValues, 30);
       }
     };
-
     scored();
   }, [selectedTeam, ampSelected, speakerSelected]);
 

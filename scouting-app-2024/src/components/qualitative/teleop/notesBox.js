@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const RectangleWithText = () => {
+  const [text, setText] = useState('');
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    console.log(event.target.value);
+  };
   return (
     <div style={{ display: 'left', justifyContent: 'flex-end' }}>
       <div
@@ -39,6 +44,8 @@ const RectangleWithText = () => {
           Notes
         </h2>
         <textarea
+          onChange={handleTextChange}
+          value={text}
           style={{
             width: '100%',
             height: '50%',

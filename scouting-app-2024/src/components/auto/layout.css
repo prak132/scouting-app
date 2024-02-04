@@ -54,8 +54,8 @@
 
 .note-button {
   margin: 0 14px;
-  width: 40px;
-  height: 40px;
+  width: 4.6vh;
+  height: 4.6vh;
   background: rgba(0, 0, 0, 0);
   border-radius: 50%;
   border: 6px solid orange;
@@ -67,14 +67,14 @@
 }
 
 .notes-upper {
-  top: 14.3%;
+  top: 19.25%;
   left: 0;
   width: 100%;
 }
 
 .notes-lower {
   position: absolute;
-  bottom: 13.5%;
+  bottom: 12.75%;
   right: 0;
   display: flex;
   justify-content: flex-end;
@@ -86,8 +86,6 @@
   opacity: 0;
   cursor: default;
 }
-
-
 
 .position-button.selected {
   border: 2px solid #fff;
@@ -105,9 +103,11 @@
 
 
 .position-left .note-button {
+
 }
 
 .position-middle .note-button {
+
 }
 
 .position-right .note-button {
