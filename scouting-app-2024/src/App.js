@@ -68,12 +68,12 @@ function App() {
   
   const choosePage = () => {
     let pages = isQuantitativeMode ? quantpages : qualpages;
-    if (devMode) {pages = [...pages, DevPage];}
+    if (devMode) {pages = [DevPage];}
     const PageComponent = pages[currentPage];
     return !showTextBox && (
       <div>
         {PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} />}
-        {isQuantitativeMode && <UndoDev />}
+        {(isQuantitativeMode || currentPage === AutoLayout) && <UndoDev />}
       </div>
     );
   };
@@ -85,7 +85,7 @@ function App() {
       <MenuElements />
       {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} />}
       <div>
-        {isModalOpen && (
+      {isModalOpen && !devMode && (
           <div className="modalthingpopup">
             <div className="modal-content">
               <h2>Choose Position and Team</h2>
