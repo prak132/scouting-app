@@ -53,12 +53,14 @@
 }
 
 .note-button {
-  margin: 0 14px;
-  width: 4.6vh;
-  height: 4.6vh;
+  bottom: 336px;
+  left: 5vw;
+  width: 10vw;
+  width: 40px;
+  height: 40px;
   background: rgba(0, 0, 0, 0);
+  border: 6px solid #eba014 ;
   border-radius: 50%;
-  border: 6px solid orange;
 }
 
 .notes-upper, .notes-lower {
@@ -66,20 +68,27 @@
   justify-content: space-around;
 }
 
-.notes-upper {
-  top: 19.25%;
-  left: 0;
-  width: 100%;
-}
-
 .notes-lower {
   position: absolute;
-  bottom: 12.75%;
-  right: 0;
   display: flex;
-  justify-content: flex-end;
-  width: auto;
-  padding-right: 14px;
+  justify-content: space-around;
+  top: 0;
+  left: 0;
+  height: 100%;
+  margin-top: calc(-20vw + 423px);
+  width: 50%;
+  margin-left: 43%;
+}
+
+.notes-upper {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  margin-top: calc(-88vw + 426px);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .note-button-hidden {
@@ -98,18 +107,4 @@
 .scroll-buffer {
     height: 120px;
     width: 100%;
-}
-
-
-
-.position-left .note-button {
-
-}
-
-.position-middle .note-button {
-
-}
-
-.position-right .note-button {
-  
 }
