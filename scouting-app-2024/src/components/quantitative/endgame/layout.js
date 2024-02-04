@@ -3,7 +3,6 @@ import AmpButton from "./ampButton.js";
 import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
-import UndoInfo from "./undoinfo.js";
 import TrapButton from "./trapButton.js";
 
 
@@ -112,7 +111,6 @@ const EndGameLayout = () => {
         />
         <TrapButton onSelect={handleTrapSelect} isSelected={trapSelected} />
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
-        <UndoInfo />
         <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
         
       </div>
