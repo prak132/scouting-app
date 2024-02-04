@@ -30,13 +30,13 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState }) => {
                 backgroundColor: '#000614',
                 color: buttonStates[index] ? 'white' : '#7d7d7d',
                 borderRadius: '10px',
-                border: buttonStates[index] ? '2px solid white' : '1px solid #2F3953', 
+                border: buttonStates[index] ? '1px solid white' : '2px solid #2F3953', 
                 width: '32%',
                 height: '50px',
                 margin: '5px',
                 fontSize: '20px',
                 fontWeight: '700',
-                boxShadow: buttonStates[index] ? '0px 0px 15px 1px rgba(255, 255, 255, 0.30)' : 'none',
+                boxShadow: buttonStates[index] ? '0px 0px 15px 1px rgba(255, 255, 255, 0.30)' : '0px 0px 30px 1px rgba(255, 255, 255, 0.30)',
               }}
               onClick={() => handleClick(index)}
             >
