@@ -3,11 +3,14 @@ import AmpButton from "./ampButton.js";
 import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
-import UndoInfo from "./undoinfo.js";
 import TrapButton from "./trapButton.js";
 
 
 const EndGameLayout = () => {
+  // matrrix of teams and how they scored
+  // eslint-disable-next-line
+  const [scoredTeams, setScoredTeams] = useState([]);
+
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
@@ -35,26 +38,25 @@ const EndGameLayout = () => {
     setSpeakerSelected(false); 
   };
 
-  const [storedTeam, setStoredTeam] = useState('846');
-  const [storedElement, setStoredElement] = useState('');
-
+  const [storedTeam] = useState('');
+  const [storedElement] = useState('');
   useEffect(() => {
     const scored = () => {
       if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
-        setStoredTeam(selectedTeam);
-        setStoredElement(`${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`);
-
+        const scoringElement = `${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`;
+        setScoredTeams(prevTeams => {
+          const newTeams = [...prevTeams, [selectedTeam, scoringElement]];
+          return newTeams;
+        });
         const resetValues = () => {
           setAmpSelected(false);
           setSpeakerSelected(false);
           setTrapSelected(false);
           setSelectedTeam(null);
         };
-
         setTimeout(resetValues, 30);
       }
     };
-
     scored();
   }, [selectedTeam, ampSelected, speakerSelected, trapSelected]);
 
@@ -109,7 +111,6 @@ const EndGameLayout = () => {
         />
         <TrapButton onSelect={handleTrapSelect} isSelected={trapSelected} />
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
-        <UndoInfo />
         <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
         
       </div>

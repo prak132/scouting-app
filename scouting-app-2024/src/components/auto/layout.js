@@ -22,17 +22,21 @@ const AutoLayout = ({ selectedPosition }) => {
     setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
   }, []);
 
-
   const handleNoteClick = (noteIndex) => {
-    const isNoteClicked = clickedNotes.some(note => note === noteIndex);
+    const isNoteClicked = clickedNotes.includes(noteIndex);
+  
     if (!isNoteClicked) {
+      
       setClickedNotes(prevNotes => [...prevNotes, noteIndex]);
       setShowNotif(true);
       setTimeout(() => setShowNotif(false), 1200);
       console.log("Clicked Notes:", [...clickedNotes, noteIndex]);
+    } else {
+      
+      setClickedNotes(prevNotes => prevNotes.filter(note => note !== noteIndex));
+      console.log("Clicked Notes:", clickedNotes.filter(note => note !== noteIndex));
     }
   };
-  
 
   return (
     <div>
@@ -69,24 +73,20 @@ const AutoLayout = ({ selectedPosition }) => {
         <img src={autoMapSrc} alt="auto-img" className="auto-map" />
         <div className="notes-upper">
           {[...Array(5)].map((_, index) => (
-            !clickedNotes.includes(index) && (
-              <button
-                key={index}
-                className={`note-button ${clickedNotes.includes(index) ? "note-button-hidden" : ""}`}
-                onClick={() => handleNoteClick(index)}
-              ></button>
-            )
+            <button
+              key={index}
+              className={`note-button ${clickedNotes.includes(index) ? "note-button-hidden" : ""}`}
+              onClick={() => handleNoteClick(index)}
+            ></button>
           ))}
         </div>
         <div className={notesLowerClass}>
           {[...Array(3)].map((_, index) => (
-            !clickedNotes.includes(index + 5) && (
-              <button
-                key={index}
-                className={`note-button ${clickedNotes.includes(index + 5) ? "note-button-hidden" : ""}`}
-                onClick={() => handleNoteClick(index + 5)}
-              ></button>
-            )
+            <button
+              key={index + 5}
+              className={`note-button ${clickedNotes.includes(index + 5) ? "note-button-hidden" : ""}`}
+              onClick={() => handleNoteClick(index + 5)}
+            ></button>
           ))}
         </div>
       </div>

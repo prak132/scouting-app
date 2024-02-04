@@ -5,16 +5,25 @@ const QualitativeTable = () => {
   const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
   const [teamOptions, setTeamOptions] = useState([]);
 
+  // matrrix of teams and how they defended
+  // eslint-disable-next-line
+  const [scoredTeams, setScoredTeams] = useState([]);
+
   useEffect(() => {
     const selAlliance = Cookies.get("selAlliance");
     const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
-      const options = teamNumbers.map((team) => (
+    const options = teamNumbers.map((team) => (
       <option key={team} value={`team${team}`}>
         {team}
       </option>
     ));
+    options.unshift(<option key="default" value="">Team</option>);
     setTeamOptions(options);
   }, []);
+  
+  useEffect(() => {
+    console.log(scoredTeams);
+  }, [scoredTeams]);
 
   const addRow = () => {
     setRows([rows.length + 1, ...rows]);
@@ -22,6 +31,23 @@ const QualitativeTable = () => {
 
   const removeRow = (index) => {
     setRows(rows.filter((_, i) => i !== index));
+    setScoredTeams(scoredTeams.filter((_, i) => i !== index));
+  };
+
+  const handleTeamSelect = (index, team) => {
+    const newScoredTeams = [...scoredTeams];
+    newScoredTeams[index] = [team.replace('team', ''), newScoredTeams[index]?.[1]];
+    setScoredTeams(newScoredTeams);
+  };  
+
+  const handleDefenseSelect = (index, defense) => {
+    const defenseMapping = {
+      'option1': 'source',
+      'option2': 'center'
+    };
+    const newScoredTeams = [...scoredTeams];
+    newScoredTeams[index] = [newScoredTeams[index]?.[0], defenseMapping[defense]];
+    setScoredTeams(newScoredTeams);
   };
 
   return (
@@ -114,6 +140,8 @@ const QualitativeTable = () => {
           >
             <select
               className="team-select"
+              onChange={(e) => handleTeamSelect(index, e.target.value)}
+              value={scoredTeams[index]?.[0] ? `team${scoredTeams[index][0]}` : ""}
               style={{
                 width: '100px',
                 flex: 0.4,
@@ -136,6 +164,8 @@ const QualitativeTable = () => {
             </select>
             <select
               className="defense-select"
+              onChange={(e) => handleDefenseSelect(index, e.target.value)}
+              value={scoredTeams[index]?.[1] ? (scoredTeams[index][1] === 'source' ? 'option1' : 'option2') : ""}
               style={{
                 marginLeft: '10px',
                 flex: 1,
@@ -154,6 +184,7 @@ const QualitativeTable = () => {
                 boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
+              <option value="">Defense</option>
               <option value="option1">Source</option>
               <option value="option2">Center</option>
             </select>

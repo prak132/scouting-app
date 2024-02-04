@@ -11,7 +11,7 @@ import MenuElements from "./components/menus.js";
 import TextBox from "./layout.js";
 import DevPage from "./components/devPage.js";
 import Timer from "./timer.js";
-
+import UndoDev from "./undoinfo.js";
 
 
 function App() {
@@ -70,7 +70,12 @@ function App() {
     let pages = isQuantitativeMode ? quantpages : qualpages;
     if (devMode) {pages = [...pages, DevPage];}
     const PageComponent = pages[currentPage];
-    return !showTextBox && <div>{PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} />}</div>;
+    return !showTextBox && (
+      <div>
+        {PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} />}
+        {isQuantitativeMode && <UndoDev />}
+      </div>
+    );
   };
   
 

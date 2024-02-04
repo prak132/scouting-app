@@ -3,16 +3,21 @@ import EndgameTable from "./endgameTable.js";
 import EndgameButtons from "./endgameButtons.js";
 import TeamButtons from "./teamButtons.js";
 import Cookies from 'js-cookie';
+import Notif from "./toast.js";
 
 const EndGameLayout = () => {
+  const [notifContents, setNotifContents] = useState("");
+  const [thihg, setLaunchNotif] = useState(false);
   const [teamButtonState, setTeamButtonState] = useState({
     blue: Array(3).fill(false),
     red: Array(3).fill(false)
   });
-  const [actions, setActions] = useState({ climb: [], harmonize: [] });
+  // 2 matrixs of teams and how they scored
+  const [actions, setActions] = useState({ climbed: [], harmonized: [] });
   useEffect(() => {
     console.log("Actions:", actions);
   }, [actions]);
+
   const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
   const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
   const handleEndgameButtonClick = (buttonName) => {
@@ -22,12 +27,17 @@ const EndGameLayout = () => {
     const selectedRedTeams = teamButtonState.red
       .map((state, index) => state ? redTeamNumbers[index] : null)
       .filter(number => number !== null);
-    setActions(prevActions => ({
-      ...prevActions,
-      [buttonName]: [...prevActions[buttonName], { blue: selectedBlueTeams, red: selectedRedTeams }]
-    }));
-    setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
+    if (selectedBlueTeams.length > 0 || selectedRedTeams.length > 0) {
+      setActions(prevActions => ({
+        ...prevActions,
+        [buttonName + (buttonName.endsWith('ed') ? '' : 'ed')]: [...prevActions[buttonName + (buttonName.endsWith('ed') ? '' : 'ed')], { blue: selectedBlueTeams, red: selectedRedTeams }]
+      }));
+      setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
+      setNotifContents(buttonName);
+      setLaunchNotif(true);
+    }
   };
+  
 
   return (
     <div
@@ -68,13 +78,11 @@ const EndGameLayout = () => {
       <EndgameTable />
       <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
       <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} />
+      <Notif contents={notifContents} launchNotif={thihg} />
       </div>
       </div>
       <div type = "notes">
-
-
       </div>
-
     </div>
       
   );
