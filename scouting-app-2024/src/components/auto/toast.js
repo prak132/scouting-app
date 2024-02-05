@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Check from "./assets/check.svg";
 
-const Notif = ({ contents, launchNotif }) => {
+const Notif = ({ contents, launchNotif, setLaunchNotif }) => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -19,8 +19,9 @@ const Notif = ({ contents, launchNotif }) => {
           prevNotifications.filter((notification) => notification.id !== newNotification.id)
         );
       }, 1200);
+      setLaunchNotif(false);
     }
-  }, [launchNotif, contents]);
+  }, [launchNotif, contents, setLaunchNotif]);
 
   return (
     <div>
@@ -35,4 +36,3 @@ const Notif = ({ contents, launchNotif }) => {
 };
 
 export default Notif;
-

@@ -40,7 +40,7 @@ const AutoLayout = ({ selectedPosition }) => {
 
   return (
     <div>
-      <Notif contents="Note Scored" launchNotif={showNotif} />
+      <Notif contents={"Note Scored"} launchNotif={showNotif} setLaunchNotif={setShowNotif} />
       <div style={{ paddingTop: "25vh" }}>
         <div type="teleop-text">
           <div

@@ -7,7 +7,7 @@ import Notif from "./toast.js";
 
 const EndGameLayout = () => {
   const [notifContents, setNotifContents] = useState("");
-  const [thihg, setLaunchNotif] = useState(false);
+  const [launchNotif, setLaunchNotif] = useState(false);
   const [teamButtonState, setTeamButtonState] = useState({
     blue: Array(3).fill(false),
     red: Array(3).fill(false)
@@ -78,7 +78,7 @@ const EndGameLayout = () => {
       <EndgameTable />
       <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
       <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} />
-      <Notif contents={notifContents} launchNotif={thihg} />
+      <Notif contents={notifContents} launchNotif={launchNotif} setLaunchNotif={setLaunchNotif} />
       </div>
       </div>
       <div type = "notes">

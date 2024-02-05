@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Check from "./assets/check.svg";
-import "./toast.css";
 
-const Notif = ({ contents, launchNotif }) => {
+const Notif = ({ contents, launchNotif, setLaunchNotif }) => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -20,15 +19,16 @@ const Notif = ({ contents, launchNotif }) => {
           prevNotifications.filter((notification) => notification.id !== newNotification.id)
         );
       }, 1200);
+      setLaunchNotif(false);
     }
-  }, [launchNotif, contents]);
+  }, [launchNotif, contents, setLaunchNotif]);
 
   return (
     <div>
       {notifications.map((notification) => (
-        <div key={notification.id} className="toastNotif animate">
+        <div key={notification.id} className="toastNotifEndgame animateEndgame">
           <img src={Check} alt="check" />
-          <div id="toastContents">{notification.contents}</div>
+          <div id="toastContentsEndgame">{notification.contents}</div>
         </div>
       ))}
     </div>
@@ -36,4 +36,3 @@ const Notif = ({ contents, launchNotif }) => {
 };
 
 export default Notif;
-
