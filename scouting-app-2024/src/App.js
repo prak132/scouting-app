@@ -34,14 +34,16 @@ function App() {
     setIsMatchReady(selectedPosition !== '' && selectedTeamNumber !== '');
   }, [isModalOpen, selectedPosition, selectedTeamNumber]);
   
-
   const handleLeftButtonClick = () => {
-    setCurrentPage(prevPage => (prevPage > 0 ? prevPage - 1 : (isQuantitativeMode ? quantpages : qualpages).length - 1));
+    const totalPages = devMode ? [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox].length : (isQuantitativeMode ? quantpages : qualpages).length;
+    setCurrentPage(prevPage => (prevPage > 0 ? prevPage - 1 : totalPages - 1));
   };
-
+  
   const handleRightButtonClick = () => {
-    setCurrentPage(prevPage => (prevPage < (isQuantitativeMode ? quantpages : qualpages).length - 1 ? prevPage + 1 : 0));
+    const totalPages = devMode ? [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox].length : (isQuantitativeMode ? quantpages : qualpages).length;
+    setCurrentPage(prevPage => (prevPage < totalPages - 1 ? prevPage + 1 : 0));
   };
+  
 
   const handleSetQuantitativeMode = (mode) => {
     setIsQuantitativeMode(mode);
@@ -68,15 +70,15 @@ function App() {
   
   const choosePage = () => {
     let pages = isQuantitativeMode ? quantpages : qualpages;
-    if (devMode) {pages = [DevPage];}
+    if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}
     const PageComponent = pages[currentPage];
-    return !showTextBox && (
+    return (!showTextBox && !devMode) || devMode ? (
       <div>
         {PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} />}
-        {(isQuantitativeMode || currentPage === AutoLayout) && <UndoDev />}
+        {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
       </div>
-    );
-  };
+    ) : null;
+  };  
   
 
   return (
