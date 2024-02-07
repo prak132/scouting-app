@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const PageButtons = ({ onLeftButtonClick, onRightButtonClick, setDevMode }) => {
+  // dev mode on or off
   const [devModeKey, setDevModeKey] = useState('');
   const fhash = (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,

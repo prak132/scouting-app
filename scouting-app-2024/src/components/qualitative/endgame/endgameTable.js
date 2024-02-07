@@ -6,7 +6,6 @@ const EndgameTable = () => {
   const [teamOptions, setTeamOptions] = useState([]);
 
   // matrrix of teams and how they defended
-  // eslint-disable-next-line
   const [scoredTeams, setScoredTeams] = useState([]);
 
   useEffect(() => {

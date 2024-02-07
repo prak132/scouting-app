@@ -10,10 +10,15 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
   Cookies.set("selAlliance", "1");
   Cookies.set("blueTeamNumbers", JSON.stringify(bug));
   Cookies.set("redTeamNumbers", JSON.stringify(bug));
+  // data of the person scouting
   const [nameValue, setNameValue] = useState("");
+  // which match
   const [matchValue, setMatchValue] = useState("");
+  // which alliance
   const [activeButton, setActiveButton] = useState(null);
+  // offense or defense
   const [modeActiveButton, setModeActiveButton] = useState(null);
+  
   const [showNotif, setShowNotif] = useState(false);
 
   const handleNameChange = (e) => {

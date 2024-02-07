@@ -6,6 +6,7 @@ import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
 const AutoLayout = ({ selectedPosition }) => {
+  // notes - 0-4 are upper, 5-7 are lower
   const [clickedNotes, setClickedNotes] = useState([]);
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
