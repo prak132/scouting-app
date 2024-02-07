@@ -38,33 +38,25 @@ const EndGameLayout = () => {
     setSpeakerSelected(false); 
   };
 
-  const [storedTeam] = useState('');
-  const [storedElement] = useState('');
   useEffect(() => {
-    const scored = () => {
-      if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
-        const scoringElement = `${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`;
-        setScoredTeams(prevTeams => {
-          const newTeams = [...prevTeams, [selectedTeam, scoringElement]];
-          return newTeams;
-        });
-        const resetValues = () => {
-          setAmpSelected(false);
-          setSpeakerSelected(false);
-          setTrapSelected(false);
-          setSelectedTeam(null);
-        };
-        setTimeout(resetValues, 30);
-      }
-    };
-    scored();
+    if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
+      const scoringElement = `${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`;
+      setScoredTeams(prevTeams => [...prevTeams, [selectedTeam, scoringElement]]);
+      setTimeout(() => {
+        setAmpSelected(false);
+        setSpeakerSelected(false);
+        setTrapSelected(false);
+        setSelectedTeam(null);
+      }, 30);
+    }
   }, [selectedTeam, ampSelected, speakerSelected, trapSelected]);
 
-  function callNotif() {
+  const getNotificationContent = () => {
     if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
-      return true;
-    };
-    return null;
+      const action = `${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`;
+      return `${selectedTeam} scored ${action}`;
+    }
+    return "";
   };
 
   const elapsedTime = 2.23;
@@ -111,7 +103,7 @@ const EndGameLayout = () => {
         />
         <TrapButton onSelect={handleTrapSelect} isSelected={trapSelected} />
         <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
-        <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
+        <Notif contents={getNotificationContent()} launchNotif={selectedTeam && (ampSelected || speakerSelected || trapSelected)} />
         
       </div>
       <div className="scroll-buffer"></div>

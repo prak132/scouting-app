@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import "./TextBox.css";
 import matchesData from "./data/match.json";
 import matchDetails from "./data/team.json";
-
+import Notif from "./toast.js";
 
 const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
   const bug = ["hey", "go", "back"];
@@ -14,7 +14,7 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
   const [matchValue, setMatchValue] = useState("");
   const [activeButton, setActiveButton] = useState(null);
   const [modeActiveButton, setModeActiveButton] = useState(null);
-
+  const [showNotif, setShowNotif] = useState(false);
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
@@ -43,8 +43,6 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
     }
   };
 
-
-
   const handleQuantitativeButtonClick = () => {
     setModeActiveButton("quan");
     if (setQuantitativeMode) {
@@ -52,28 +50,29 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
     }
   };
 
-
   const handleNextButtonClick = () => {
     const selectedMatch = matchDetails[matchValue];
     if (selectedMatch) {
       const alliance = activeButton === "blue" ? "blue" : "red";
-      const blueTeamKeys = selectedMatch.blue.map((team) =>team.replace("frc", ""));
+      const blueTeamKeys = selectedMatch.blue.map((team) => team.replace("frc", ""));
       const redTeamKeys = selectedMatch.red.map((team) => team.replace("frc", ""));
       Cookies.set("blueTeamNumbers", JSON.stringify(blueTeamKeys));
       Cookies.set("redTeamNumbers", JSON.stringify(redTeamKeys));
       Cookies.set("selAlliance", alliance === "blue" ? "0" : "1");
+      if (onNextButtonClick) {
+        onNextButtonClick();
+      }
     } else {
-      console.log(`Match details not found for ${matchValue}`);
-    }
-  
-    if (onNextButtonClick) {
-      onNextButtonClick();
+      setShowNotif(true);
+      setTimeout(() => setShowNotif(false), 2000);
     }
   };
+  
 
 
   return (
     <div className="center-container">
+      {showNotif && <Notif contents="Match Not Found" launchNotif={showNotif} />}
       <div className="textbox-container">
         <input
           type="text"
@@ -143,12 +142,12 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
       <button
         type="button"
         onClick={handleNextButtonClick}
-        disabled={ 
-          !(nameValue.trim() !== "" &&  matchValue !== "" && (activeButton === "blue" || activeButton === "red") && (modeActiveButton === "quan" || modeActiveButton === "qual"))
+        disabled={
+          !(nameValue.trim() !== "" && matchValue !== "" && (activeButton === "blue" || activeButton === "red") && (modeActiveButton === "quan" || modeActiveButton === "qual"))
         }
         className={`NextButton Next ${
-          nameValue.trim() !== "" &&  matchValue !== "" && (activeButton === "blue" || activeButton === "red") && (modeActiveButton === "quan" || modeActiveButton === "qual") ? "glow" : ""}`
-        }
+          nameValue.trim() !== "" && matchValue !== "" && (activeButton === "blue" || activeButton === "red") && (modeActiveButton === "quan" || modeActiveButton === "qual") ? "glow" : ""
+        }`}
       >
         Next {">"}
       </button>

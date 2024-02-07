@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from "./assets/monkeylogo.svg";
+import Logo from "../assets/monkeylogo.svg";
 import "./menu.css";
 import Cookies from "js-cookie";
 

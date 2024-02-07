@@ -8,6 +8,7 @@ import Notif from "./toast.js";
 const AutoLayout = ({ selectedPosition }) => {
   const [clickedNotes, setClickedNotes] = useState([]);
   const [showNotif, setShowNotif] = useState(false);
+  const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
   const positionClasses = {
     Left: "position-left",
@@ -24,19 +25,16 @@ const AutoLayout = ({ selectedPosition }) => {
 
   const handleNoteClick = (noteIndex) => {
     const isNoteClicked = clickedNotes.includes(noteIndex);
-  
     if (!isNoteClicked) {
-      
       setClickedNotes(prevNotes => [...prevNotes, noteIndex]);
       setShowNotif(true);
-      setTimeout(() => setShowNotif(false), 1200);
+      setDisabledButtons(prevState => ({ ...prevState, [noteIndex]: true }));
       console.log("Clicked Notes:", [...clickedNotes, noteIndex]);
     } else {
-      
-      setClickedNotes(prevNotes => prevNotes.filter(note => note !== noteIndex));
       console.log("Clicked Notes:", clickedNotes.filter(note => note !== noteIndex));
     }
   };
+
 
   return (
     <div>
@@ -75,6 +73,7 @@ const AutoLayout = ({ selectedPosition }) => {
           {[...Array(5)].map((_, index) => (
             <button
               key={index}
+              disabled={!!disabledButtons[index]}
               className={`note-button ${clickedNotes.includes(index) ? "note-button-hidden" : ""}`}
               onClick={() => handleNoteClick(index)}
             ></button>
@@ -84,6 +83,7 @@ const AutoLayout = ({ selectedPosition }) => {
           {[...Array(3)].map((_, index) => (
             <button
               key={index + 5}
+              disabled={!!disabledButtons[index+5]}
               className={`note-button ${clickedNotes.includes(index + 5) ? "note-button-hidden" : ""}`}
               onClick={() => handleNoteClick(index + 5)}
             ></button>

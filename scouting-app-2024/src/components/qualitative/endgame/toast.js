@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Check from "./assets/check.svg";
+import Check from "../../../assets/check.svg";
 
 const Notif = ({ contents, launchNotif, setLaunchNotif }) => {
   const [notifications, setNotifications] = useState([]);

@@ -20,6 +20,7 @@ const EndGameLayout = () => {
 
   const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
   const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
+
   const handleEndgameButtonClick = (buttonName) => {
     const selectedBlueTeams = teamButtonState.blue
       .map((state, index) => state ? blueTeamNumbers[index] : null)
@@ -27,13 +28,16 @@ const EndGameLayout = () => {
     const selectedRedTeams = teamButtonState.red
       .map((state, index) => state ? redTeamNumbers[index] : null)
       .filter(number => number !== null);
+    const actionedTeams = [...selectedBlueTeams, ...selectedRedTeams].join(", ");
     if (selectedBlueTeams.length > 0 || selectedRedTeams.length > 0) {
       setActions(prevActions => ({
         ...prevActions,
         [buttonName + (buttonName.endsWith('ed') ? '' : 'ed')]: [...prevActions[buttonName + (buttonName.endsWith('ed') ? '' : 'ed')], { blue: selectedBlueTeams, red: selectedRedTeams }]
       }));
       setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
-      setNotifContents(buttonName);
+      const actionVerb = buttonName.charAt(0).toUpperCase() + buttonName.slice(1) + (buttonName.endsWith('ed') ? '' : 'ed');
+      const notifMessage = actionedTeams.length > 0 ? `${actionedTeams} ${actionVerb.toLowerCase()}` : `${actionVerb} action selected`;
+      setNotifContents(notifMessage);
       setLaunchNotif(true);
     }
   };
