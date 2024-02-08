@@ -11,17 +11,12 @@ const AutoLayout = ({ selectedPosition }) => {
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
-  const positionClasses = {
-    Left: "position-left",
-    Middle: "position-middle",
-    Right: "position-right",
-  };
-  let notesLowerClass = `notes-lower ${positionClasses[selectedPosition] || ""}`;
-
-  const elapsedTime = 2.23;
+  const [allianceClass, setAllianceClass] = useState("");
+  let elapsedTime = 2.23;
   useEffect(() => {
     const alliance = Cookies.get("selAlliance");
     setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
+    setAllianceClass(alliance === "0" ? "bluenotes" : "rednotes");
   }, []);
 
   const handleNoteClick = (noteIndex) => {
@@ -30,9 +25,6 @@ const AutoLayout = ({ selectedPosition }) => {
       setClickedNotes(prevNotes => [...prevNotes, noteIndex]);
       setShowNotif(true);
       setDisabledButtons(prevState => ({ ...prevState, [noteIndex]: true }));
-      console.log("Clicked Notes:", [...clickedNotes, noteIndex]);
-    } else {
-      console.log("Clicked Notes:", clickedNotes.filter(note => note !== noteIndex));
     }
   };
 
@@ -80,7 +72,7 @@ const AutoLayout = ({ selectedPosition }) => {
             ></button>
           ))}
         </div>
-        <div className={notesLowerClass}>
+        <div className={`notes-lower ${allianceClass}`}>
           {[...Array(3)].map((_, index) => (
             <button
               key={index + 5}
