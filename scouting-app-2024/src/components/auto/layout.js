@@ -5,14 +5,14 @@ import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ selectedPosition }) => {
+const AutoLayout = ({ selectedPosition, time }) => {
   // notes - 0-4 are upper, 5-7 are lower
   const [clickedNotes, setClickedNotes] = useState([]);
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
   const [allianceClass, setAllianceClass] = useState("");
-  let elapsedTime = 2.23;
+
   useEffect(() => {
     const alliance = Cookies.get("selAlliance");
     setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
@@ -57,7 +57,7 @@ const AutoLayout = ({ selectedPosition }) => {
             fontSize: "4vw",
           }}
         >
-          Scoring • Timer: {elapsedTime}
+          Scoring • Timer: {time.toFixed(2)}s
         </div>
       </div>
       <div className="svg-bounding">

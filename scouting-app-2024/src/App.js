@@ -15,6 +15,12 @@ import UndoDev from "./undoinfo.js";
 
 
 function App() {
+  // timer
+  const [timerActive, setTimerActive] = useState(false);
+  const [time, setTime] = useState(0);
+
+
+
   const [currentPage, setCurrentPage] = useState(0);
   const [isQuantitativeMode, setIsQuantitativeMode] = useState(true);
   const [showTextBox, setShowTextBox] = useState(true);
@@ -56,6 +62,8 @@ function App() {
   };
 
   const closeModal = () => {
+    setTime(0);
+    setTimerActive(true);
     setIsModalOpen(false);
   }
 
@@ -74,7 +82,7 @@ function App() {
     const PageComponent = pages[currentPage];
     return (!showTextBox && !devMode) || devMode ? (
       <div>
-        {PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} />}
+        {PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} time={time}/>}
         {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
       </div>
     ) : null;
@@ -127,7 +135,7 @@ function App() {
         )}
       </div>
       <div>
-      <Timer />
+      <Timer active={timerActive} time={time} setTime={setTime} />
       </div>
       <div>{choosePage()}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} setDevMode={setDevMode} />

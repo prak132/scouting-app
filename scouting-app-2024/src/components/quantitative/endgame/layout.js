@@ -6,7 +6,7 @@ import Notif from "./toast.js";
 import TrapButton from "./trapButton.js";
 
 
-const EndGameLayout = () => {
+const EndGameLayout = ( {time} ) => {
   // matrrix of teams and how they scored
   // eslint-disable-next-line
   const [scoredTeams, setScoredTeams] = useState([]);
@@ -59,7 +59,6 @@ const EndGameLayout = () => {
     return "";
   };
 
-  const elapsedTime = 2.23;
 
   return (
     <div
@@ -92,7 +91,7 @@ const EndGameLayout = () => {
           fontSize: "4vw",
         }}
       >
-        Scoring • Timer: {elapsedTime}s
+        Scoring • Timer: {time.toFixed(2)}s
       </div>
 
       <div>

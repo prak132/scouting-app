@@ -5,7 +5,7 @@ import TeamButtons from "./teamButtons.js";
 import Cookies from 'js-cookie';
 import Notif from "./toast.js";
 
-const EndGameLayout = () => {
+const EndGameLayout = ( {time}) => {
   const [notifContents, setNotifContents] = useState("");
   const [launchNotif, setLaunchNotif] = useState(false);
   const [teamButtonState, setTeamButtonState] = useState({
@@ -75,7 +75,7 @@ const EndGameLayout = () => {
           fontSize: "4vw",
         }}
       >
-        Qualitiative
+        Qualitiative • Timer: {time.toFixed(2)}s
       </div>
       <div style={{margin: 'auto'}}>
       <div>

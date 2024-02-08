@@ -4,10 +4,10 @@ import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
 
-const TeleopLayout = () => {
+const TeleopLayout = ( {time} ) => {
   // matrrix of teams and how they scored
   // eslint-disable-next-line
-  const [scoredTeams, setScoredTeams] = useState([]);
+  const [quantTelescoredTeams, quantTeleSetScoredTeams] = useState([]);
 
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
@@ -36,7 +36,7 @@ const TeleopLayout = () => {
         const scoringElement = `${ampSelected ? "Amp" : "Speaker"}`;
         setStoredTeam(selectedTeam);
         setStoredElement(scoringElement);
-        setScoredTeams(prevTeams => {
+        quantTeleSetScoredTeams(prevTeams => {
           const newTeams = [...prevTeams, [selectedTeam, scoringElement]];
           return newTeams;
         });
@@ -57,8 +57,6 @@ const TeleopLayout = () => {
     };
     return null;
   };
-
-  const elapsedTime = 2.23;
 
   return (
     <div
@@ -91,7 +89,7 @@ const TeleopLayout = () => {
           fontSize: "4vw",
         }}
       >
-        Scoring • Timer: {elapsedTime}s
+        Scoring • Timer: {time.toFixed(2)}s
       </div>
 
       <div>
