@@ -26,7 +26,12 @@ function App() {
   const [qualTeleopscoredTeams, qualTeleopsetScoredTeams] = useState([]);
   // qual teleop notes
   const [qualTeleoptext, qualTeleopsetText] = useState('');
-
+  // qual endgame defense
+  const [qualEndscoredTeams, qualEndsetScoredTeams] = useState([]);
+  // qual endgame climbing/harmonizing
+  const [qualEndactions, qualEndsetActions] = useState({ climbed: [], harmonized: [] });
+  // auto note scoring
+  const [clickedNotes, setClickedNotes] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [isQuantitativeMode, setIsQuantitativeMode] = useState(true);
@@ -90,16 +95,23 @@ function App() {
     return (!showTextBox && !devMode) || devMode ? (
       <div>
         {PageComponent && <PageComponent key={currentPage} 
-         selectedPosition={selectedPosition}
+          selectedPosition={selectedPosition}
           time={time}
-           quantTelescoredTeams={quantTelescoredTeams}
-            quantTeleSetScoredTeams={quantTeleSetScoredTeams}
-             quantEndSetScoredTeams={quantEndSetScoredTeams}
-              setquantEndSetScoredTeams={setquantEndSetScoredTeams}
-               qualTeleopscoredTeams={qualTeleopscoredTeams}
-                qualTeleopsetScoredTeams={qualTeleopsetScoredTeams}
-                 qualTeleoptext={qualTeleoptext}
-                  qualTeleopsetText={qualTeleopsetText}/>}
+          quantTelescoredTeams={quantTelescoredTeams}
+          quantTeleSetScoredTeams={quantTeleSetScoredTeams}
+          quantEndSetScoredTeams={quantEndSetScoredTeams}
+          setquantEndSetScoredTeams={setquantEndSetScoredTeams}
+          qualTeleopscoredTeams={qualTeleopscoredTeams}
+          qualTeleopsetScoredTeams={qualTeleopsetScoredTeams}
+          qualTeleoptext={qualTeleoptext}
+          qualTeleopsetText={qualTeleopsetText}
+          qualEndscoredTeams={qualEndscoredTeams}
+          qualEndsetScoredTeams={qualEndsetScoredTeams}
+          qualEndactions={qualEndactions}
+          qualEndsetActions={qualEndsetActions}
+          clickedNotes={clickedNotes}
+          setClickedNotes={setClickedNotes}
+        />}
         {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
       </div>
     ) : null;

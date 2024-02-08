@@ -5,9 +5,7 @@ import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ selectedPosition, time }) => {
-  // notes - 0-4 are upper, 5-7 are lower
-  const [clickedNotes, setClickedNotes] = useState([]);
+const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) => {
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
@@ -18,6 +16,11 @@ const AutoLayout = ({ selectedPosition, time }) => {
     setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
     setAllianceClass(alliance === "0" ? "bluenotes" : "rednotes");
   }, []);
+  
+  // testing
+  useEffect(() => {
+    console.log(clickedNotes);
+  }, [clickedNotes]);
 
   const handleNoteClick = (noteIndex) => {
     const isNoteClicked = clickedNotes.includes(noteIndex);

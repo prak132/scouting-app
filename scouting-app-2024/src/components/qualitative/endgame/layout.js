@@ -5,18 +5,17 @@ import TeamButtons from "./teamButtons.js";
 import Cookies from 'js-cookie';
 import Notif from "./toast.js";
 
-const EndGameLayout = ( {time}) => {
+const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEndactions, qualEndsetActions}) => {
   const [notifContents, setNotifContents] = useState("");
   const [launchNotif, setLaunchNotif] = useState(false);
   const [teamButtonState, setTeamButtonState] = useState({
     blue: Array(3).fill(false),
     red: Array(3).fill(false)
   });
-  // 2 matrixs of teams and how they scored
-  const [actions, setActions] = useState({ climbed: [], harmonized: [] });
+
   useEffect(() => {
-    console.log("Actions:", actions);
-  }, [actions]);
+    console.log("Actions:", qualEndactions);
+  }, [qualEndactions]);
 
   const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
   const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
@@ -30,7 +29,7 @@ const EndGameLayout = ( {time}) => {
       .filter(number => number !== null);
     const actionedTeams = [...selectedBlueTeams, ...selectedRedTeams].join(", ");
     if (selectedBlueTeams.length > 0 || selectedRedTeams.length > 0) {
-      setActions(prevActions => ({
+      qualEndsetActions(prevActions => ({
         ...prevActions,
         [buttonName + (buttonName.endsWith('ed') ? '' : 'ed')]: [...prevActions[buttonName + (buttonName.endsWith('ed') ? '' : 'ed')], { blue: selectedBlueTeams, red: selectedRedTeams }]
       }));
@@ -79,7 +78,7 @@ const EndGameLayout = ( {time}) => {
       </div>
       <div style={{margin: 'auto'}}>
       <div>
-      <EndgameTable />
+      <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams}/>
       <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
       <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} />
       <Notif contents={notifContents} launchNotif={launchNotif} setLaunchNotif={setLaunchNotif} />

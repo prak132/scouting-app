@@ -3,7 +3,7 @@ import React from 'react';
 const RectangleWithText = ( {qualTeleoptext, qualTeleopsetText}) => {
   // just contains the text in the notes box
   const handleTextChange = (event) => {
-    qualTeleopsetText = event.target.value;
+    qualTeleopsetText(event.target.value);
   };
   return (
     <div style={{ display: 'left', justifyContent: 'flex-end' }}>

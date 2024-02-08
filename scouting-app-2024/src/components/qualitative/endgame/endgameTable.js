@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-const EndgameTable = () => {
+const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams} ) => {
   const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
   const [teamOptions, setTeamOptions] = useState([]);
-
-  // matrrix of teams and how they defended
-  const [scoredTeams, setScoredTeams] = useState([]);
 
   useEffect(() => {
     const selAlliance = Cookies.get("selAlliance");
@@ -21,8 +18,8 @@ const EndgameTable = () => {
   }, []);
   
   useEffect(() => {
-    console.log(scoredTeams);
-  }, [scoredTeams]);
+    console.log(qualEndscoredTeams);
+  }, [qualEndscoredTeams]);
 
   const addRow = () => {
     setRows([rows.length + 1, ...rows]);
@@ -30,13 +27,13 @@ const EndgameTable = () => {
 
   const removeRow = (index) => {
     setRows(rows.filter((_, i) => i !== index));
-    setScoredTeams(scoredTeams.filter((_, i) => i !== index));
+    qualEndsetScoredTeams(qualEndscoredTeams.filter((_, i) => i !== index));
   };
 
   const handleTeamSelect = (index, team) => {
-    const newScoredTeams = [...scoredTeams];
+    const newScoredTeams = [...qualEndscoredTeams];
     newScoredTeams[index] = [team.replace('team', ''), newScoredTeams[index]?.[1]];
-    setScoredTeams(newScoredTeams);
+    qualEndsetScoredTeams(newScoredTeams);
   };  
 
   const handleDefenseSelect = (index, defense) => {
@@ -44,9 +41,9 @@ const EndgameTable = () => {
       'option1': 'source',
       'option2': 'center'
     };
-    const newScoredTeams = [...scoredTeams];
+    const newScoredTeams = [...qualEndscoredTeams];
     newScoredTeams[index] = [newScoredTeams[index]?.[0], defenseMapping[defense]];
-    setScoredTeams(newScoredTeams);
+    qualEndsetScoredTeams(newScoredTeams);
   };
 
   return (
@@ -140,7 +137,7 @@ const EndgameTable = () => {
             <select
               className="team-select"
               onChange={(e) => handleTeamSelect(index, e.target.value)}
-              value={scoredTeams[index]?.[0] ? `team${scoredTeams[index][0]}` : ""}
+              value={qualEndscoredTeams[index]?.[0] ? `team${qualEndscoredTeams[index][0]}` : ""}
               style={{
                 width: '100px',
                 flex: 0.4,
@@ -164,7 +161,7 @@ const EndgameTable = () => {
             <select
               className="defense-select"
               onChange={(e) => handleDefenseSelect(index, e.target.value)}
-              value={scoredTeams[index]?.[1] ? (scoredTeams[index][1] === 'source' ? 'option1' : 'option2') : ""}
+              value={qualEndscoredTeams[index]?.[1] ? (qualEndscoredTeams[index][1] === 'source' ? 'option1' : 'option2') : ""}
               style={{
                 marginLeft: '10px',
                 flex: 1,
