@@ -3,7 +3,7 @@ import React from "react";
 import QualitativeTable from "./qualitativeTable.js";
 import RectangleWithText from "./notesBox.js"
 
-const QualTeleopLayout = ( {time} ) => {
+const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTeleoptext, qualTeleopsetText} ) => {
   return (
     <div
       style={{
@@ -38,8 +38,8 @@ const QualTeleopLayout = ( {time} ) => {
       >
         Qualitiative • Timer: {time.toFixed(2)}s
       </div>
-      <QualitativeTable />
-      <RectangleWithText />
+      <QualitativeTable qualTeleopscoredTeams={qualTeleopscoredTeams} qualTeleopsetScoredTeams={qualTeleopsetScoredTeams}/>
+      <RectangleWithText qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText}/>
       <div type = "notes">
 
 

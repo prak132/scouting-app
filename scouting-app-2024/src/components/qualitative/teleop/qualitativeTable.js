@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-const QualitativeTable = () => {
+const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams} ) => {
   const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
   const [teamOptions, setTeamOptions] = useState([]);
 
   // matrrix of teams and how they defended
-  // eslint-disable-next-line
-  const [scoredTeams, setScoredTeams] = useState([]);
-
+  
   useEffect(() => {
     const selAlliance = Cookies.get("selAlliance");
     const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
@@ -22,8 +20,8 @@ const QualitativeTable = () => {
   }, []);
   
   useEffect(() => {
-    console.log(scoredTeams);
-  }, [scoredTeams]);
+    console.log(qualTeleopscoredTeams);
+  }, [qualTeleopscoredTeams]);
 
   const addRow = () => {
     setRows([rows.length + 1, ...rows]);
@@ -31,13 +29,13 @@ const QualitativeTable = () => {
 
   const removeRow = (index) => {
     setRows(rows.filter((_, i) => i !== index));
-    setScoredTeams(scoredTeams.filter((_, i) => i !== index));
+    qualTeleopsetScoredTeams(qualTeleopscoredTeams.filter((_, i) => i !== index));
   };
 
   const handleTeamSelect = (index, team) => {
-    const newScoredTeams = [...scoredTeams];
+    const newScoredTeams = [...qualTeleopscoredTeams];
     newScoredTeams[index] = [team.replace('team', ''), newScoredTeams[index]?.[1]];
-    setScoredTeams(newScoredTeams);
+    qualTeleopsetScoredTeams(newScoredTeams);
   };  
 
   const handleDefenseSelect = (index, defense) => {
@@ -45,9 +43,9 @@ const QualitativeTable = () => {
       'option1': 'source',
       'option2': 'center'
     };
-    const newScoredTeams = [...scoredTeams];
+    const newScoredTeams = [...qualTeleopscoredTeams];
     newScoredTeams[index] = [newScoredTeams[index]?.[0], defenseMapping[defense]];
-    setScoredTeams(newScoredTeams);
+    qualTeleopsetScoredTeams(newScoredTeams);
   };
 
   return (
@@ -141,7 +139,7 @@ const QualitativeTable = () => {
             <select
               className="team-select"
               onChange={(e) => handleTeamSelect(index, e.target.value)}
-              value={scoredTeams[index]?.[0] ? `team${scoredTeams[index][0]}` : ""}
+              value={qualTeleopscoredTeams[index]?.[0] ? `team${qualTeleopscoredTeams[index][0]}` : ""}
               style={{
                 width: '100px',
                 flex: 0.4,
@@ -165,7 +163,7 @@ const QualitativeTable = () => {
             <select
               className="defense-select"
               onChange={(e) => handleDefenseSelect(index, e.target.value)}
-              value={scoredTeams[index]?.[1] ? (scoredTeams[index][1] === 'source' ? 'option1' : 'option2') : ""}
+              value={qualTeleopscoredTeams[index]?.[1] ? (qualTeleopscoredTeams[index][1] === 'source' ? 'option1' : 'option2') : ""}
               style={{
                 marginLeft: '10px',
                 flex: 1,

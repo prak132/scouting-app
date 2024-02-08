@@ -18,7 +18,14 @@ function App() {
   // timer
   const [timerActive, setTimerActive] = useState(false);
   const [time, setTime] = useState(0);
-
+  // quant teletop scoring
+  const [quantTelescoredTeams, quantTeleSetScoredTeams] = useState([]);
+  // quant endgame scoring
+  const [quantEndSetScoredTeams, setquantEndSetScoredTeams] = useState([]);
+  // qual teleop defense
+  const [qualTeleopscoredTeams, qualTeleopsetScoredTeams] = useState([]);
+  // qual teleop notes
+  const [qualTeleoptext, qualTeleopsetText] = useState('');
 
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -82,7 +89,17 @@ function App() {
     const PageComponent = pages[currentPage];
     return (!showTextBox && !devMode) || devMode ? (
       <div>
-        {PageComponent && <PageComponent key={currentPage} selectedPosition={selectedPosition} time={time}/>}
+        {PageComponent && <PageComponent key={currentPage} 
+         selectedPosition={selectedPosition}
+          time={time}
+           quantTelescoredTeams={quantTelescoredTeams}
+            quantTeleSetScoredTeams={quantTeleSetScoredTeams}
+             quantEndSetScoredTeams={quantEndSetScoredTeams}
+              setquantEndSetScoredTeams={setquantEndSetScoredTeams}
+               qualTeleopscoredTeams={qualTeleopscoredTeams}
+                qualTeleopsetScoredTeams={qualTeleopsetScoredTeams}/>}
+                 qualTeleoptext={qualTeleoptext}
+                  qualTeleopsetText={qualTeleopsetText}
         {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
       </div>
     ) : null;

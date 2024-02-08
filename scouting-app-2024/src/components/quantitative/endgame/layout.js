@@ -6,10 +6,9 @@ import Notif from "./toast.js";
 import TrapButton from "./trapButton.js";
 
 
-const EndGameLayout = ( {time} ) => {
+const EndGameLayout = ( {time, quantEndSetScoredTeams, setquantEndSetScoredTeams} ) => {
   // matrrix of teams and how they scored
   // eslint-disable-next-line
-  const [scoredTeams, setScoredTeams] = useState([]);
 
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
@@ -41,7 +40,7 @@ const EndGameLayout = ( {time} ) => {
   useEffect(() => {
     if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
       const scoringElement = `${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`;
-      setScoredTeams(prevTeams => [...prevTeams, [selectedTeam, scoringElement]]);
+      setquantEndSetScoredTeams(prevTeams => [...prevTeams, [selectedTeam, scoringElement]]);
       setTimeout(() => {
         setAmpSelected(false);
         setSpeakerSelected(false);
@@ -49,6 +48,8 @@ const EndGameLayout = ( {time} ) => {
         setSelectedTeam(null);
       }, 30);
     }
+    console.log(quantEndSetScoredTeams);
+    // eslint-disable-next-line
   }, [selectedTeam, ampSelected, speakerSelected, trapSelected]);
 
   const getNotificationContent = () => {

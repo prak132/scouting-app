@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const RectangleWithText = () => {
+const RectangleWithText = ( {qualTeleoptext, qualTeleopsetText}) => {
   // just contains the text in the notes box
-  const [text, setText] = useState('');
   const handleTextChange = (event) => {
-    setText(event.target.value);
+    qualTeleopsetText = event.target.value;
   };
   return (
     <div style={{ display: 'left', justifyContent: 'flex-end' }}>
@@ -45,7 +44,7 @@ const RectangleWithText = () => {
         </h2>
         <textarea
           onChange={handleTextChange}
-          value={text}
+          value={qualTeleoptext}
           style={{
             width: '100%',
             height: '50%',

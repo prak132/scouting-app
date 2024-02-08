@@ -4,11 +4,7 @@ import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
 
-const TeleopLayout = ( {time} ) => {
-  // matrrix of teams and how they scored
-  // eslint-disable-next-line
-  const [quantTelescoredTeams, quantTeleSetScoredTeams] = useState([]);
-
+const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams} ) => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
@@ -49,6 +45,7 @@ const TeleopLayout = ( {time} ) => {
       }
     };
     scored();
+    // eslint-disable-next-line
   }, [selectedTeam, ampSelected, speakerSelected]);
 
   function callNotif() {
