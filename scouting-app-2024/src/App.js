@@ -97,9 +97,9 @@ function App() {
              quantEndSetScoredTeams={quantEndSetScoredTeams}
               setquantEndSetScoredTeams={setquantEndSetScoredTeams}
                qualTeleopscoredTeams={qualTeleopscoredTeams}
-                qualTeleopsetScoredTeams={qualTeleopsetScoredTeams}/>}
+                qualTeleopsetScoredTeams={qualTeleopsetScoredTeams}
                  qualTeleoptext={qualTeleoptext}
-                  qualTeleopsetText={qualTeleopsetText}
+                  qualTeleopsetText={qualTeleopsetText}/>}
         {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
       </div>
     ) : null;
