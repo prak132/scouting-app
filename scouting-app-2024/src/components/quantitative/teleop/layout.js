@@ -45,6 +45,7 @@ const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams} ) =
       }
     };
     scored();
+    console.log(quantTelescoredTeams);
     // eslint-disable-next-line
   }, [selectedTeam, ampSelected, speakerSelected]);
 

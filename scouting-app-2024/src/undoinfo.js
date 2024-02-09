@@ -2,7 +2,7 @@ import React from "react";
 import RedoMark from "./assets/redo.svg";
 import ExclamationMark from "./assets/exclamation.svg";
 
-const UndoInfo = ({ onRedoClick, onInfoClick }) => {
+const UndoDev = ({ onUndoClick, onInfoClick }) => {
   return (
     <div style={{
       width: '100%',
@@ -10,7 +10,7 @@ const UndoInfo = ({ onRedoClick, onInfoClick }) => {
       display: 'inline-flex', 
       marginTop: 20 
     }}>
-      <button onClick={onRedoClick} style={{
+      <button onClick={onUndoClick} style={{
          border: 'none',
          background: 'none', 
          padding: 0, 
@@ -34,4 +34,4 @@ const UndoInfo = ({ onRedoClick, onInfoClick }) => {
   );
 };
 
-export default UndoInfo;
+export default UndoDev;

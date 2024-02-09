@@ -40,6 +40,10 @@ function App() {
   const [activeButton, setActiveButton] = useState(null);
   // offense or defense
   const [modeActiveButton, setModeActiveButton] = useState(null);
+  
+  const handleInfoClick = () => {
+    console.log('a');
+  };  
 
   const [currentPage, setCurrentPage] = useState(0);
   const [isQuantitativeMode, setIsQuantitativeMode] = useState(true);
@@ -87,6 +91,20 @@ function App() {
     setIsModalOpen(false);
   }
 
+  const undoLastAction = () => {
+    if (isQuantitativeMode) {
+      if (currentPage === 1) {
+        quantTeleSetScoredTeams(prevTeams => {
+          return prevTeams.length > 0 ? prevTeams.slice(0, -1) : [];
+        });
+      }
+      else if (currentPage === 2) {
+        setquantEndSetScoredTeams(prevTeams => {
+          return prevTeams.length > 0 ? prevTeams.slice(0, -1) : [];
+        });
+      }
+    }
+  };
   
   const handleSelectPosition = (position) => {
     setSelectedPosition(position);
@@ -95,7 +113,7 @@ function App() {
   const handleSelectTeamNumber = (number) => {
     setSelectedTeamNumber(number);
   };
-  
+
   const choosePage = () => {
     let pages = isQuantitativeMode ? quantpages : qualpages;
     if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}
@@ -119,16 +137,18 @@ function App() {
           qualEndsetActions={qualEndsetActions}
           clickedNotes={clickedNotes}
           setClickedNotes={setClickedNotes}
+          setQuantitativeMode={handleSetQuantitativeMode} 
+          onNextButtonClick={handleNextButtonClick}
           nameValue={nameValue}
           setNameValue={setNameValue}
           matchValue={matchValue}
           setMatchValue={setMatchValue}
           activeButton={activeButton}
-          setActiveButton={setActiveButton}
-          modeActiveButton={modeActiveButton}
+          setActiveButton={setActiveButton} 
+          modeActiveButton={modeActiveButton} 
           setModeActiveButton={setModeActiveButton}
         />}
-        {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
+        {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>
     ) : null;
   };  
@@ -138,7 +158,7 @@ function App() {
     <div>
      
       <MenuElements />
-      {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} />}
+      {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
       <div>
       {isModalOpen && !devMode && (
           <div className="modalthingpopup">

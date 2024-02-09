@@ -20,7 +20,7 @@ const Timer = ({ active, time, setTime }) => {
   const formattedTime = time.toFixed(2);
   
   return (
-    <div style={{ marginTop: '-100px', color: "rgba(255, 255, 255, 0.50)", width: "70vw", fontSize: "4vw", }}>
+    <div style={{ marginTop: '-100px'}}>
       {time >= 150 ? "Match Ended" : `Timer: ${formattedTime}`}
     </div>
   );

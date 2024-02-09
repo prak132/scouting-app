@@ -26,7 +26,7 @@ const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeam
 
           }}
         >
-          Teleope
+          Teleop
         </div>
       </div>
       <div
