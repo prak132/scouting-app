@@ -8,8 +8,8 @@ blueidapidocs: https://www.thebluealliance.com/apidocs/v3
 - [ ] add the random squiggle things
 - [x] start auto page
 - [x] popup of questions - auto
-- [ ] add functions to undo and info button
+- [x] add functions to undo and info button (inf button useless imo)
 - [ ] data storage / transfer ready
-- [ ] timer
+- [x] timer
 - [x] qualitative page
 - [x] endgame page
