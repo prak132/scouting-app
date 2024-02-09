@@ -32,6 +32,14 @@ function App() {
   const [qualEndactions, qualEndsetActions] = useState({ climbed: [], harmonized: [] });
   // auto note scoring
   const [clickedNotes, setClickedNotes] = useState([]);
+  // data of the person scouting
+  const [nameValue, setNameValue] = useState("");
+  // which match
+  const [matchValue, setMatchValue] = useState("");
+  // which alliance
+  const [activeButton, setActiveButton] = useState(null);
+  // offense or defense
+  const [modeActiveButton, setModeActiveButton] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [isQuantitativeMode, setIsQuantitativeMode] = useState(true);
@@ -111,6 +119,14 @@ function App() {
           qualEndsetActions={qualEndsetActions}
           clickedNotes={clickedNotes}
           setClickedNotes={setClickedNotes}
+          nameValue={nameValue}
+          setNameValue={setNameValue}
+          matchValue={matchValue}
+          setMatchValue={setMatchValue}
+          activeButton={activeButton}
+          setActiveButton={setActiveButton}
+          modeActiveButton={modeActiveButton}
+          setModeActiveButton={setModeActiveButton}
         />}
         {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev />}
       </div>

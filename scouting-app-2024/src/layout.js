@@ -5,20 +5,12 @@ import matchesData from "./data/match.json";
 import matchDetails from "./data/team.json";
 import Notif from "./toast.js";
 
-const TextBox = ({ setQuantitativeMode, onNextButtonClick }) => {
+const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameValue, matchValue, setMatchValue, activeButton, setActiveButton, modeActiveButton, setModeActiveButton}) => {
   const bug = ["hey", "go", "back"];
   Cookies.set("selAlliance", "1");
   Cookies.set("blueTeamNumbers", JSON.stringify(bug));
   Cookies.set("redTeamNumbers", JSON.stringify(bug));
-  // data of the person scouting
-  const [nameValue, setNameValue] = useState("");
-  // which match
-  const [matchValue, setMatchValue] = useState("");
-  // which alliance
-  const [activeButton, setActiveButton] = useState(null);
-  // offense or defense
-  const [modeActiveButton, setModeActiveButton] = useState(null);
-  
+    
   const [showNotif, setShowNotif] = useState(false);
 
   const handleNameChange = (e) => {
