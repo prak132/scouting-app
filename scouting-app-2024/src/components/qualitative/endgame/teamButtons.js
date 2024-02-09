@@ -21,7 +21,7 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState }) => {
 
   const renderButtons = (teamNumbers, buttonStates, handleClick, borderColor) => {
     return (
-      <div style={{ transform: 'translateY(-300px)' }}> 
+      <div> 
         <div style={{ border: `2px solid ${borderColor}`, borderRadius: '10px', padding: '10px', marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
           {teamNumbers.map((number, index) => (
             <button

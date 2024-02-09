@@ -26,7 +26,7 @@ const EndgameButtons = ({ onEndgameButtonClick }) => {
       <div
         style={{
           width: '100%',
-          height: '24rem',
+          height: '5rem',
           textAlign: 'center',
           backgroundColor: '#00000000',
           paddingTop: '18px',
