@@ -107,48 +107,50 @@ function App() {
   };  
   
   async function sendData() {
-    let data = {};
+    let payload = {}; // This will be the final object to send
+    let data = {}; // Data object to be nested inside payload
+  
     if (modeActiveButton === "quan") {
       data = {
-        matchValue: [{
-          mode: "Qualitative", // qual or quant
-          name: nameValue, // scouter name
-          robotposition: selectedPosition, // auto pos
-          autoteam: selectedTeamNumber, // auto
-          alliance: (false ? "Red" : "Blue"), // alliance
-          notescoring: clickedNotes, // auto note scoring
-          telescore: quantTelescoredTeams, // quant teleop scoring
-          endscore: quantEndSetScoredTeams, // quant endgame scoring
-        }]
+        mode: "Qualitative", // Assuming you want to correct the mismatch here
+        name: nameValue, // scouter name
+        robotposition: selectedPosition, // auto pos
+        autoteam: selectedTeamNumber, // auto team number
+        alliance: (false ? "Red" : "Blue"), // alliance color
+        notescoring: clickedNotes, // notes on scoring
+        telescore: quantTelescoredTeams, // teleop scoring details
+        endscore: quantEndSetScoredTeams, // endgame scoring details
+      };
+    } else {
+      data = {
+        mode: "Quantitative", // Or "Qualitative" based on your logic
+        name: nameValue, // scouter name
+        robotposition: selectedPosition, // auto pos
+        autoteam: selectedTeamNumber, // auto team number
+        alliance: (false ? "Red" : "Blue"), // alliance color
+        notescoring: clickedNotes, // notes on scoring
+        telescore: qualTeleopscoredTeams, // teleop defense details
+        teletex: qualTeleoptext, // teleop notes
+        endscore: qualEndscoredTeams, // endgame defense details
+        endact: qualEndactions, // endgame actions
       };
     }
-    else {
-      data = {
-        matchValue: [{
-          mode: "Quantitative", // qual or quant
-          name: nameValue, // scouter name
-          robotposition: selectedPosition, // auto pos
-          autoteam: selectedTeamNumber, // auto
-          alliance: (false ? "Red" : "Blue"), // alliance
-          notescoring: clickedNotes, // auto note scoring
-          telescore: qualTeleopscoredTeams, // qual teleop defense
-          teletex: qualTeleoptext, // qual teleop notes
-          endscore: qualEndscoredTeams, // qual endgame defense
-      }]
-    };
+    payload[matchValue] = [data];
     const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
-    const responseData = await response.json();
-    console.log(responseData);  
-    console.log("Sending data...");
-    console.log(data);
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const responseData = await response.json();
+    console.log("Response data:", responseData);
   }
+  
 
   const handleSelectPosition = (position) => {
     setSelectedPosition(position);

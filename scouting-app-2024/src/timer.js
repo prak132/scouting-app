@@ -6,9 +6,9 @@ const Timer = ({ active, time, setTime }) => {
     if (active) {
       interval = setInterval(() => {
         setTime(prevTime => {
-          if (prevTime >= 150) {
+          if (prevTime >= 135) {
             clearInterval(interval);
-            return 150;
+            return 135;
           }
           return prevTime + 0.01;
         });
