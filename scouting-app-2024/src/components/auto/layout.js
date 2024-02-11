@@ -17,7 +17,6 @@ const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) =
     setAllianceClass(alliance === "0" ? "bluenotes" : "rednotes");
   }, []);
   
-  // testing
   useEffect(() => {
     console.log(clickedNotes);
   }, [clickedNotes]);
@@ -25,7 +24,7 @@ const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) =
   const handleNoteClick = (noteIndex) => {
     const isNoteClicked = clickedNotes.includes(noteIndex);
     if (!isNoteClicked) {
-      setClickedNotes(prevNotes => [...prevNotes, noteIndex]);
+      setClickedNotes(prevNotes => [...prevNotes, noteIndex, time.toFixed(2)]);
       setShowNotif(true);
       setDisabledButtons(prevState => ({ ...prevState, [noteIndex]: true }));
     }
@@ -35,6 +34,7 @@ const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) =
   return (
     <div>
       <Notif contents={"Note Scored"} launchNotif={showNotif} setLaunchNotif={setShowNotif} />
+      
       <div style={{ paddingTop: "25vh" }}>
         <div type="teleop-text">
           <div
@@ -63,6 +63,9 @@ const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) =
           Scoring • Timer: {time.toFixed(2)}s
         </div>
       </div>
+      <button style = {{justifyContent:'center', width: '100%',height: '40px',backgroundColor: '#000614',color: '#7d7d7d',fontFamily: 'Poppins',fontSize: '20px',fontStyle: 'normal',lineHeight: 'normal',fontWeight: '600', border: '1px solid #2F3953',borderRadius: '10px', position:'middle'}}>
+      Preloaded Note Scored?
+      </button>
       <div className="svg-bounding">
         <img src={autoMapSrc} alt="auto-img" className="auto-map" />
         <div className="notes-upper">

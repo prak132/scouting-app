@@ -43,7 +43,7 @@ function App() {
   
   const handleInfoClick = () => {
     console.log('a');
-  };  
+  };
 
   const [currentPage, setCurrentPage] = useState(0);
   const [isQuantitativeMode, setIsQuantitativeMode] = useState(true);
@@ -104,8 +104,52 @@ function App() {
         });
       }
     }
-  };
+  };  
   
+  async function sendData() {
+    let data = {};
+    if (modeActiveButton === "quan") {
+      data = {
+        matchValue: [{
+          mode: "Qualitative", // qual or quant
+          name: nameValue, // scouter name
+          robotposition: selectedPosition, // auto pos
+          autoteam: selectedTeamNumber, // auto
+          alliance: (false ? "Red" : "Blue"), // alliance
+          notescoring: clickedNotes, // auto note scoring
+          telescore: quantTelescoredTeams, // quant teleop scoring
+          endscore: quantEndSetScoredTeams, // quant endgame scoring
+        }]
+      };
+    }
+    else {
+      data = {
+        matchValue: [{
+          mode: "Quantitative", // qual or quant
+          name: nameValue, // scouter name
+          robotposition: selectedPosition, // auto pos
+          autoteam: selectedTeamNumber, // auto
+          alliance: (false ? "Red" : "Blue"), // alliance
+          notescoring: clickedNotes, // auto note scoring
+          telescore: qualTeleopscoredTeams, // qual teleop defense
+          teletex: qualTeleoptext, // qual teleop notes
+          endscore: qualEndscoredTeams, // qual endgame defense
+      }]
+    };
+    const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const responseData = await response.json();
+    console.log(responseData);  
+    console.log("Sending data...");
+    console.log(data);
+    }
+  }
+
   const handleSelectPosition = (position) => {
     setSelectedPosition(position);
   };
@@ -157,8 +201,8 @@ function App() {
   return (
     <div>
      
-      <MenuElements />
-      {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
+      <MenuElements sendData={sendData}/>
+      {devMode ? <DevPage /> : showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
       <div>
       {isModalOpen && !devMode && (
           <div className="modalthingpopup">

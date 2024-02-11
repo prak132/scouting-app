@@ -33,7 +33,7 @@ const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams} ) =
         setStoredTeam(selectedTeam);
         setStoredElement(scoringElement);
         quantTeleSetScoredTeams(prevTeams => {
-          const newTeams = [...prevTeams, [selectedTeam, scoringElement]];
+          const newTeams = [...prevTeams, [selectedTeam, scoringElement, time.toFixed(2)]];
           return newTeams;
         });
         const resetValues = () => {
@@ -44,10 +44,12 @@ const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams} ) =
         setTimeout(resetValues, 30);
       }
     };
-    scored();
+    if (ampSelected || speakerSelected) {
+      scored();
+    }
     console.log(quantTelescoredTeams);
     // eslint-disable-next-line
-  }, [selectedTeam, ampSelected, speakerSelected]);
+  }, [selectedTeam, ampSelected, speakerSelected]);  
 
   function callNotif() {
     if (selectedTeam && (ampSelected || speakerSelected)) {

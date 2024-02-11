@@ -40,7 +40,7 @@ const EndGameLayout = ( {time, quantEndSetScoredTeams, setquantEndSetScoredTeams
   useEffect(() => {
     if (selectedTeam && (ampSelected || speakerSelected || trapSelected)) {
       const scoringElement = `${ampSelected ? "Amp" : ""}${speakerSelected ? "Speaker" : ""}${trapSelected ? "Trap" : ""}`;
-      setquantEndSetScoredTeams(prevTeams => [...prevTeams, [selectedTeam, scoringElement]]);
+      setquantEndSetScoredTeams(prevTeams => [...prevTeams, [selectedTeam, scoringElement, time.toFixed(2)]]);
       setTimeout(() => {
         setAmpSelected(false);
         setSpeakerSelected(false);
