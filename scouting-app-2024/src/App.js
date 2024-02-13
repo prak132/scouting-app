@@ -107,8 +107,8 @@ function App() {
   };  
   
   async function sendData() {
-    let payload = {};
-    let data = {};
+    let payload = {}; // This will be the final object to send
+    let data = {}; // Data object to be nested inside payload
   
     if (modeActiveButton === "quan") {
       data = {
@@ -135,33 +135,22 @@ function App() {
         endact: qualEndactions, // endgame actions
       };
     }
-    payload = {
-      collection: "matches",
-      database: "scoutingdb",
-      dataSource: "scouter",
-      document: data,
-    };
-    
-    try {
-      const response = await fetch('https://us-west-2.aws.data.mongodb-api.com/app/data-oemzz/endpoint/data/v1/action/insertOne', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'api-key': 'r2CZX81L3rnS7zJMSLpgfFzgXhKoFsKiaK4PdrOYOo13dmuwk5lfVs2f0yIgfx8x',
-        },
-        body: JSON.stringify(payload),
-      });
+    payload[matchValue] = [data];
+    const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
   
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-      console.log("Response data:", data);
-    } catch (error) {
-      console.error("Failed to send data:", error);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const responseData = await response.json();
+    console.log("Response data:", responseData);
   }
+
     const handleSelectPosition = (position) => {
     setSelectedPosition(position);
   };
