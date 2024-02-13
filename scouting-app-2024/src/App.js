@@ -12,12 +12,18 @@ import TextBox from "./layout.js";
 import DevPage from "./components/devPage.js";
 import Timer from "./timer.js";
 import UndoDev from "./undoinfo.js";
+import Fin from "./components/gameend/layout.js";
 
 
 function App() {
+  // sketchy logic
+  const [sentMatches, setSentMatches] = useState([]);
   // timer
   const [timerActive, setTimerActive] = useState(false);
   const [time, setTime] = useState(0);
+  const [initialDelayComplete, setInitialDelayComplete] = useState(false);
+  const [teleended, setteleended] = useState(false);
+  const [gameended, setgameended] = useState(false);
   // quant teletop scoring
   const [quantTelescoredTeams, quantTeleSetScoredTeams] = useState([]);
   // quant endgame scoring
@@ -41,6 +47,38 @@ function App() {
   // offense or defense
   const [modeActiveButton, setModeActiveButton] = useState(null);
   
+  async function handleStoreDataClick() {
+    let data = {};
+    if (modeActiveButton === "quan") {
+      data = {
+        mode: "Qualitative",
+        name: nameValue,
+        robotposition: selectedPosition,
+        autoteam: selectedTeamNumber,
+        alliance: false ? "Red" : "Blue",
+        notescoring: clickedNotes,
+        telescore: quantTelescoredTeams,
+        endscore: quantEndSetScoredTeams,
+      };
+    } else {
+      data = {
+        mode: "Quantitative",
+        name: nameValue,
+        robotposition: selectedPosition,
+        autoteam: selectedTeamNumber,
+        alliance: false ? "Red" : "Blue",
+        notescoring: clickedNotes,
+        telescore: qualTeleopscoredTeams,
+        teletex: qualTeleoptext,
+        endscore: qualEndscoredTeams,
+        endact: qualEndactions,
+      };
+    }
+    localStorage.setItem(matchValue, JSON.stringify(data));
+    console.log(`Data stored for match ${matchValue}`);
+  }
+  
+
   const handleInfoClick = () => {
     console.log('a');
   };
@@ -53,8 +91,8 @@ function App() {
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedTeamNumber, setSelectedTeamNumber] = useState('');
   const [isMatchReady, setIsMatchReady] = useState(false);
-  const qualpages = [AutoLayout, QualTeleopLayout, QualEndGameLayout];
-  const quantpages = [AutoLayout, QuantTeleopLayout, QuantEndGameLayout];
+  const qualpages = [AutoLayout, QualTeleopLayout, QualEndGameLayout, Fin];
+  const quantpages = [AutoLayout, QuantTeleopLayout, QuantEndGameLayout, Fin];
   const [devMode, setDevMode] = useState(false);
 
   useEffect(() => {
@@ -63,6 +101,19 @@ function App() {
     setTeamNumbers(numbers);
     setIsMatchReady(selectedPosition !== '' && selectedTeamNumber !== '');
   }, [isModalOpen, selectedPosition, selectedTeamNumber]);
+
+  useEffect(() => {
+    if (initialDelayComplete) {
+      setCurrentPage(1);
+    } 
+    if (teleended) {
+      setCurrentPage(2);
+    }
+    if (gameended) {
+      setCurrentPage(3);
+    }
+  }, [initialDelayComplete, teleended, gameended]);
+
   
   const handleLeftButtonClick = () => {
     const totalPages = devMode ? [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox].length : (isQuantitativeMode ? quantpages : qualpages).length;
@@ -105,37 +156,8 @@ function App() {
       }
     }
   };  
-  
-  async function sendData() {
-    let payload = {}; // This will be the final object to send
-    let data = {}; // Data object to be nested inside payload
-  
-    if (modeActiveButton === "quan") {
-      data = {
-        mode: "Qualitative", // Assuming you want to correct the mismatch here
-        name: nameValue, // scouter name
-        robotposition: selectedPosition, // auto pos
-        autoteam: selectedTeamNumber, // auto team number
-        alliance: (false ? "Red" : "Blue"), // alliance color
-        notescoring: clickedNotes, // notes on scoring
-        telescore: quantTelescoredTeams, // teleop scoring details
-        endscore: quantEndSetScoredTeams, // endgame scoring details
-      };
-    } else {
-      data = {
-        mode: "Quantitative", // Or "Qualitative" based on your logic
-        name: nameValue, // scouter name
-        robotposition: selectedPosition, // auto pos
-        autoteam: selectedTeamNumber, // auto team number
-        alliance: (false ? "Red" : "Blue"), // alliance color
-        notescoring: clickedNotes, // notes on scoring
-        telescore: qualTeleopscoredTeams, // teleop defense details
-        teletex: qualTeleoptext, // teleop notes
-        endscore: qualEndscoredTeams, // endgame defense details
-        endact: qualEndactions, // endgame actions
-      };
-    }
-    payload[matchValue] = [data];
+
+  async function sendsomestuff(payload) {
     const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
       method: 'POST',
       headers: {
@@ -143,7 +165,6 @@ function App() {
       },
       body: JSON.stringify(payload),
     });
-  
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -151,7 +172,34 @@ function App() {
     console.log("Response data:", responseData);
   }
 
-    const handleSelectPosition = (position) => {
+  async function handleSendDataClick() {
+    if (!localStorage.getItem(matchValue)) {
+      await handleStoreDataClick();
+    }
+    let localKeys = Object.keys(localStorage);
+    if (localKeys.length > 0) {
+    for (let key of localKeys) {
+      if (!sentMatches.includes(key)) {
+          let storedData = JSON.parse(localStorage.getItem(key));
+          let payload = { [key]: [storedData] };
+          try {
+            await sendsomestuff(payload);
+            console.log(`sending ${key}`);
+            setSentMatches(prevSentMatches => [...prevSentMatches, key]);
+            localStorage.removeItem(key);
+            console.log(`match ${key} removed`);
+          } catch (error) {
+            console.error(`ERROR NOOO ${key}: ${error}`);
+          }
+        }
+      }
+      console.log("All pending data sent");
+    } else {
+      console.log("No data to send");
+    }
+  }
+
+  const handleSelectPosition = (position) => {
     setSelectedPosition(position);
   };
   
@@ -163,6 +211,7 @@ function App() {
     let pages = isQuantitativeMode ? quantpages : qualpages;
     if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}
     const PageComponent = pages[currentPage];
+    const isNotFinPage = currentPage !== pages.length - 1;
     return (!showTextBox && !devMode) || devMode ? (
       <div>
         {PageComponent && <PageComponent key={currentPage} 
@@ -192,8 +241,10 @@ function App() {
           setActiveButton={setActiveButton} 
           modeActiveButton={modeActiveButton} 
           setModeActiveButton={setModeActiveButton}
+          onStoreDataClick={handleStoreDataClick}
+          onSendDataClick={handleSendDataClick}
         />}
-        {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
+      {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && isNotFinPage && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>
     ) : null;
   };  
@@ -202,7 +253,7 @@ function App() {
   return (
     <div>
      
-      <MenuElements sendData={sendData}/>
+      <MenuElements />
       {devMode ? <DevPage /> : showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
       <div>
       {isModalOpen && !devMode && (
@@ -245,7 +296,7 @@ function App() {
         )}
       </div>
       <div>
-      <Timer active={timerActive} time={time} setTime={setTime} />
+      <Timer active={timerActive} time={time} setTime={setTime} initialDelayComplete={initialDelayComplete} setInitialDelayComplete={setInitialDelayComplete} setteleended={setteleended} setgameended={setgameended}/>
       </div>
       <div>{choosePage()}</div>
       <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} setDevMode={setDevMode} />
