@@ -191,13 +191,17 @@ function App() {
             localStorage.removeItem(key);
             console.log(`match ${key} removed`);
           } catch (error) {
-            console.error(`ERROR NOOO ${key}: ${error}`);
+            setLastRemovedAction(`Failed to send Data`);
+            setShowNotif(true);
+            setTimeout(() => setShowNotif(false), 2000);    
           }
         }
       }
       console.log("All pending data sent");
     } else {
-      console.log("No data to send");
+      setLastRemovedAction(`No data to send`);
+      setShowNotif(true);
+      setTimeout(() => setShowNotif(false), 2000);    
     } setShowConfirmSendModal(false);
   };
 
