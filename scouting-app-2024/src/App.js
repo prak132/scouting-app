@@ -107,8 +107,8 @@ function App() {
   };  
   
   async function sendData() {
-    let payload = {}; // This will be the final object to send
-    let data = {}; // Data object to be nested inside payload
+    let payload = {};
+    let data = {};
   
     if (modeActiveButton === "quan") {
       data = {
@@ -136,22 +136,30 @@ function App() {
       };
     }
     payload[matchValue] = [data];
-    const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const KV_REST_API_URL = process.env.KV_REST_API_URL;
+      const KV_REST_API_TOKEN = process.env.KV_REST_API_TOKEN;
+      const fullUrl = `${KV_REST_API_URL}/set/matchData:${matchValue}/${encodeURIComponent(JSON.stringify(data))}`;
+
+      const response = await fetch(fullUrl, {
+        method: 'POST', // POST might be required for your API operations
+        headers: {
+          'Authorization': `Bearer ${KV_REST_API_TOKEN}`,
+          'Content-Type': 'application/json', // This header might not be necessary if you're not sending JSON in the body
+        },
+      });
   
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
+    } catch (error) {
+      console.error("Failed to send data:", error);
     }
-    const responseData = await response.json();
-    console.log("Response data:", responseData);
   }
   
-
   const handleSelectPosition = (position) => {
     setSelectedPosition(position);
   };
