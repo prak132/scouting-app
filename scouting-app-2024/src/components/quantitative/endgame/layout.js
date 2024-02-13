@@ -106,7 +106,6 @@ const EndGameLayout = ( {time, quantEndSetScoredTeams, setquantEndSetScoredTeams
         <Notif contents={getNotificationContent()} launchNotif={selectedTeam && (ampSelected || speakerSelected || trapSelected)} />
         
       </div>
-      <div className="scroll-buffer"></div>
     </div>
   );
 };

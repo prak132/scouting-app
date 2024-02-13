@@ -51,8 +51,8 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
     const selectedMatch = matchDetails[matchValue];
     if (selectedMatch) {
       const alliance = activeButton === "blue" ? "blue" : "red";
-      const blueTeamKeys = selectedMatch.blue.map((team) => team.replace("frc", ""));
-      const redTeamKeys = selectedMatch.red.map((team) => team.replace("frc", ""));
+      const blueTeamKeys = selectedMatch.blue;
+      const redTeamKeys = selectedMatch.red;
       Cookies.set("blueTeamNumbers", JSON.stringify(blueTeamKeys));
       Cookies.set("redTeamNumbers", JSON.stringify(redTeamKeys));
       Cookies.set("selAlliance", alliance === "blue" ? "0" : "1");
@@ -64,8 +64,6 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
       setTimeout(() => setShowNotif(false), 2000);
     }
   };
-  
-
 
   return (
     <div className="center-container">

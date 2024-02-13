@@ -21,4 +21,4 @@ try:
     else:
         print(f"Failed with status code {response.status_code}")
 except requests.exceptions.RequestException as e:
-    print(f"Failed. Error: {e}")
+    print("Failed. Error: {}".format(e))

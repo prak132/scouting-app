@@ -13,9 +13,12 @@ import DevPage from "./components/devPage.js";
 import Timer from "./timer.js";
 import UndoDev from "./undoinfo.js";
 import Fin from "./components/gameend/layout.js";
-
+import Notif from "./toast.js";
 
 function App() {
+  //notifs
+  const [lastRemovedAction, setLastRemovedAction] = useState('');
+  const [showNotif, setShowNotif] = useState(false);
   // sketchy logic
   const [sentMatches, setSentMatches] = useState([]);
   // timer
@@ -146,16 +149,32 @@ function App() {
     if (isQuantitativeMode) {
       if (currentPage === 1) {
         quantTeleSetScoredTeams(prevTeams => {
-          return prevTeams.length > 0 ? prevTeams.slice(0, -1) : [];
+          if (prevTeams.length > 0) {
+            const removedAction = prevTeams[prevTeams.length - 1];
+            const removedTeam = removedAction[0];
+            setLastRemovedAction(`Removed ${removedTeam} scored`);      
+            return prevTeams.slice(0, -1);
+          }
+          return prevTeams;
         });
+        setShowNotif(true);
+        setTimeout(() => setShowNotif(false), 2000);
       }
       else if (currentPage === 2) {
         setquantEndSetScoredTeams(prevTeams => {
-          return prevTeams.length > 0 ? prevTeams.slice(0, -1) : [];
+          if (prevTeams.length > 0) {
+            const removedAction = prevTeams[prevTeams.length - 1];
+            const removedTeam = removedAction[0];
+            setLastRemovedAction(`Removed ${removedTeam}`);
+            return prevTeams.slice(0, -1);
+          }
+          return prevTeams;
         });
+        setShowNotif(true);
+        setTimeout(() => setShowNotif(false), 2000);
       }
     }
-  };  
+  };
 
   async function sendsomestuff(payload) {
     const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
@@ -212,6 +231,7 @@ function App() {
     if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}
     const PageComponent = pages[currentPage];
     const isNotFinPage = currentPage !== pages.length - 1;
+    const showUndoDev = (isQuantitativeMode && (currentPage === 1 || currentPage === 2)) && !devMode && isNotFinPage;
     return (!showTextBox && !devMode) || devMode ? (
       <div>
         {PageComponent && <PageComponent key={currentPage} 
@@ -244,7 +264,7 @@ function App() {
           onStoreDataClick={handleStoreDataClick}
           onSendDataClick={handleSendDataClick}
         />}
-      {(isQuantitativeMode || currentPage === AutoLayout) && !devMode && isNotFinPage && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
+      {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>
     ) : null;
   };  
@@ -252,7 +272,7 @@ function App() {
 
   return (
     <div>
-     
+      {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
       <MenuElements />
       {devMode ? <DevPage /> : showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
       <div>

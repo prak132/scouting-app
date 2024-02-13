@@ -10,13 +10,15 @@ def get_teams_data(matchcode):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
+        blue_teams = [team.replace('frc', '') for team in data["alliances"]["blue"]["team_keys"]]
+        red_teams = [team.replace('frc', '') for team in data["alliances"]["red"]["team_keys"]]
         parsed_data = {
-            "blue": data["alliances"]["blue"]["team_keys"],
-            "red": data["alliances"]["red"]["team_keys"]
+            "blue": blue_teams,
+            "red": red_teams
         }
         matches_data[matchcode] = parsed_data
     else:
-        print(f"Failed on: {matchcode}")
+        print("\nFailed on: {}".format(matchcode))
 
 
 def main():
@@ -24,16 +26,16 @@ def main():
         match_codes = json.load(f)
     num = len(match_codes)
     thing = 0
-    for matchcode in match_codes:
+    for i, matchcode in enumerate(match_codes, 1):
         get_teams_data(matchcode)
-        thing += 1
-        perc = (thing / num) * 100
-        if (perc % 5 == 0):
-          print(f"{perc:.0f}% done")
+        perc = (i/num)*100
+        lent = int(50*i//num)
+        bar = '=' * (lent-1)+'>'+(''if lent==50 else'-'*(50-lent))
+        print('\rProgress: |{}| {:.2f}% Complete'.format(bar, perc),end='',flush=True)
     with open('team.json', 'w') as outfile:
         parsed = {match: data for match, data in matches_data.items()}
         json.dump(parsed, outfile, indent=2)
-    print("done")
+    print("\ndone")
 
 
 if __name__ == "__main__":
