@@ -21,6 +21,7 @@ function App() {
   const [showNotif, setShowNotif] = useState(false);
   // sketchy logic
   const [sentMatches, setSentMatches] = useState([]);
+  const [showConfirmSendModal, setShowConfirmSendModal] = useState(false);
   // timer
   const [timerActive, setTimerActive] = useState(false);
   const [time, setTime] = useState(0);
@@ -176,6 +177,30 @@ function App() {
     }
   };
 
+  const handleConfirmSend = async () => {
+    let localKeys = Object.keys(localStorage);
+    if (localKeys.length > 0) {
+      for (let key of localKeys) {
+        if (!sentMatches.includes(key)) {
+          let storedData = JSON.parse(localStorage.getItem(key));
+          let payload = { [key]: [storedData] };
+          try {
+            await sendsomestuff(payload);
+            console.log(`sending ${key}`);
+            setSentMatches(prevSentMatches => [...prevSentMatches, key]);
+            localStorage.removeItem(key);
+            console.log(`match ${key} removed`);
+          } catch (error) {
+            console.error(`ERROR NOOO ${key}: ${error}`);
+          }
+        }
+      }
+      console.log("All pending data sent");
+    } else {
+      console.log("No data to send");
+    } setShowConfirmSendModal(false);
+  };
+
   async function sendsomestuff(payload) {
     const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
       method: 'POST',
@@ -189,6 +214,10 @@ function App() {
     }
     const responseData = await response.json();
     console.log("Response data:", responseData);
+  }
+
+  function onsendsomething() {
+    setShowConfirmSendModal(true);
   }
 
   async function handleSendDataClick() {
@@ -272,8 +301,25 @@ function App() {
 
   return (
     <div>
+      {showConfirmSendModal && (
+        <div className="modalwharpopup">
+          <div className="modal-content">
+            <h2>Are you sure you want to send the data?</h2>
+            <p>Make Sure you are <b>Connected to Wifi</b> and <b>not current in a game</b></p>
+            <div className="modalButtonContainer">
+              <button className='modalButtonYes' onClick={handleConfirmSend}>
+                Yes
+              </button>
+              <button className='modalButtonNo' onClick={() => setShowConfirmSendModal(false)}>
+                No
+              </button>
+            </div>
+          </div>
+          <div className="overlay"></div>
+        </div>
+      )}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
-      <MenuElements />
+      <MenuElements onsendsomething={onsendsomething}/>
       {devMode ? <DevPage /> : showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
       <div>
       {isModalOpen && !devMode && (

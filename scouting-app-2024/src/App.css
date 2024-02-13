@@ -246,6 +246,24 @@ button:hover {
   z-index: 999;
 }  
 
+.modalwharpopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0a101f;
+  padding: 20px;
+  border-radius: 16px;
+  border: 3px solid rgba(245, 245, 245, 0.3);
+  text-align: left;
+  margin: auto;
+  color: rgba(255, 255, 255, 0.750);
+  width: 80%;
+  height: 30%;
+  overflow: scroll;
+  z-index: 9999;
+}  
+
 .position-selected,
 .team-number-selected {
   border-radius: 10px;
