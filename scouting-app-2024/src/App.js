@@ -135,32 +135,34 @@ function App() {
         endact: qualEndactions, // endgame actions
       };
     }
-    payload[matchValue] = [data];
+    payload = {
+      collection: "matches",
+      database: "scoutingdb",
+      dataSource: "scouter",
+      document: data,
+    };
+    
     try {
-      const KV_REST_API_URL = process.env.KV_REST_API_URL;
-      const KV_REST_API_TOKEN = process.env.KV_REST_API_TOKEN;
-      const fullUrl = `${KV_REST_API_URL}/set/matchData:${matchValue}/${encodeURIComponent(JSON.stringify(data))}`;
-
-      const response = await fetch(fullUrl, {
-        method: 'POST', // POST might be required for your API operations
+      const response = await fetch('https://us-west-2.aws.data.mongodb-api.com/app/data-oemzz/endpoint/data/v1/action/insertOne', {
+        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${KV_REST_API_TOKEN}`,
-          'Content-Type': 'application/json', // This header might not be necessary if you're not sending JSON in the body
+          'Content-Type': 'application/json',
+          'api-key': 'r2CZX81L3rnS7zJMSLpgfFzgXhKoFsKiaK4PdrOYOo13dmuwk5lfVs2f0yIgfx8x',
         },
+        body: JSON.stringify(payload),
       });
   
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      const responseData = await response.json();
-      console.log("Response data:", responseData);
+      const data = await response.json();
+      console.log("Response data:", data);
     } catch (error) {
       console.error("Failed to send data:", error);
     }
   }
-  
-  const handleSelectPosition = (position) => {
+    const handleSelectPosition = (position) => {
     setSelectedPosition(position);
   };
   
