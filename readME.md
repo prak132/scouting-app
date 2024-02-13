@@ -9,7 +9,7 @@ blueidapidocs: https://www.thebluealliance.com/apidocs/v3
 - [x] start auto page
 - [x] popup of questions - auto
 - [x] add functions to undo and info button (inf button useless imo)
-- [ ] data storage / transfer ready
+- [x] data storage / transfer ready
 - [x] timer
 - [x] qualitative page
 - [x] endgame page
