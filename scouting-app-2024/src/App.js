@@ -55,7 +55,7 @@ function App() {
     let data = {};
     if (modeActiveButton === "quan") {
       data = {
-        mode: "Qualitative",
+        mode: "Quantitative",
         name: nameValue,
         robotposition: selectedPosition,
         autoteam: selectedTeamNumber,
@@ -66,7 +66,7 @@ function App() {
       };
     } else {
       data = {
-        mode: "Quantitative",
+        mode: "Qualitative",
         name: nameValue,
         robotposition: selectedPosition,
         autoteam: selectedTeamNumber,
