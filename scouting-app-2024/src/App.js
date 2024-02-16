@@ -177,6 +177,39 @@ function App() {
     }
   };
 
+  const exportToJson = async () => {
+    let localKeys = Object.keys(localStorage);
+    if (localKeys.length > 0) {
+    for (let key of localKeys) {
+      if (!sentMatches.includes(key)) {
+          let storedData = JSON.parse(localStorage.getItem(key));
+          let payload = { [key]: [storedData] };
+          try {
+            const jsonData = JSON.stringify(payload);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${key}.json`;
+            link.click();
+            setSentMatches(prevSentMatches => [...prevSentMatches, key]);
+            localStorage.removeItem(key);
+            console.log(`match ${key} removed`);
+          } catch (error) {
+            setLastRemovedAction(`ERROR NOOO ${key}: ${error}`);
+            setShowNotif(true);
+            setTimeout(() => setShowNotif(false), 2000);      
+          }
+        }
+      }
+      console.log("All pending data sent");
+    } else {
+      setLastRemovedAction(`No data to send`);
+      setShowNotif(true);
+      setTimeout(() => setShowNotif(false), 2000);
+    } setShowConfirmSendModal(false);
+  };
+
   const handleConfirmSend = async () => {
     let localKeys = Object.keys(localStorage);
     if (localKeys.length > 0) {
@@ -318,6 +351,9 @@ function App() {
                 No
               </button>
             </div>
+            <button className='modalButtonPerchance' onClick={exportToJson}>
+              Download Data PERMS
+            </button>
           </div>
           <div className="overlay"></div>
         </div>

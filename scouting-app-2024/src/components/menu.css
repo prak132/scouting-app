@@ -159,6 +159,31 @@ li {
     transition: 0.3s ease;
 }
 
+.modalButtonPerchance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 46px;
+    flex-shrink: 0;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 255, 13, 0.554);
+    background: #000614;
+    box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
+    margin: 10px auto;
+    display: block;
+    color: rgba(232, 232, 232, 0.887);
+    padding: 5px;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: 0.3s ease;
+}
+
 .modalButtonNo {
     display: flex;
     flex-direction: column;
