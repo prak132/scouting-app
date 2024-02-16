@@ -63,9 +63,27 @@ const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) =
           Scoring • Timer: {time.toFixed(2)}s
         </div>
       </div>
-      <button style = {{justifyContent:'center', width: '100%',height: '40px',backgroundColor: '#000614',color: '#7d7d7d',fontFamily: 'Poppins',fontSize: '20px',fontStyle: 'normal',lineHeight: 'normal',fontWeight: '600', border: '1px solid #2F3953',borderRadius: '10px', position:'middle'}}>
-      Preloaded Note Scored?
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <p style = {{fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', color: '#7d7d7d'}}>Pre Note Scored?</p>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #33B864', borderRadius: '10px', marginRight: '5px' }}>
+          yes
+        </button>
+        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #e32636', borderRadius: '10px', marginLeft: '5px' }}>
+          no
+        </button>
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
+        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginRight: '5px' }}>
+          speaker
+        </button>
+        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginLeft: '5px' }}>
+          amp
+        </button>
+      </div>
+
       <div className="svg-bounding">
         <img src={autoMapSrc} alt="auto-img" className="auto-map" />
         <div className="notes-upper">
