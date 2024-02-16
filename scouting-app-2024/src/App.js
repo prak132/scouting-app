@@ -42,6 +42,7 @@ function App() {
   const [qualEndactions, qualEndsetActions] = useState({ climbed: [], harmonized: [] });
   // auto note scoring
   const [clickedNotes, setClickedNotes] = useState([]);
+  const [isPreNoteScored, setIsPreNoteScored] = useState(null);
   // data of the person scouting
   const [nameValue, setNameValue] = useState("");
   // which match
@@ -80,6 +81,16 @@ function App() {
     }
     localStorage.setItem(matchValue, JSON.stringify(data));
     console.log(`Data stored for match ${matchValue}`);
+  }
+
+  const onlickYes = () => {
+    console.log("Yes");
+    setIsPreNoteScored(true);
+  }
+
+  const onlickNo = () => {
+    console.log("No");
+    setIsPreNoteScored(false);
   }
   
 
@@ -329,6 +340,9 @@ function App() {
           setModeActiveButton={setModeActiveButton}
           onStoreDataClick={handleStoreDataClick}
           onSendDataClick={handleSendDataClick}
+          isPreNoteScored={isPreNoteScored}
+          onlickYes={onlickYes}
+          onlickNo={onlickNo}
         />}
       {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>

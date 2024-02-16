@@ -79,6 +79,14 @@
   width: 50%;
 }
 
+.hide{
+  display:none;
+}
+  
+.show{
+  display:block;
+}  
+
 .rednotes {
   margin-left: 43%;
 }

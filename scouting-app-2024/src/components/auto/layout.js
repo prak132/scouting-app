@@ -5,17 +5,34 @@ import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) => {
+const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo }) => {
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
   const [allianceClass, setAllianceClass] = useState("");
+  // eslint-disable-next-line
+  const [isSpeakerSelected, setIsSpeakerSelected] = useState(false);
+  // eslint-disable-next-line
+  const [isAmpSelected, setIsAmpSelected] = useState(false);
+
+  const handleSpeakerSelect = () => {
+    setIsSpeakerSelected(true);
+    setIsAmpSelected(false);
+  }
+
+  const handleAmpSelect = () => {
+    setIsAmpSelected(true);
+    setIsSpeakerSelected(false);
+  }
 
   useEffect(() => {
     const alliance = Cookies.get("selAlliance");
     setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
     setAllianceClass(alliance === "0" ? "bluenotes" : "rednotes");
   }, []);
+
+  useEffect(() => {
+  }, [isPreNoteScored]);
   
   useEffect(() => {
     console.log(clickedNotes);
@@ -64,22 +81,22 @@ const AutoLayout = ({ selectedPosition, time, clickedNotes, setClickedNotes }) =
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <p style = {{fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', color: '#7d7d7d'}}>Pre Note Scored?</p>
+        <p className={isPreNoteScored ? "hide" : "show"} style = {{fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', color: '#7d7d7d'}}>Pre Note Scored?</p>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #33B864', borderRadius: '10px', marginRight: '5px' }}>
+        <button className={isPreNoteScored ? "hide" : "show"} onClick={onlickYes} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #33B864', borderRadius: '10px', marginRight: '5px' }}>
           yes
         </button>
-        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #e32636', borderRadius: '10px', marginLeft: '5px' }}>
+        <button className={isPreNoteScored ? "hide" : "show"} onClick={onlickNo} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #e32636', borderRadius: '10px', marginLeft: '5px' }}>
           no
         </button>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
-        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginRight: '5px' }}>
+        <button onClick={handleSpeakerSelect} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginRight: '5px' }}>
           speaker
         </button>
-        <button style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginLeft: '5px' }}>
+        <button onClick={handleAmpSelect} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginLeft: '5px' }}>
           amp
         </button>
       </div>
