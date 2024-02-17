@@ -92,14 +92,54 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
         </button>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
-        <button onClick={handleSpeakerSelect} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginRight: '5px' }}>
-          speaker
-        </button>
-        <button onClick={handleAmpSelect} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #2F3953', borderRadius: '10px', marginLeft: '5px' }}>
-          amp
-        </button>
-      </div>
+  <div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
+    <button
+      onClick={handleSpeakerSelect}
+      style={{
+        width: '50%',
+        height: '40px',
+        backgroundColor: '#000614',
+        //color: '#7d7d7d',
+        fontFamily: 'Poppins',
+        fontSize: '20px',
+        fontStyle: 'normal',
+        lineHeight: 'normal',
+        fontWeight: '600',
+        border: '1px solid #2F3953',
+        borderRadius: '10px',
+        marginRight: '5px',
+        marginLeft: '5px',
+        borderColor: isSpeakerSelected ? '#f6f6f1' : '#2F3953',
+        color: isSpeakerSelected ? '#f6f6f1' : '#7d7d7d',
+    }}
+  >
+    speaker
+  </button>
+  <button
+    onClick={handleAmpSelect}
+    style={{
+      width: '50%',
+      height: '40px',
+      backgroundColor: '#000614',
+      //color: '#7d7d7d',
+      fontFamily: 'Poppins',
+      fontSize: '20px',
+      fontStyle: 'normal',
+      lineHeight: 'normal',
+      fontWeight: '600',
+      border: '1px solid #2F3953',
+      borderRadius: '10px',
+      marginRight: '5px',
+      marginLeft: '5px',
+      borderColor: isAmpSelected ? '#f6f6f1' : '#2F3953',
+      color: isAmpSelected ? '#f6f6f1' : '#7d7d7d',
+    }}
+  >
+    amp
+  </button>
+</div>
+
+
 
       <div className="svg-bounding">
         <img src={autoMapSrc} alt="auto-img" className="auto-map" />
