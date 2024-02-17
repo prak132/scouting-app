@@ -5,7 +5,7 @@ import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo }) => {
+const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono }) => {
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
@@ -81,13 +81,13 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <p className={isPreNoteScored ? "hide" : "show"} style = {{fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', color: '#7d7d7d'}}>Pre Note Scored?</p>
+        <p className={somethingnonono ? "hide" : "show"} style = {{fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', color: '#7d7d7d'}}>Pre Note Scored?</p>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button className={isPreNoteScored ? "hide" : "show"} onClick={onlickYes} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #33B864', borderRadius: '10px', marginRight: '5px' }}>
+        <button className={((isPreNoteScored === true || isPreNoteScored === false) && isPreNoteScored !== null) ? "hide" : "show"} onClick={onlickYes} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #33B864', borderRadius: '10px', marginRight: '5px' }}>
           yes
         </button>
-        <button className={isPreNoteScored ? "hide" : "show"} onClick={onlickNo} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #e32636', borderRadius: '10px', marginLeft: '5px' }}>
+        <button className={((isPreNoteScored === true || isPreNoteScored === false) && isPreNoteScored !== null) ? "hide" : "show"} onClick={onlickNo} style={{ width: '50%', height: '40px', backgroundColor: '#000614', color: '#7d7d7d', fontFamily: 'Poppins', fontSize: '20px', fontStyle: 'normal', lineHeight: 'normal', fontWeight: '600', border: '1px solid #e32636', borderRadius: '10px', marginLeft: '5px' }}>
           no
         </button>
       </div>

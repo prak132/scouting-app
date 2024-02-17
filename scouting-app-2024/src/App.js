@@ -43,6 +43,7 @@ function App() {
   // auto note scoring
   const [clickedNotes, setClickedNotes] = useState([]);
   const [isPreNoteScored, setIsPreNoteScored] = useState(null);
+  const [somethingnonono, setsomething] = useState(false);
   // data of the person scouting
   const [nameValue, setNameValue] = useState("");
   // which match
@@ -84,13 +85,13 @@ function App() {
   }
 
   const onlickYes = () => {
-    console.log("Yes");
     setIsPreNoteScored(true);
+    setsomething(true);
   }
 
   const onlickNo = () => {
-    console.log("No");
     setIsPreNoteScored(false);
+    setsomething(true);
   }
   
 
@@ -343,6 +344,7 @@ function App() {
           isPreNoteScored={isPreNoteScored}
           onlickYes={onlickYes}
           onlickNo={onlickNo}
+          somethingnonono={somethingnonono}
         />}
       {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>
