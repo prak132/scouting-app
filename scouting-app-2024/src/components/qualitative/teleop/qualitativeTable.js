@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams} ) => {
-  const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
-  const [teamOptions, setTeamOptions] = useState([]);
-
-  // matrrix of teams and how they defended
-  
+const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions} ) => {
   useEffect(() => {
     const selAlliance = Cookies.get("selAlliance");
     const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
@@ -16,7 +11,8 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams} ) =
       </option>
     ));
     options.unshift(<option key="default" value="">Team</option>);
-    setTeamOptions(options);
+    qualTelesetTeamOptions(options);
+    // eslint-disable-next-line
   }, []);
   
   useEffect(() => {
@@ -24,11 +20,11 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams} ) =
   }, [qualTeleopscoredTeams]);
 
   const addRow = () => {
-    setRows([rows.length + 1, ...rows]);
+    qualTeleSetRows([qualTelerows.length + 1, ...qualTelerows]);
   };
 
   const removeRow = (index) => {
-    setRows(rows.filter((_, i) => i !== index));
+    qualTeleSetRows(qualTelerows.filter((_, i) => i !== index));
     qualTeleopsetScoredTeams(qualTeleopscoredTeams.filter((_, i) => i !== index));
   };
 
@@ -126,7 +122,7 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams} ) =
             +
           </button>
         </div>
-        {rows.map((row, index) => (
+        {qualTelerows.map((row, index) => (
           <div
             key={row}
             className="row"
@@ -158,7 +154,7 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams} ) =
                 boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
-              {teamOptions}
+              {qualTeleteamOptions}
             </select>
             <select
               className="defense-select"

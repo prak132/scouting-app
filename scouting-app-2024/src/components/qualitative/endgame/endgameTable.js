@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams} ) => {
-  const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
-  const [teamOptions, setTeamOptions] = useState([]);
-
+const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams, rows, setRows, teamOptions, setTeamOptions} ) => {
   useEffect(() => {
     const selAlliance = Cookies.get("selAlliance");
     const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
@@ -15,6 +12,7 @@ const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams} ) => {
     ));
     options.unshift(<option key="default" value="">Team</option>);
     setTeamOptions(options);
+    // eslint-disable-next-line
   }, []);
   
   useEffect(() => {

@@ -36,15 +36,24 @@ function App() {
   const [qualTeleopscoredTeams, qualTeleopsetScoredTeams] = useState([]);
   // qual teleop notes
   const [qualTeleoptext, qualTeleopsetText] = useState('');
+  // qual teleop table
+  const [qualTelerows, qualTeleSetRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
+  const [qualTeleteamOptions, qualTelesetTeamOptions] = useState([]);
   // qual endgame defense
   const [qualEndscoredTeams, qualEndsetScoredTeams] = useState([]);
+  const [teamButtonState, setTeamButtonState] = useState({
+    blue: Array(3).fill(false),
+    red: Array(3).fill(false)
+  });
   // qual endgame climbing/harmonizing
   const [qualEndactions, qualEndsetActions] = useState({ climbed: [], harmonized: [] });
+  const [qualEndRows, qualEndSetRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
+  const [qualEndTeamOptions, qualEndSetTeamOptions] = useState([]);
   // auto note scoring
   const [clickedNotes, setClickedNotes] = useState([]);
   const [isPreNoteScored, setIsPreNoteScored] = useState(null);
   const [somethingnonono, setsomething] = useState(false);
-  // data of the person scouting
+  // data of the person scouting,
   const [nameValue, setNameValue] = useState("");
   // which match
   const [matchValue, setMatchValue] = useState("");
@@ -110,6 +119,8 @@ function App() {
   const qualpages = [AutoLayout, QualTeleopLayout, QualEndGameLayout, Fin];
   const quantpages = [AutoLayout, QuantTeleopLayout, QuantEndGameLayout, Fin];
   const [devMode, setDevMode] = useState(false);
+  const [devModeKey, setDevModeKey] = useState('');
+  const [maxPageReached, setMaxPageReached] = useState(0);
 
   useEffect(() => {
     const selAlliance = Cookies.get("selAlliance");
@@ -119,26 +130,53 @@ function App() {
   }, [isModalOpen, selectedPosition, selectedTeamNumber]);
 
   useEffect(() => {
+    let targetPage = currentPage;
     if (initialDelayComplete) {
-      setCurrentPage(1);
-    } 
+      targetPage = 1;
+    }
     if (teleended) {
-      setCurrentPage(2);
+      targetPage = 2;
     }
     if (gameended) {
-      setCurrentPage(3);
+      targetPage = 3;
     }
+    if (targetPage !== currentPage) {
+      setCurrentPage(targetPage);
+      setMaxPageReached(prevMax => Math.max(prevMax, targetPage));
+    }
+    // eslint-disable-next-line
   }, [initialDelayComplete, teleended, gameended]);
-
+  
   
   const handleLeftButtonClick = () => {
-    const totalPages = devMode ? [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox].length : (isQuantitativeMode ? quantpages : qualpages).length;
-    setCurrentPage(prevPage => (prevPage > 0 ? prevPage - 1 : totalPages - 1));
+    if (gameended) {
+      return;
+    }
+    if (devMode) {
+      setCurrentPage(prevPage => Math.max((prevPage - 1), 0));
+    } else {
+      setCurrentPage(prevPage => Math.max((prevPage - 1), 0));
+    }
   };
   
+  
+  
   const handleRightButtonClick = () => {
-    const totalPages = devMode ? [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox].length : (isQuantitativeMode ? quantpages : qualpages).length;
-    setCurrentPage(prevPage => (prevPage < totalPages - 1 ? prevPage + 1 : 0));
+    if (gameended) {
+      return;
+    }  
+    if (devMode) {
+      setCurrentPage(prevPage => {
+        const nextPage = prevPage + 1;
+        const totalPages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox].length;
+        return nextPage < totalPages ? nextPage : 0;
+      });
+    } else {
+      setCurrentPage(prevPage => {
+        const nextPage = prevPage + 1;
+        return nextPage <= maxPageReached ? nextPage : prevPage;
+      });
+    }
   };
   
 
@@ -345,6 +383,16 @@ function App() {
           onlickYes={onlickYes}
           onlickNo={onlickNo}
           somethingnonono={somethingnonono}
+          qualTelerows={qualTelerows}
+          qualTeleSetRows={qualTeleSetRows}
+          qualTeleteamOptions={qualTeleteamOptions}
+          qualTelesetTeamOptions={qualTelesetTeamOptions}
+          teamButtonState={teamButtonState}
+          setTeamButtonState={setTeamButtonState}
+          qualEndRows={qualEndRows}
+          qualEndSetRows={qualEndSetRows}
+          qualEndTeamOptions={qualEndTeamOptions}
+          qualEndSetTeamOptions={qualEndSetTeamOptions}
         />}
       {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>
@@ -376,7 +424,7 @@ function App() {
       )}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
       <MenuElements onsendsomething={onsendsomething}/>
-      {devMode ? <DevPage /> : showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
+      {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
       <div>
       {isModalOpen && !devMode && (
           <div className="modalthingpopup">
@@ -421,7 +469,7 @@ function App() {
       <Timer active={timerActive} time={time} setTime={setTime} initialDelayComplete={initialDelayComplete} setInitialDelayComplete={setInitialDelayComplete} setteleended={setteleended} setgameended={setgameended}/>
       </div>
       <div>{choosePage()}</div>
-      <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} setDevMode={setDevMode} />
+      <PageButtons onLeftButtonClick={handleLeftButtonClick} onRightButtonClick={handleRightButtonClick} setDevMode={setDevMode} devModeKey={devModeKey} setDevModeKey={setDevModeKey}/>
     </div>
   );
 }

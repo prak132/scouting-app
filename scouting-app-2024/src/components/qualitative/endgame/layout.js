@@ -5,13 +5,9 @@ import TeamButtons from "./teamButtons.js";
 import Cookies from 'js-cookie';
 import Notif from "./toast.js";
 
-const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEndactions, qualEndsetActions}) => {
+const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEndactions, qualEndsetActions, teamButtonState, setTeamButtonState, qualEndRows, qualEndSetRows, qualEndTeamOptions, qualEndSetTeamOptions}) => {
   const [notifContents, setNotifContents] = useState("");
   const [launchNotif, setLaunchNotif] = useState(false);
-  const [teamButtonState, setTeamButtonState] = useState({
-    blue: Array(3).fill(false),
-    red: Array(3).fill(false)
-  });
 
   useEffect(() => {
     console.log("Actions:", qualEndactions);
@@ -78,7 +74,7 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
       </div>
       <div style={{margin: 'auto'}}>
       <div>
-      <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams}/>
+      <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams} rows={qualEndRows} setRows={qualEndSetRows} teamOptions={qualEndTeamOptions} setTeamOptions={qualEndSetTeamOptions}/>
       <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
       <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} />
       <Notif contents={notifContents} launchNotif={launchNotif} setLaunchNotif={setLaunchNotif} />

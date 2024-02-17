@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const PageButtons = ({ onLeftButtonClick, onRightButtonClick, setDevMode }) => {
+const PageButtons = ({ onLeftButtonClick, onRightButtonClick, setDevMode, devModeKey, setDevModeKey }) => {
   // dev mode on or off
-  const [devModeKey, setDevModeKey] = useState('');
   const fhash = (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
       h2 = 0x41c6ce57 ^ seed;
@@ -19,7 +18,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick, setDevMode }) => {
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setDevModeKey(inputValue);
-    if (fhash(inputValue) === 7067371117425878) {
+    if (fhash(inputValue) === 7024517836730232) {
       console.log("dev mode enabled");
       setDevMode(true);
     } else {
