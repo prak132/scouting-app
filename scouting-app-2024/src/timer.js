@@ -7,15 +7,15 @@ const Timer = ({ active, time, setTime, initialDelayComplete, setInitialDelayCom
     if (active) {
       interval = setInterval(() => {
         setTime(prevTime => {
-          if (prevTime >= 2 && !initialDelayComplete) {
+          if (prevTime >= 15 && !initialDelayComplete) {
             clearInterval(interval);
             timerDelay = setTimeout(() => {
               setInitialDelayComplete(true);
-            }, 2);
+            }, 3000);
             return 0;
-          } if (initialDelayComplete && prevTime >= 10) {
+          } if (initialDelayComplete && prevTime >= 105) {
             setteleended(true);
-          } if (initialDelayComplete && prevTime >= 20) {
+          } if (initialDelayComplete && prevTime >= 135) {
             setgameended(true);
             clearInterval(interval);
             clearTimeout(timerDelay);
