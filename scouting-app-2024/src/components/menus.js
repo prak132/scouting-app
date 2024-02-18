@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Logo from "../assets/monkeylogo.svg";
 import "./menu.css";
-import Cookies from "js-cookie";
 
-const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, onsendsomething }) => {
+const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, onsendsomething, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance }) => {
   const [yellowMode, setYellowMode] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showConfirmRefreshModal, setShowConfirmRefreshModal] = useState(false);
@@ -16,11 +15,12 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, on
     setYellowMode(!yellowMode);
   };
 
+
   function refreshPage() {
     const bug = ["hey", "go", "back"];
-    Cookies.set("selAlliance", "1");
-    Cookies.set("blueTeamNumbers", JSON.stringify(bug));
-    Cookies.set("redTeamNumbers", JSON.stringify(bug));
+    setSelAlliance("1");
+    setBlueTeamNumbers(JSON.stringify(bug));
+    setRedTeamNumbers(JSON.stringify(bug));
     window.location.reload(false);
   }
   

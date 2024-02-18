@@ -4,7 +4,7 @@ import SpeakerButton from "./speakerButton.js";
 import Teams from "./teamNumbers.js";
 import Notif from "./toast.js";
 
-const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams} ) => {
+const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams, blueTeamNumbers, redTeamNumbers, selAlliance} ) => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [ampSelected, setAmpSelected] = useState(false);
   const [speakerSelected, setSpeakerSelected] = useState(false);
@@ -98,7 +98,7 @@ const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams} ) =
           onSelect={handleSpeakerSelect}
           isSelected={speakerSelected}
         />
-        <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
+        <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance} />
         <Notif contents={storedTeam + ' scored ' + storedElement} launchNotif={callNotif()} />
         
       </div>

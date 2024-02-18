@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 
-const DevPage = () => {
+const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance }) => {
   const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
   const [teamOptions, setTeamOptions] = useState([]);
   const [scoredTeams, setScoredTeams] = useState([]);
 
   useEffect(() => {
-    const selAlliance = Cookies.get("selAlliance");
-    const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
+    const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
     const options = teamNumbers.map((team) => (
       <option key={team} value={`team${team}`}>
         {team}
@@ -16,6 +14,7 @@ const DevPage = () => {
     ));
     options.unshift(<option key="default" value="">Team</option>);
     setTeamOptions(options);
+    // eslint-disable-next-line
   }, []);
   
   useEffect(() => {

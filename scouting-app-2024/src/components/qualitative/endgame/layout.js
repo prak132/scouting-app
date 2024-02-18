@@ -2,19 +2,15 @@ import React, { useState, useEffect } from "react";
 import EndgameTable from "./endgameTable.js";
 import EndgameButtons from "./endgameButtons.js";
 import TeamButtons from "./teamButtons.js";
-import Cookies from 'js-cookie';
 import Notif from "./toast.js";
 
-const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEndactions, qualEndsetActions, teamButtonState, setTeamButtonState, qualEndRows, qualEndSetRows, qualEndTeamOptions, qualEndSetTeamOptions}) => {
+const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEndactions, qualEndsetActions, teamButtonState, setTeamButtonState, qualEndRows, qualEndSetRows, qualEndTeamOptions, qualEndSetTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance}) => {
   const [notifContents, setNotifContents] = useState("");
   const [launchNotif, setLaunchNotif] = useState(false);
 
   useEffect(() => {
     console.log("Actions:", qualEndactions);
   }, [qualEndactions]);
-
-  const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
-  const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
 
   const handleEndgameButtonClick = (buttonName) => {
     const selectedBlueTeams = teamButtonState.blue
@@ -74,9 +70,9 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
       </div>
       <div style={{margin: 'auto'}}>
       <div>
-      <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams} rows={qualEndRows} setRows={qualEndSetRows} teamOptions={qualEndTeamOptions} setTeamOptions={qualEndSetTeamOptions}/>
+      <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams} rows={qualEndRows} setRows={qualEndSetRows} teamOptions={qualEndTeamOptions} setTeamOptions={qualEndSetTeamOptions} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
       <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
-      <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} />
+      <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} />
       <Notif contents={notifContents} launchNotif={launchNotif} setLaunchNotif={setLaunchNotif} />
       </div>
       </div>

@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import Cookies from "js-cookie";
 import "./TextBox.css";
 import matchesData from "./data/match.json";
 import matchDetails from "./data/team.json";
 import Notif from "./toast.js";
 
-const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameValue, matchValue, setMatchValue, activeButton, setActiveButton, modeActiveButton, setModeActiveButton}) => {
-  const bug = ["hey", "go", "back"];
-  Cookies.set("selAlliance", "1");
-  Cookies.set("blueTeamNumbers", JSON.stringify(bug));
-  Cookies.set("redTeamNumbers", JSON.stringify(bug));
-    
+const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameValue, matchValue, setMatchValue, activeButton, setActiveButton, modeActiveButton, setModeActiveButton, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance}) => {    
   const [showNotif, setShowNotif] = useState(false);
 
   const handleNameChange = (e) => {
@@ -53,9 +47,9 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
       const alliance = activeButton === "blue" ? "blue" : "red";
       const blueTeamKeys = selectedMatch.blue;
       const redTeamKeys = selectedMatch.red;
-      Cookies.set("blueTeamNumbers", JSON.stringify(blueTeamKeys));
-      Cookies.set("redTeamNumbers", JSON.stringify(redTeamKeys));
-      Cookies.set("selAlliance", alliance === "blue" ? "0" : "1");
+      setBlueTeamNumbers(blueTeamKeys);
+      setRedTeamNumbers(redTeamKeys);
+      setSelAlliance(alliance === "blue" ? "0" : "1");
       if (onNextButtonClick) {
         onNextButtonClick();
       }

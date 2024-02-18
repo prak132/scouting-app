@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import "./App.css";
 import AutoLayout from "./components/auto/layout.js";
 import QuantTeleopLayout from "./components/quantitative/teleop/layout.js";
@@ -16,6 +15,11 @@ import Fin from "./components/gameend/layout.js";
 import Notif from "./toast.js";
 
 function App() {
+  // IMPORTANT FOR ALLIANCES AND OTHER STUFF
+  const bug = ["hey", "go", "back"];
+  const [blueTeamNumbers, setBlueTeamNumbers] = useState(bug);
+  const [redTeamNumbers, setRedTeamNumbers] = useState(bug);
+  const [selAlliance, setSelAlliance] = useState(0);
   //notifs
   const [lastRemovedAction, setLastRemovedAction] = useState('');
   const [showNotif, setShowNotif] = useState(false);
@@ -123,11 +127,10 @@ function App() {
   const [maxPageReached, setMaxPageReached] = useState(0);
 
   useEffect(() => {
-    const selAlliance = Cookies.get("selAlliance");
-    const numbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
+    const numbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
     setTeamNumbers(numbers);
     setIsMatchReady(selectedPosition !== '' && selectedTeamNumber !== '');
-  }, [isModalOpen, selectedPosition, selectedTeamNumber]);
+  }, [isModalOpen, selectedPosition, selectedTeamNumber, blueTeamNumbers, redTeamNumbers, selAlliance]);
 
   useEffect(() => {
     let targetPage = currentPage;
@@ -393,6 +396,12 @@ function App() {
           qualEndSetRows={qualEndSetRows}
           qualEndTeamOptions={qualEndTeamOptions}
           qualEndSetTeamOptions={qualEndSetTeamOptions}
+          blueTeamNumbers={blueTeamNumbers}
+          setBlueTeamNumbers={setBlueTeamNumbers}
+          redTeamNumbers={redTeamNumbers}
+          setRedTeamNumbers={setRedTeamNumbers}
+          selAlliance={selAlliance}
+          setSelAlliance={setSelAlliance}
         />}
       {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>
@@ -424,7 +433,7 @@ function App() {
       )}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
       <MenuElements onsendsomething={onsendsomething}/>
-      {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} />}
+      {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>}
       <div>
       {isModalOpen && !devMode && (
           <div className="modalthingpopup">

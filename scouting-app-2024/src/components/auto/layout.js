@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import "./layout.css";
 import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono }) => {
+const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono, selAlliance }) => {
   const [showNotif, setShowNotif] = useState(false);
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
@@ -26,9 +25,9 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
   }
 
   useEffect(() => {
-    const alliance = Cookies.get("selAlliance");
-    setAutoMapSrc(alliance === "0" ? blue_auto : red_auto);
-    setAllianceClass(alliance === "0" ? "bluenotes" : "rednotes");
+    setAutoMapSrc(selAlliance === "0" ? blue_auto : red_auto);
+    setAllianceClass(selAlliance === "0" ? "bluenotes" : "rednotes");
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

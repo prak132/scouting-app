@@ -3,7 +3,7 @@ import React from "react";
 import QualitativeTable from "./qualitativeTable.js";
 import RectangleWithText from "./notesBox.js"
 
-const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTeleoptext, qualTeleopsetText, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions} ) => {
+const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTeleoptext, qualTeleopsetText, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance} ) => {
   return (
     <div
       style={{
@@ -38,8 +38,8 @@ const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeam
       >
         Qualitiative • Timer: {time.toFixed(2)}s
       </div>
-      <QualitativeTable qualTeleopscoredTeams={qualTeleopscoredTeams} qualTeleopsetScoredTeams={qualTeleopsetScoredTeams} qualTelerows={qualTelerows} qualTeleSetRows={qualTeleSetRows} qualTeleteamOptions={qualTeleteamOptions} qualTelesetTeamOptions={qualTelesetTeamOptions}/>
-      <RectangleWithText qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText}/>
+      <QualitativeTable qualTeleopscoredTeams={qualTeleopscoredTeams} qualTeleopsetScoredTeams={qualTeleopsetScoredTeams} qualTelerows={qualTelerows} qualTeleSetRows={qualTeleSetRows} qualTeleteamOptions={qualTeleteamOptions} qualTelesetTeamOptions={qualTelesetTeamOptions} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
+      <RectangleWithText qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText} />
       <div type = "notes">
 
 

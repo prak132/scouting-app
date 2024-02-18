@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
 
-const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions} ) => {
+const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance} ) => {
   useEffect(() => {
-    const selAlliance = Cookies.get("selAlliance");
-    const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
-    const options = teamNumbers.map((team) => (
+    const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];    const options = teamNumbers.map((team) => (
       <option key={team} value={`team${team}`}>
         {team}
       </option>

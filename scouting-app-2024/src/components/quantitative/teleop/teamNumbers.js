@@ -1,9 +1,7 @@
 import React from "react";
-import Cookies from "js-cookie";
 
-const TeamNumbers = ({ onSelect, selectedTeam }) => {
-  const selAlliance = Cookies.get("selAlliance");
-  const teamNumbers = selAlliance === "0" ? JSON.parse(Cookies.get("blueTeamNumbers")) || [] : selAlliance === "1" ? JSON.parse(Cookies.get("redTeamNumbers")) || [] : [];
+const TeamNumbers = ({ onSelect, selectedTeam, blueTeamNumbers, redTeamNumbers, selAlliance }) => {
+  const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
     return (
     <div
       style={{

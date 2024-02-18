@@ -1,12 +1,7 @@
 import React from 'react';
-import Cookies from 'js-cookie';
 
-const TeamButtons = ({ teamButtonState, setTeamButtonState }) => {
+const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, redTeamNumbers }) => {
   const { blue: blueButtonStates, red: redButtonStates } = teamButtonState;
-
-  const blueTeamNumbers = JSON.parse(Cookies.get("blueTeamNumbers")) || [];
-  const redTeamNumbers = JSON.parse(Cookies.get("redTeamNumbers")) || [];
-
   const handleBlueButtonClick = (index) => {
     const newButtonStates = [...blueButtonStates];
     newButtonStates[index] = !newButtonStates[index];

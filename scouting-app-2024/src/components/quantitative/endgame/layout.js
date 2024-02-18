@@ -6,7 +6,7 @@ import Notif from "./toast.js";
 import TrapButton from "./trapButton.js";
 
 
-const EndGameLayout = ( {time, quantEndSetScoredTeams, setquantEndSetScoredTeams} ) => {
+const EndGameLayout = ({ time, quantEndSetScoredTeams, setquantEndSetScoredTeams, blueTeamNumbers, redTeamNumbers, selAlliance }) => {
   // matrrix of teams and how they scored
   // eslint-disable-next-line
 
@@ -102,7 +102,7 @@ const EndGameLayout = ( {time, quantEndSetScoredTeams, setquantEndSetScoredTeams
           isSelected={speakerSelected}
         />
         <TrapButton onSelect={handleTrapSelect} isSelected={trapSelected} />
-        <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} />
+        <Teams onSelect={handleTeamSelect} selectedTeam={selectedTeam} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance} />
         <Notif contents={getNotificationContent()} launchNotif={selectedTeam && (ampSelected || speakerSelected || trapSelected)} />
         
       </div>
