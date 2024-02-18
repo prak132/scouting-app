@@ -432,7 +432,7 @@ function App() {
         </div>
       )}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
-      <MenuElements onsendsomething={onsendsomething}/>
+      <MenuElements onsendsomething={onsendsomething} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>
       {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>}
       <div>
       {isModalOpen && !devMode && (

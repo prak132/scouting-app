@@ -15,12 +15,11 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, on
     setYellowMode(!yellowMode);
   };
 
-
   function refreshPage() {
     const bug = ["hey", "go", "back"];
     setSelAlliance("1");
-    setBlueTeamNumbers(JSON.stringify(bug));
-    setRedTeamNumbers(JSON.stringify(bug));
+    setBlueTeamNumbers(bug);
+    setRedTeamNumbers(bug);
     window.location.reload(false);
   }
   
