@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import Logo from "../assets/monkeylogo.svg";
 import "./menu.css";
 
-const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, onsendsomething, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance }) => {
-  const [yellowMode, setYellowMode] = useState(0);
+const MenuElements = ({ onsendsomething, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showConfirmRefreshModal, setShowConfirmRefreshModal] = useState(false);
+  const [theme, setTheme] = useState('light');
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
   
   const handleLogoClick = () => {
-    setYellowMode(!yellowMode);
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
+
+  React.useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
 
   function refreshPage() {
     const bug = ["hey", "go", "back"];
@@ -26,11 +30,11 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, on
   const confirmRefresh = () => {
     setShowConfirmRefreshModal(true);
   };
-  
+
   return (
     <div>
       <div className='topBar'>
-        <img src={Logo} alt='funkylogo' className='logo' onClick={handleLogoClick}></img>
+        <img onClick={handleLogoClick} src={Logo} alt='funkylogo' className='logo'></img>
         <div className='topButtons'>
           <button onClick={confirmRefresh} className='button topButton'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='icon'>
@@ -85,7 +89,6 @@ const MenuElements = ({ onTopButtonClick, onBottomButtonClick, onMonkeyClick, on
           )}
         </div>
       </div>
-      <div className={`${yellowMode === true ? "buttonActive" : "yellowOverlay"}`}></div>
     </div>
   );
 };
