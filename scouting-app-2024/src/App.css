@@ -9,12 +9,16 @@ var(--glow);
 */
 
 :root {
-  --highlight-color: #000614;
+  --bigbutton: rgba(255, 255, 255, 0.20);
+  --biggerbutton: rgba(255, 255, 255, 0.4);
+  --texttt: rgba(255, 255, 255, 0.5);
   --glow: white;
 }
 
 [data-theme='dark'] {
-  --highlight-color: #fff;
+  --bigbutton: rgba(238, 255, 0, 0.2);
+  --biggerbutton: rgba(234, 255, 0, 0.4);
+  --texttt: rgba(251, 251, 119, 0.5);
   --glow: #000;
 }
 
@@ -103,10 +107,10 @@ button:hover {
   align-items: center;
   justify-content: center;
   height: 11.7vh;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--texttt);
   border: 1px solid #2f3953;
   background: rgba(217, 217, 217, 0);
-  box-shadow: 0px 0px 40px 10px rgba(255, 255, 255, 0.20);
+  box-shadow: 0px 0px 40px 10px var(--bigbutton);
   transition: all;
   margin-bottom: 2vh;
   animation-duration: 1s;
@@ -127,7 +131,7 @@ button:hover {
   margin-bottom: 2vh;
   border: 1px solid #fff;
   background: rgba(145, 145, 145, 0.2);
-  box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 0px 20px 5px var(--biggerbutton);
   transition: '.2s',
 }
 
@@ -135,7 +139,7 @@ button:hover {
   border-radius: 10px;
   border: 1px solid #2f3953;
   background: rgba(217, 217, 217, 0);
-  box-shadow: 0px 0px 40px 5px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 40px 5px var(--bigbutton);
   width: 26vw;
   height: 26vw;
   transition: .2s;
@@ -147,7 +151,7 @@ button:hover {
   border-radius: 10px;
   border: 1px solid #fff;
   background: rgba(145, 145, 145, 0.2);
-  box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 20px 5px var(--biggerbutton);
   color: "white";
   transition: .2s;
 }

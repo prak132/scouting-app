@@ -1,3 +1,13 @@
+:root {
+  --box: #FFF;
+  --boxglow: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] {
+  --box: #ffee00;
+  --boxglow: rgba(231, 248, 3, 0.2);
+}
+
 .svg-bounding {
   display: flex;
   position: relative;
@@ -6,9 +16,9 @@
   margin-right: auto;
   width: calc(100%-3px);
   height: 440px;
-  border: 3.5px solid #FFF;;
+  border: 3.5px solid var(--box);
   background: #181D2A;
-  box-shadow: 0px 0px 30px 4px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 30px 4px var(--boxglow);
   border-radius: 12px;
   overflow: hidden;
 }

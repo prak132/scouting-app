@@ -1,3 +1,15 @@
+:root {
+  --highlight-color: #000614;
+  --glow: rgba(255, 255, 255, 0.2);
+  --glowmore: rgba(255, 255, 255, 0.20);
+}
+
+[data-theme='dark'] {
+  --highlight-color: #fff;
+  --glow: rgba(242, 228, 36, 0.2);
+  --glowmore: rgba(242, 228, 36, 0.329);
+}
+
 .center-container {
   display: flex;
   flex-direction: column;
@@ -21,7 +33,7 @@
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.20);
   background: #000614;
-  box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 100.9px 5px var(--glow);
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.10);
   padding: 5px;
@@ -121,7 +133,7 @@
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.50);
   background: rgba(217, 217, 217, 0.00);
-  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.20);  
+  box-shadow: 0px 0px 30px 5px var(--glowmore);  
   font-size: 18px;
   margin-top: 15px;
   max-width: 80%;
@@ -137,7 +149,7 @@
 .glowing-textbox:focus {
   border-radius: 10px;
   background: rgba(145, 145, 145, 0.20);
-  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.30);
+  box-shadow: 0px 0px 51px 5px var(--glowmore);
 }
 
 .glowing-dropdown {
@@ -155,7 +167,7 @@
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.50);
   background: rgba(217, 217, 217, 0.00);
-  box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.20);  
+  box-shadow: 0px 0px 30px 5px var(--glowmore);  
   font-size: 18px;
   margin-top: 15px;
   max-width: 80%;
@@ -171,7 +183,7 @@
 .glowing-dropdown-input:focus {
   border-radius: 10px;
   background: rgba(145, 145, 145, 0.20);
-  box-shadow: 0px 0px 51px 5px rgba(255, 255, 255, 0.30);
+  box-shadow: 0px 0px 51px 5px var(--glowmore);
 } 
   
 
