@@ -162,9 +162,6 @@ function App() {
   
   
   const handleLeftButtonClick = () => {
-    if (gameended) {
-      return;
-    }
     if (devMode) {
       setCurrentPage(prevPage => Math.max((prevPage - 1), 0));
     } else {
@@ -174,10 +171,7 @@ function App() {
   
   
   
-  const handleRightButtonClick = () => {
-    if (gameended) {
-      return;
-    }  
+  const handleRightButtonClick = () => { 
     if (devMode) {
       setCurrentPage(prevPage => {
         const nextPage = prevPage + 1;
