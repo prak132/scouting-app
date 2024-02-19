@@ -16,9 +16,8 @@ import Notif from "./toast.js";
 
 function App() {
   // IMPORTANT FOR ALLIANCES AND OTHER STUFF
-  const bug = ["hey", "go", "back"];
-  const [blueTeamNumbers, setBlueTeamNumbers] = useState(bug);
-  const [redTeamNumbers, setRedTeamNumbers] = useState(bug);
+  const [blueTeamNumbers, setBlueTeamNumbers] = useState([]);
+  const [redTeamNumbers, setRedTeamNumbers] = useState([]);
   const [selAlliance, setSelAlliance] = useState(0);
   //notifs
   const [lastRemovedAction, setLastRemovedAction] = useState('');
@@ -65,10 +64,17 @@ function App() {
   const [activeButton, setActiveButton] = useState(null);
   // offense or defense
   const [modeActiveButton, setModeActiveButton] = useState(null);
-  
+  const [devMode, setDevMode] = useState(false);
+
   async function handleStoreDataClick() {
     let data = {};
-    if (modeActiveButton === "quan") {
+    if (devMode) {
+      data = {
+        mode: "Dev",
+        name: "Aadharsh",
+        ratings: devScoredTeams,
+      };
+    } else if (modeActiveButton === "quan") {
       data = {
         mode: "Quantitative",
         name: nameValue,
@@ -122,7 +128,11 @@ function App() {
   const [isMatchReady, setIsMatchReady] = useState(false);
   const qualpages = [AutoLayout, QualTeleopLayout, QualEndGameLayout, Fin];
   const quantpages = [AutoLayout, QuantTeleopLayout, QuantEndGameLayout, Fin];
-  const [devMode, setDevMode] = useState(false);
+  // dev mode
+  const [devRows, devSetRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
+  const [devTeamOptions, devSetTeamOptions] = useState([]);
+  const [devScoredTeams, devSetScoredTeams] = useState([]);
+  // others
   const [devModeKey, setDevModeKey] = useState('');
   const [maxPageReached, setMaxPageReached] = useState(0);
 
@@ -402,6 +412,13 @@ function App() {
           setRedTeamNumbers={setRedTeamNumbers}
           selAlliance={selAlliance}
           setSelAlliance={setSelAlliance}
+          devRows={devRows}
+          devSetRows={devSetRows}
+          devTeamOptions={devTeamOptions}
+          devSetTeamOptions={devSetTeamOptions}
+          devScoredTeams={devScoredTeams}
+          devSetScoredTeams={devSetScoredTeams}
+          handleFinishClick={handleStoreDataClick}
         />}
       {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>

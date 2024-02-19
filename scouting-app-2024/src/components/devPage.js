@@ -1,45 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance }) => {
-  const [rows, setRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
-  const [teamOptions, setTeamOptions] = useState([]);
-  const [scoredTeams, setScoredTeams] = useState([]);
-
+const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance, devRows, devSetRows, devTeamOptions, devSetTeamOptions, devScoredTeams, devSetScoredTeams, handleFinishClick }) => {
   useEffect(() => {
-    const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
+    const blueTeams = Array.isArray(blueTeamNumbers) ? blueTeamNumbers : [];
+    const redTeams = Array.isArray(redTeamNumbers) ? redTeamNumbers : [];
+    const teamNumbers = [...blueTeams, ...redTeams];
     const options = teamNumbers.map((team) => (
       <option key={team} value={`team${team}`}>
         {team}
       </option>
     ));
+    
     options.unshift(<option key="default" value="">Team</option>);
-    setTeamOptions(options);
+    devSetTeamOptions(options);
     // eslint-disable-next-line
-  }, []);
-  
+  }, [blueTeamNumbers, redTeamNumbers]);
+
   useEffect(() => {
-    console.log(scoredTeams);
-  }, [scoredTeams]);
+    console.log(devScoredTeams);
+  }, [devScoredTeams]);
 
   const addRow = () => {
-    setRows([rows.length + 1, ...rows]);
+    devSetRows([devRows.length + 1, ...devRows]);
   };
 
   const removeRow = (index) => {
-    setRows(rows.filter((_, i) => i !== index));
-    setScoredTeams(scoredTeams.filter((_, i) => i !== index));
+    devSetRows(devRows.filter((_, i) => i !== index));
+    devSetScoredTeams(devScoredTeams.filter((_, i) => i !== index));
   };
 
   const handleTeamSelect = (index, team) => {
-    const newScoredTeams = [...scoredTeams];
+    const newScoredTeams = [...devScoredTeams];
     newScoredTeams[index] = [team.replace('team', ''), newScoredTeams[index]?.[1]];
-    setScoredTeams(newScoredTeams);
+    devSetScoredTeams(newScoredTeams);
   };
 
   const handleDefenseSelect = (index, defense) => {
-    const newScoredTeams = [...scoredTeams];
+    const newScoredTeams = [...devScoredTeams];
     newScoredTeams[index] = [newScoredTeams[index]?.[0], defense];
-    setScoredTeams(newScoredTeams);
+    devSetScoredTeams(newScoredTeams);
   };
 
   return (
@@ -58,9 +57,9 @@ const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance }) => {
           boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
         }}
       >
-        {rows.map((row, index) => (
+        {devRows.map((devRows, index) => (
           <div
-            key={row}
+            key={devRows}
             className="row"
             style={{
               marginBottom: '13px',
@@ -71,7 +70,7 @@ const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance }) => {
             <select
               className="team-select"
               onChange={(e) => handleTeamSelect(index, e.target.value)}
-              value={scoredTeams[index]?.[0] ? `team${scoredTeams[index][0]}` : ""}
+              value={devScoredTeams[index]?.[0] ? `team${devScoredTeams[index][0]}` : ""}
               style={{
                 width: '100px',
                 flex: 0.4,
@@ -89,12 +88,12 @@ const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance }) => {
                 boxShadow: '2px 0px 22px 1px rgba(255, 255, 255, 0.1)',
               }}
             >
-              {teamOptions}
+              {devTeamOptions}
             </select>
             <select
               className="defense-select"
               onChange={(e) => handleDefenseSelect(index, e.target.value)}
-              value={scoredTeams[index]?.[1] || ""}
+              value={devScoredTeams[index]?.[1] || ""}
               style={{
                 marginLeft: '10px',
                 width: '100px',
@@ -148,6 +147,22 @@ const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance }) => {
           }}
         >
           +
+        </button>
+        <button
+          className="finish-button"
+          onClick={handleFinishClick}
+          style={{
+            alignSelf: 'flex-start',
+            marginTop: '10px',
+            backgroundColor: 'transparent',
+            color: 'rgba(255, 255, 255, 0.7)',
+            fontSize: '25px',
+            border: '1px solid #2F3953',
+            borderRadius: '10px',
+            boxShadow: '0px 0px 35px 1px rgba(255, 255, 255, 0.1)',
+          }}
+        >
+          Finish
         </button>
       </div>
     </div>
