@@ -2,7 +2,7 @@ import json
 import requests
 
 api_key = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw'
-event_code = '2023cala'
+event_code = '2024week0'
 url = f'https://www.thebluealliance.com/api/v3/event/{event_code}/matches/keys'
 
 headers = {
