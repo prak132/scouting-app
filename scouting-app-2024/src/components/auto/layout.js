@@ -91,7 +91,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
         </button>
       </div>
 
-  <div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
+  {/*<div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
     <button
       onClick={handleSpeakerSelect}
       style={{
@@ -136,7 +136,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
   >
     amp
   </button>
-</div>
+  </div>*/}
 
 
 
