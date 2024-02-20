@@ -2,12 +2,14 @@
   --highlight-color: #000614;
   --glow: rgba(255, 255, 255, 0.2);
   --glowmore: rgba(255, 255, 255, 0.20);
+  --whartt: #000614;
 }
 
 [data-theme='dark'] {
   --highlight-color: #fff;
   --glow: rgba(242, 228, 36, 0.2);
   --glowmore: rgba(242, 228, 36, 0.329);
+  --whartt: rgb(171, 171, 171);
 }
 
 .center-container {
@@ -32,7 +34,7 @@
   align-items: center;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.20);
-  background: #000614;
+  background: var(--whartt);
   box-shadow: 0px 0px 100.9px 5px var(--glow);
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.10);
@@ -237,7 +239,7 @@
     top: 2px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    background: #000614;
+    background: var(--whartt);
     border-radius: 10px;
   }
 }

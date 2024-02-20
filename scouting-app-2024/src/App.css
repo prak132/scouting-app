@@ -12,20 +12,22 @@ var(--glow);
   --bigbutton: rgba(255, 255, 255, 0.20);
   --biggerbutton: rgba(255, 255, 255, 0.4);
   --texttt: rgba(255, 255, 255, 0.5);
-  --glow: white;
+  --whart: #000614;
+  --holdupp: #0a101f;
 }
 
 [data-theme='dark'] {
   --bigbutton: rgba(238, 255, 0, 0.2);
   --biggerbutton: rgba(234, 255, 0, 0.4);
   --texttt: rgba(251, 251, 119, 0.5);
-  --glow: #000;
+  --whart: rgb(171, 171, 171);
+  --holdupp: #999999;
 }
 
 
 body {
   font-family: "Poppins", sans-serif;
-  background: #000614;
+  background: var(--whart);
   overflow-x: hidden;
   padding-left: 7vw;
   padding-right: 7vw;
@@ -63,7 +65,7 @@ button:hover {
 }
 
 .App-header {
-  background-color: #000614;
+  background-color: var(--whart);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -170,7 +172,7 @@ button:hover {
   align-items: center;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.554);
-  background: #000614;
+  background: var(--whart);
   box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
   margin: 10px auto;
   color: rgba(232, 232, 232, 0.887);
@@ -221,7 +223,7 @@ button:hover {
     top: 2px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    background: #000614;
+    background: var(--whart);
     border-radius: 10px;
   }
 }
@@ -238,7 +240,7 @@ button:hover {
   align-items: center;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.554);
-  background: #000614;
+  background: var(--whart);
   box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
   margin: 10px auto;
   display: block;
@@ -256,7 +258,7 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #0a101f;
+  background-color: var(--holdupp);
   padding: 20px;
   border-radius: 16px;
   border: 3px solid rgba(245, 245, 245, 0.3);
@@ -274,7 +276,7 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #0a101f;
+  background-color: var(--holdupp);
   padding: 20px;
   border-radius: 16px;
   border: 3px solid rgba(245, 245, 245, 0.3);
