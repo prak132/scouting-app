@@ -9,20 +9,6 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
   const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
   const [allianceClass, setAllianceClass] = useState("");
-  // eslint-disable-next-line
-  const [isSpeakerSelected, setIsSpeakerSelected] = useState(false);
-  // eslint-disable-next-line
-  const [isAmpSelected, setIsAmpSelected] = useState(false);
-
-  const handleSpeakerSelect = () => {
-    setIsSpeakerSelected(true);
-    setIsAmpSelected(false);
-  }
-
-  const handleAmpSelect = () => {
-    setIsAmpSelected(true);
-    setIsSpeakerSelected(false);
-  }
 
   useEffect(() => {
     setAutoMapSrc(selAlliance === "0" ? blue_auto : red_auto);
@@ -38,14 +24,17 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
   }, [clickedNotes]);
 
   const handleNoteClick = (noteIndex) => {
-    const isNoteClicked = clickedNotes.includes(noteIndex);
+    const isNoteClicked = clickedNotes.some(note => note[0] === noteIndex);
     if (!isNoteClicked) {
-      setClickedNotes(prevNotes => [...prevNotes, noteIndex, time.toFixed(2)]);
+      setClickedNotes(prevNotes => [...prevNotes, [noteIndex, time.toFixed(2)]]);
       setShowNotif(true);
       setDisabledButtons(prevState => ({ ...prevState, [noteIndex]: true }));
     }
   };
 
+  const isNoteHidden = (noteIndex) => {
+    return clickedNotes.some(note => note[0] === noteIndex);
+  };
 
   return (
     <div>
@@ -90,56 +79,6 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
           no
         </button>
       </div>
-
-  {/*<div style={{ display: 'flex', justifyContent: 'center', paddingTop:'3%' }}>
-    <button
-      onClick={handleSpeakerSelect}
-      style={{
-        width: '50%',
-        height: '40px',
-        backgroundColor: '#000614',
-        //color: '#7d7d7d',
-        fontFamily: 'Poppins',
-        fontSize: '20px',
-        fontStyle: 'normal',
-        lineHeight: 'normal',
-        fontWeight: '600',
-        border: '1px solid #2F3953',
-        borderRadius: '10px',
-        marginRight: '5px',
-        marginLeft: '5px',
-        borderColor: isSpeakerSelected ? '#f6f6f1' : '#2F3953',
-        color: isSpeakerSelected ? '#f6f6f1' : '#7d7d7d',
-    }}
-  >
-    speaker
-  </button>
-  <button
-    onClick={handleAmpSelect}
-    style={{
-      width: '50%',
-      height: '40px',
-      backgroundColor: '#000614',
-      //color: '#7d7d7d',
-      fontFamily: 'Poppins',
-      fontSize: '20px',
-      fontStyle: 'normal',
-      lineHeight: 'normal',
-      fontWeight: '600',
-      border: '1px solid #2F3953',
-      borderRadius: '10px',
-      marginRight: '5px',
-      marginLeft: '5px',
-      borderColor: isAmpSelected ? '#f6f6f1' : '#2F3953',
-      color: isAmpSelected ? '#f6f6f1' : '#7d7d7d',
-    }}
-  >
-    amp
-  </button>
-  </div>*/}
-
-
-
       <div className="svg-bounding">
         <img src={autoMapSrc} alt="auto-img" className="auto-map" />
         <div className="notes-upper">
@@ -147,7 +86,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
             <button
               key={index}
               disabled={!!disabledButtons[index]}
-              className={`note-button ${clickedNotes.includes(index) ? "note-button-hidden" : ""}`}
+              className={`note-button ${isNoteHidden(index) ? "note-button-hidden" : ""}`}
               onClick={() => handleNoteClick(index)}
             ></button>
           ))}
@@ -157,7 +96,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
             <button
               key={index + 5}
               disabled={!!disabledButtons[index+5]}
-              className={`note-button ${clickedNotes.includes(index + 5) ? "note-button-hidden" : ""}`}
+              className={`note-button ${isNoteHidden(index + 5) ? "note-button-hidden" : ""}`}
               onClick={() => handleNoteClick(index + 5)}
             ></button>
           ))}
