@@ -4,9 +4,8 @@ import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono, selAlliance }) => {
+const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono, selAlliance, disabledButtons, setDisabledButtons }) => {
   const [showNotif, setShowNotif] = useState(false);
-  const [disabledButtons, setDisabledButtons] = useState({});
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
   const [allianceClass, setAllianceClass] = useState("");
 
@@ -28,13 +27,14 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
     if (!isNoteClicked) {
       setClickedNotes(prevNotes => [...prevNotes, [noteIndex, time.toFixed(2)]]);
       setShowNotif(true);
-      setDisabledButtons(prevState => ({ ...prevState, [noteIndex]: true }));
+      setDisabledButtons(prevState => [...prevState, noteIndex]);
     }
-  };
+  };  
 
   const isNoteHidden = (noteIndex) => {
-    return clickedNotes.some(note => note[0] === noteIndex);
+    return disabledButtons.includes(noteIndex);
   };
+  
 
   return (
     <div>
@@ -85,7 +85,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
           {[...Array(5)].map((_, index) => (
             <button
               key={index}
-              disabled={!!disabledButtons[index]}
+              disabled={disabledButtons.includes(index)}
               className={`note-button ${isNoteHidden(index) ? "note-button-hidden" : ""}`}
               onClick={() => handleNoteClick(index)}
             ></button>
@@ -95,14 +95,13 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
           {[...Array(3)].map((_, index) => (
             <button
               key={index + 5}
-              disabled={!!disabledButtons[index+5]}
+              disabled={disabledButtons.includes(index+5)}
               className={`note-button ${isNoteHidden(index + 5) ? "note-button-hidden" : ""}`}
               onClick={() => handleNoteClick(index + 5)}
             ></button>
           ))}
         </div>
       </div>
-      <div className="scroll-buffer"></div>
     </div>
   );
 };

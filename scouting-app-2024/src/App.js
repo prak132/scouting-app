@@ -54,6 +54,7 @@ function App() {
   const [qualEndTeamOptions, qualEndSetTeamOptions] = useState([]);
   // auto note scoring
   const [clickedNotes, setClickedNotes] = useState([]);
+  const [disabledButtons, setDisabledButtons] = useState([]);
   const [isPreNoteScored, setIsPreNoteScored] = useState(null);
   const [somethingnonono, setsomething] = useState(false);
   // data of the person scouting,
@@ -208,6 +209,13 @@ function App() {
   }
 
   const undoLastAction = () => {
+    if (currentPage === 0) {
+      setClickedNotes((prevNotes) => prevNotes.slice(0, -1));
+      setDisabledButtons((prevState) => prevState.slice(0, -1));
+      setLastRemovedAction(`Removed Note`);
+      setShowNotif(true);
+      setTimeout(() => setShowNotif(false), 2000);
+    }
     if (isQuantitativeMode) {
       if (currentPage === 1) {
         quantTeleSetScoredTeams(prevTeams => {
@@ -358,7 +366,7 @@ function App() {
     if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}
     const PageComponent = pages[currentPage];
     const isNotFinPage = currentPage !== pages.length - 1;
-    const showUndoDev = (isQuantitativeMode && (currentPage === 1 || currentPage === 2)) && !devMode && isNotFinPage;
+    const showUndoDev = ((isQuantitativeMode && (currentPage === 1 || currentPage === 2)) || currentPage === 0) && !devMode && isNotFinPage;
     return (!showTextBox && !devMode) || devMode ? (
       <div>
         {PageComponent && <PageComponent key={currentPage} 
@@ -378,6 +386,8 @@ function App() {
           qualEndsetActions={qualEndsetActions}
           clickedNotes={clickedNotes}
           setClickedNotes={setClickedNotes}
+          disabledButtons={disabledButtons}
+          setDisabledButtons={setDisabledButtons}
           setQuantitativeMode={handleSetQuantitativeMode} 
           onNextButtonClick={handleNextButtonClick}
           nameValue={nameValue}
