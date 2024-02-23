@@ -13,6 +13,7 @@ import Timer from "./timer.js";
 import UndoDev from "./undoinfo.js";
 import Fin from "./components/gameend/layout.js";
 import Notif from "./toast.js";
+import Ntoif from "./toasty.js";
 
 function App() {
   // IMPORTANT FOR ALLIANCES AND OTHER STUFF
@@ -22,6 +23,7 @@ function App() {
   //notifs
   const [lastRemovedAction, setLastRemovedAction] = useState('');
   const [showNotif, setShowNotif] = useState(false);
+  const [showNtoif, setShowNtoif] = useState(false);
   // sketchy logic
   const [sentMatches, setSentMatches] = useState([]);
   const [showConfirmSendModal, setShowConfirmSendModal] = useState(false);
@@ -82,7 +84,7 @@ function App() {
         name: nameValue,
         robotposition: selectedPosition,
         autoteam: selectedTeamNumber,
-        preloadedtime: preloadedtime,
+        preloadedtime: preloadedtime.toFixed(2),
         alliance: selAlliance === "0" ? "Blue" : "Red",
         notescoring: clickedNotes,
         telescore: quantTelescoredTeams,
@@ -94,7 +96,7 @@ function App() {
         name: nameValue,
         robotposition: selectedPosition,
         autoteam: selectedTeamNumber,
-        preloadedtime: preloadedtime,
+        preloadedtime: preloadedtime.toFixed(2),
         alliance: selAlliance === "0" ? "Blue" : "Red",
         notescoring: clickedNotes,
         telescore: qualTeleopscoredTeams,
@@ -299,7 +301,9 @@ function App() {
           }
         }
       }
-      console.log("All pending data sent");
+      setLastRemovedAction(`All pending data sent`);
+      setShowNtoif(true);
+      setTimeout(() => setShowNtoif(false), 2000);
     } else {
       setLastRemovedAction(`No data to send`);
       setShowNotif(true);
@@ -347,7 +351,9 @@ function App() {
           }
         }
       }
-      console.log("All pending data sent");
+      setLastRemovedAction(`All pending data sent`);
+      setShowNtoif(true);
+      setTimeout(() => setShowNtoif(false), 2000);
     } else {
       console.log("No data to send");
     }
@@ -456,6 +462,7 @@ function App() {
           <div className="overlay"></div>
         </div>
       )}
+      {lastRemovedAction && <Ntoif contents={lastRemovedAction} launchNotif={showNtoif}/>}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
       <MenuElements onsendsomething={onsendsomething} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>
       {showTextBox && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>}
