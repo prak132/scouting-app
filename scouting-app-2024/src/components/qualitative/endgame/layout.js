@@ -14,26 +14,33 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
 
   const handleEndgameButtonClick = (buttonName) => {
     const selectedBlueTeams = teamButtonState.blue
-      .map((state, index) => state ? blueTeamNumbers[index] : null)
-      .filter(number => number !== null);
+      .map((state, index) => state ? [blueTeamNumbers[index], time.toFixed(2)] : null)
+      .filter(item => item !== null);
     const selectedRedTeams = teamButtonState.red
-      .map((state, index) => state ? redTeamNumbers[index] : null)
-      .filter(number => number !== null);
-    const actionedTeams = [...selectedBlueTeams, ...selectedRedTeams].join(", ");
+      .map((state, index) => state ? [redTeamNumbers[index], time.toFixed(2)] : null)
+      .filter(item => item !== null);
     if (selectedBlueTeams.length > 0 || selectedRedTeams.length > 0) {
-      qualEndsetActions(prevActions => ({
-        ...prevActions,
-        [buttonName + (buttonName.endsWith('ed') ? '' : 'ed')]: [...prevActions[buttonName + (buttonName.endsWith('ed') ? '' : 'ed')], { blue: selectedBlueTeams, red: selectedRedTeams }]
-      }));
+      qualEndsetActions(prevActions => {
+        const existingAction = prevActions[buttonName] || { blue: [], red: [] };
+        const blueArray = Array.isArray(existingAction.blue) ? existingAction.blue : [];
+        const redArray = Array.isArray(existingAction.red) ? existingAction.red : [];
+        const updatedAction = {
+          blue: [...blueArray, ...selectedBlueTeams],
+          red: [...redArray, ...selectedRedTeams],
+        };
+        return {
+          ...prevActions,
+          [buttonName]: updatedAction,
+        };
+      });
       setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
-      const actionVerb = buttonName.charAt(0).toUpperCase() + buttonName.slice(1) + (buttonName.endsWith('ed') ? '' : 'ed');
-      const notifMessage = actionedTeams.length > 0 ? `${actionedTeams} ${actionVerb.toLowerCase()}` : `${actionVerb} action selected`;
+      const actionVerb = buttonName.charAt(0).toUpperCase() + buttonName.slice(1);
+      const notifMessage = `Selected teams have been ${actionVerb.toLowerCase()} for ${selectedBlueTeams.concat(selectedRedTeams).map(item => item[0]).join(", ")}`;
       setNotifContents(notifMessage);
       setLaunchNotif(true);
     }
   };
   
-
   return (
     <div
       style={{
