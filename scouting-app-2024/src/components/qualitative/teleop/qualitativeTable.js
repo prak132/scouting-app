@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 
-const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance} ) => {
+const QualitativeTable = ({ qualTeleopscoredTeams, qualTeleopsetScoredTeams, qualTelerows, qualTeleSetRows, qualTeleteamOptions, qualTelesetTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance }) => {
   useEffect(() => {
-    const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];    const options = teamNumbers.map((team) => (
+    const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
+    const options = teamNumbers.map((team) => (
       <option key={team} value={`team${team}`}>
         {team}
       </option>
@@ -11,13 +12,14 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qua
     qualTelesetTeamOptions(options);
     // eslint-disable-next-line
   }, []);
-  
+
   useEffect(() => {
     console.log(qualTeleopscoredTeams);
   }, [qualTeleopscoredTeams]);
 
   const addRow = () => {
-    qualTeleSetRows([qualTelerows.length + 1, ...qualTelerows]);
+    qualTeleSetRows([{ key: Date.now() }, ...qualTelerows]);
+    qualTeleopsetScoredTeams([[undefined, undefined], ...qualTeleopscoredTeams]);
   };
 
   const removeRow = (index) => {
@@ -29,7 +31,7 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qua
     const newScoredTeams = [...qualTeleopscoredTeams];
     newScoredTeams[index] = [team.replace('team', ''), newScoredTeams[index]?.[1]];
     qualTeleopsetScoredTeams(newScoredTeams);
-  };  
+  };
 
   const handleDefenseSelect = (index, defense) => {
     const defenseMapping = {
@@ -119,9 +121,9 @@ const QualitativeTable = ( {qualTeleopscoredTeams, qualTeleopsetScoredTeams, qua
             +
           </button>
         </div>
-        {qualTelerows.map((row, index) => (
+        {qualTelerows.map(({ key }, index) => (
           <div
-            key={row}
+            key={key}
             className="row"
             style={{
               marginBottom: '13px',

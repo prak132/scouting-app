@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams, rows, setRows, teamOptions, setTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance} ) => {
+const EndgameTable = ({ qualEndscoredTeams, qualEndsetScoredTeams, rows, setRows, teamOptions, setTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance }) => {
   useEffect(() => {
     const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
     const options = teamNumbers.map((team) => (
@@ -12,13 +12,14 @@ const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams, rows, setRows
     setTeamOptions(options);
     // eslint-disable-next-line
   }, []);
-  
+
   useEffect(() => {
     console.log(qualEndscoredTeams);
   }, [qualEndscoredTeams]);
 
   const addRow = () => {
-    setRows([rows.length + 1, ...rows]);
+    setRows([{ key: Date.now() }, ...rows]);
+    qualEndsetScoredTeams([[undefined, undefined], ...qualEndscoredTeams]);
   };
 
   const removeRow = (index) => {
@@ -30,7 +31,7 @@ const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams, rows, setRows
     const newScoredTeams = [...qualEndscoredTeams];
     newScoredTeams[index] = [team.replace('team', ''), newScoredTeams[index]?.[1]];
     qualEndsetScoredTeams(newScoredTeams);
-  };  
+  };
 
   const handleDefenseSelect = (index, defense) => {
     const defenseMapping = {
@@ -120,9 +121,9 @@ const EndgameTable = ( {qualEndscoredTeams, qualEndsetScoredTeams, rows, setRows
             +
           </button>
         </div>
-        {rows.map((row, index) => (
+        {rows.map(({ key }, index) => (
           <div
-            key={row}
+            key={key}
             className="row"
             style={{
               marginBottom: '13px',
