@@ -107,6 +107,7 @@ function App() {
     }
     localStorage.setItem(matchValue, JSON.stringify(data));
     console.log(`Data stored for match ${matchValue}`);
+    window.location.reload(false);
   }
 
   const onlickYes = () => {
@@ -274,6 +275,7 @@ function App() {
         }
       }
       console.log("All pending data sent");
+      window.location.reload(false);
     } else {
       setLastRemovedAction(`No data to send`);
       setShowNotif(true);
@@ -307,7 +309,7 @@ function App() {
     } else {
       setLastRemovedAction(`No data to send`);
       setShowNotif(true);
-      setTimeout(() => setShowNotif(false), 2000);    
+      setTimeout(() => setShowNotif(false), 2000);
     } setShowConfirmSendModal(false);
   };
 
@@ -354,6 +356,7 @@ function App() {
       setLastRemovedAction(`All pending data sent`);
       setShowNtoif(true);
       setTimeout(() => setShowNtoif(false), 2000);
+      window.location.reload(false);
     } else {
       console.log("No data to send");
     }
