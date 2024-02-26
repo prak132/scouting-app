@@ -35,7 +35,7 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
       });
       setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
       const actionVerb = buttonName.charAt(0).toUpperCase() + buttonName.slice(1);
-      const notifMessage = `Selected teams have been ${actionVerb.toLowerCase()} for ${selectedBlueTeams.concat(selectedRedTeams).map(item => item[0]).join(", ")}`;
+      const notifMessage = `${selectedBlueTeams.concat(selectedRedTeams).map(item => item[0]).join(", ")} ${actionVerb.toLowerCase()}`;
       setNotifContents(notifMessage);
       setLaunchNotif(true);
     }
