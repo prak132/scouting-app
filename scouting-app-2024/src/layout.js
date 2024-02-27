@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./TextBox.css";
+import Cookies from "js-cookie";
 import matchesData from "./data/match.json";
 import matchDetails from "./data/team.json";
 import Notif from "./toast.js";
@@ -9,8 +10,8 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
+    Cookies.set("nameVal", JSON.stringify(`${e.target.value}`));
   };
-
 
   const handleMatchChange = (e) => {
     setMatchValue(e.target.value);

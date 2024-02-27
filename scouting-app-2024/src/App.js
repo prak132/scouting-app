@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from "js-cookie";
 import "./App.css";
 import AutoLayout from "./components/auto/layout.js";
 import QuantTeleopLayout from "./components/quantitative/teleop/layout.js";
@@ -61,6 +62,12 @@ function App() {
   const [somethingnonono, setsomething] = useState(false);
   // data of the person scouting,
   const [nameValue, setNameValue] = useState("");
+  useEffect(() => {
+    const storedNameValue = Cookies.get("nameVal");
+    if (storedNameValue !== undefined) {
+      setNameValue(JSON.parse(storedNameValue));
+    }
+  }, []);
   // which match
   const [matchValue, setMatchValue] = useState("");
   // which alliance
