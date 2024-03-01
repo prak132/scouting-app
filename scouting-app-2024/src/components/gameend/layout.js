@@ -1,21 +1,12 @@
 import React, { useState } from "react";
 
 
-const EndOfGameLayout = ({ onStoreDataClick, onSendDataClick }) => {
- const [storeClicked, setStoreClicked] = useState(false);
+const EndOfGameLayout = ({ onSendDataClick }) => {
  const [sendClicked, setSendClicked] = useState(false);
-
-
- const handleStoreClick = () => {
-   setStoreClicked(true);
-   setSendClicked(false);
-   onStoreDataClick();
- };
 
 
  const handleSendClick = () => {
    setSendClicked(true);
-   setStoreClicked(false);
    onSendDataClick();
  };
 
@@ -51,29 +42,13 @@ const EndOfGameLayout = ({ onStoreDataClick, onSendDataClick }) => {
            margin: "5px",
            fontSize: "20px",
            fontWeight: "700",
-           color: storeClicked ? "white" : "#7d7d7d",
-           borderColor: storeClicked ? "white" : "#000614",
-           backgroundColor: '#000614',
-         }}
-         onClick={handleStoreClick}
-       >
-         Store Data (no wifi)
-       </button>
-       <button
-         style={{
-           borderRadius: "10px",
-           width: "50%",
-           height: "50px",
-           margin: "5px",
-           fontSize: "20px",
-           fontWeight: "700",
            color: sendClicked ? "white" : "#7d7d7d",
            borderColor: sendClicked ? "white" : "#000614",
            backgroundColor: '#000614',
          }}
          onClick={handleSendClick}
        >
-         Send Data (wifi)
+         Finish Game
        </button>
      </div>
      <div className="scroll-buffer"></div>

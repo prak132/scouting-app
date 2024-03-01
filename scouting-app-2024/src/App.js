@@ -303,16 +303,17 @@ function App() {
             setSentMatches(prevSentMatches => [...prevSentMatches, key]);
             localStorage.removeItem(key);
             console.log(`match ${key} removed`);
+            setLastRemovedAction(`All pending data sent`);
+            setShowNtoif(true);
+            setTimeout(() => setShowNtoif(false), 2000);      
           } catch (error) {
             setLastRemovedAction(`Failed to send Data`);
+            setShowConfirmSendModal(false);
             setShowNotif(true);
-            setTimeout(() => setShowNotif(false), 2000);    
+            setTimeout(() => setShowNotif(false), 2000);
           }
         }
       }
-      setLastRemovedAction(`All pending data sent`);
-      setShowNtoif(true);
-      setTimeout(() => setShowNtoif(false), 2000);
     } else {
       setLastRemovedAction(`No data to send`);
       setShowNotif(true);
