@@ -16,12 +16,12 @@ color = 'blue'
 #testing for each field color
 if color == 'blue':
     try:
-        wn.bgpic("auto_visualizer/blue.png")
+        wn.bgpic("api_code/auto_visualizer/blue.png")
     except Exception as e:
         print("Error loading background image:", e)
 elif color == 'red':
     try:
-        wn.bgpic("auto_visualizer/red.png")
+        wn.bgpic("api_code/auto_visualizer/red.png")
     except Exception as e:
         print("Error loading background image:", e)
 
@@ -34,27 +34,51 @@ scouter = turtle.Turtle()
 
 #depending on the start position given, will travel to that position, also depends on red or blue
 def start_pos(start_pos, scouter):
-    if start_pos == 'left':
-        scouter.color('white')
-        scouter.penup()
-        scouter.goto(-150, -330)
-        scouter.pendown
-        turtle.pencolor('white')
-        scouter.left(90)
-    elif start_pos == 'middle':
-        scouter.color('white')
-        scouter.penup()
-        scouter.goto(30, -330)
-        scouter.pendown
-        scouter.pencolor('white')
-        scouter.left(90)
-    elif start_pos == 'right':
-        scouter.color('white')
-        scouter.penup()
-        scouter.goto(180, -330)
-        scouter.pendown
-        scouter.pencolor('white')
-        scouter.left(90)
+    if color == 'blue':
+        if start_pos == 'left':
+            scouter.color('white')
+            scouter.penup()
+            scouter.goto(-170, -330)
+            scouter.pendown
+            turtle.pencolor('white')
+            scouter.left(90)
+        elif start_pos == 'middle':
+            scouter.color('white')
+            scouter.penup()
+            scouter.goto(30, -330)
+            scouter.pendown
+            scouter.pencolor('white')
+            scouter.left(90)
+        elif start_pos == 'right':
+            scouter.color('white')
+            scouter.penup()
+            scouter.goto(180, -330)
+            scouter.pendown
+            scouter.pencolor('white')
+            scouter.left(90)
+    elif color == 'red':
+        if start_pos == 'left':
+            scouter.color('white')
+            scouter.penup()
+            scouter.goto(-150, -330)
+            scouter.pendown
+            turtle.pencolor('white')
+            scouter.left(90)
+        elif start_pos == 'middle':
+            scouter.color('white')
+            scouter.penup()
+            scouter.goto(30, -330)
+            scouter.pendown
+            scouter.pencolor('white')
+            scouter.left(90)
+        elif start_pos == 'right':
+            scouter.color('white')
+            scouter.penup()
+            scouter.goto(180, -330)
+            scouter.pendown
+            scouter.pencolor('white')
+            scouter.left(90)
+
 
 #------------------------------------------------------------------------------------------------
 
@@ -62,7 +86,7 @@ def start_pos(start_pos, scouter):
 def notes(notes_taken, scouter):
     if color == 'blue':
         for i in notes_taken:
-            if i == 1:
+            if i == 0:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -72,7 +96,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 2:
+            elif i == 1:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -82,7 +106,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 3:
+            elif i == 2:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -92,7 +116,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 4:
+            elif i == 3:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -102,7 +126,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 5:
+            elif i == 4:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -113,7 +137,7 @@ def notes(notes_taken, scouter):
                 scouter.circle(r)
                 scouter.penup()
             
-            elif i == 8:
+            elif i == 7:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -123,7 +147,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 7:
+            elif i == 6:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -133,7 +157,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 6:
+            elif i == 5:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -145,7 +169,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
     elif color == 'red':
         for i in notes_taken:
-            if i == 1:
+            if i == 0:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -155,7 +179,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 2:
+            elif i == 1:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -165,7 +189,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 3:
+            elif i == 2:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -175,7 +199,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 4:
+            elif i == 3:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -185,7 +209,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 5:
+            elif i == 4:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -196,7 +220,7 @@ def notes(notes_taken, scouter):
                 scouter.circle(r)
                 scouter.penup()
             
-            elif i == 6:
+            elif i == 5:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -206,7 +230,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 7:
+            elif i == 6:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -216,7 +240,7 @@ def notes(notes_taken, scouter):
                 r = 10
                 scouter.circle(r)
                 scouter.penup()
-            elif i == 8:
+            elif i == 7:
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
@@ -231,14 +255,14 @@ def notes(notes_taken, scouter):
 #------------------------------------------------------------------------------------------------
 #this is where all data should be inputed
 # how the data will be actually, use only index[0]
-data = [[1, 0.00], [2, 0.00], [3, 0.00], [4, 0.00], [5, 0.00], [6, 0.00], [7, 0.00], [8, 0.00]]
+data = [[0, 0.00], [1, 0.00], [2, 0.00], [3, 0.00], [4, 0.00], [5, 0.00], [6, 0.00], [7, 0.00]]
 readable_data = []
 
 for i in range(len(data)):
     temp = data[i][0]
     readable_data.append(temp)
 
-start_pos('middle', scouter)
+start_pos('left', scouter)
 notes(readable_data, scouter)
 
 
@@ -250,6 +274,6 @@ img = ImageGrab.grab(bbox=(canvas.winfo_rootx(),
                             canvas.winfo_rooty(),
                             canvas.winfo_rootx() + canvas.winfo_width(),
                             canvas.winfo_rooty() + canvas.winfo_height()))
-img.save("auto_visualizer/turtle_path_img.png")
+img.save("api_code/auto_visualizer/turtle_path_img.png")
 
 turtle.done()
