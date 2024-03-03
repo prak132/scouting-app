@@ -265,7 +265,7 @@ button:hover {
   margin: auto;
   color: rgba(255, 255, 255, 0.750);
   width: 80%;
-  height: 50%;
+  height: 70%;
   overflow: scroll;
   z-index: 999;
 }  
