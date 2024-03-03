@@ -16,7 +16,7 @@ const UndoDev = ({ onUndoClick, onInfoClick }) => {
          margin: 0 }}>
         <div style={{ justifyContent: 'center', alignItems: 'center', gap: 12, display: 'flex' }}>
           <div style={{ width: 80, height: 36, position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ width: 80, height: 36, borderRadius: '10%', border: '1px rgba(255, 255, 255, 0.70) solid', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ width: 80, height: 36, borderRadius: '10px', border: '1px rgba(255, 255, 255, 0.70) solid', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div style={{color: "white", fontSize: "18px"}}>
                 UNDO
               </div>

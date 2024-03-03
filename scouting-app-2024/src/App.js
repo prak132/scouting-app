@@ -480,7 +480,25 @@ function App() {
       {isModalOpen && !devMode && (
           <div className="modalthingpopup">
             <div className="modal-content">
-              <h2>Choose Position and Team</h2>
+              <div style={{
+                fontSize: 22,
+                fontWeight: 500,
+                marginTop: 20,
+                marginBottom: '20%'
+              }}>
+                Choose Team & Position
+              </div>
+              <div className="team-numbers-container">
+                {teamNumbers.map((number) => (
+                  <button
+                    key={number}
+                    className={`team-numbers ${selectedTeamNumber === number ? 'team-number-selected' : ''}`}
+                    onClick={() => handleSelectTeamNumber(number)}
+                  >
+                    {number}
+                  </button>
+                ))}
+              </div>
               <div className="position-buttons-container">
                 {['Left', 'Middle', 'Right'].map((position) => (
                   <button
@@ -492,18 +510,6 @@ function App() {
                   </button>
                 ))}
               </div>
-              <h3>Team Numbers</h3>
-              <div className="team-numbers-container">
-                {teamNumbers.map((number) => (
-                  <button
-                    key={number}
-                    className={`team-numbers ${selectedTeamNumber === number ? 'team-number-selected' : ''}`}
-                    onClick={() => handleSelectTeamNumber(number)}
-                  >
-                    {number}
-                  </button>
-                ))}
-            </div>
               <button
                 className={`teamModalButton ${isMatchReady ? 'teamModalButton-glow' : ''}`}
                 onClick={closeModal}
