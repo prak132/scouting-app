@@ -43,7 +43,7 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
   };
 
   const handleNextButtonClick = () => {
-    const selectedMatch = matchDetails[matchValue];
+    const selectedMatch = matchDetails["2024casj_qm"+matchValue];
     if (selectedMatch) {
       const alliance = activeButton === "blue" ? "blue" : "red";
       const blueTeamKeys = selectedMatch.blue;
@@ -85,7 +85,7 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
         />
         <datalist id="matchOptions">
           {matchesData.map((matchKey, index) => (
-            <option key={index} value={matchKey} />
+            <option key={index} value={matchKey.replace('2024casj_qm', '')} />
           ))}
         </datalist>
       </div>

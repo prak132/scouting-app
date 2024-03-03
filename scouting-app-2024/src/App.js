@@ -112,8 +112,8 @@ function App() {
         endact: qualEndactions,
       };
     }
-    localStorage.setItem(matchValue, JSON.stringify(data));
-    console.log(`Data stored for match ${matchValue}`);
+    localStorage.setItem("2024casj_qm"+matchValue, JSON.stringify(data));
+    console.log(`Data stored for match 2024casj_qm+${matchValue}`);
     window.location.reload(false);
   }
 
@@ -341,7 +341,7 @@ function App() {
   }
 
   async function handleSendDataClick() {
-    if (!localStorage.getItem(matchValue)) {
+    if (!localStorage.getItem("2024casj_qm"+matchValue)) {
       await handleStoreDataClick();
     }
     let localKeys = Object.keys(localStorage);
