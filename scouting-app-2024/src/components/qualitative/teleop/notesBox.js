@@ -57,7 +57,7 @@ const RectangleWithText = ( {qualTeleoptext, qualTeleopsetText}) => {
             fontWeight: '600',
             lineHeight: 'normal',
             border: '1px solid #2F3953',
-            color: '#FFFFFF4D',
+            color: '#FFFFFF',
             textAlign: 'left',
             verticalAlign: 'top',
             boxShadow: '0px 0px 51px 5px rgba(255, 255, 255, 0.25)',
