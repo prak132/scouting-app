@@ -8,7 +8,6 @@ app.use(express.json());
 
 const DATA_FILE = "./matchData.json";
 
-
 const quantitativeHeaders = [
   "Scouter Name",
   "mode",
@@ -19,7 +18,7 @@ const quantitativeHeaders = [
   "Preloaded Piece Time",
   "Auto Notes/Times",
   "Teleop Scoring",
-  "Endgame Scoring",
+  "Endgame Scoring",  
 ];
 
 const qualitativeHeaders = [

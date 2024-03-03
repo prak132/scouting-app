@@ -1,9 +1,10 @@
+#done
 import json
 import requests
 import csv
 
 api_key = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw'
-event_code = '2024week0'
+event_code = '2024casj'
 url = f'https://www.thebluealliance.com/api/v3/event/{event_code}/teams/keys'
 
 headers = {
