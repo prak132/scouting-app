@@ -47,8 +47,8 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, red
   return (
     <div>
       <div>
-        {renderButtons(blueTeamNumbers, blueButtonStates, handleBlueButtonClick, 'blue', '#3B72FF')}
-        {renderButtons(redTeamNumbers, redButtonStates, handleRedButtonClick, 'red', '#FF3B3B')}
+        {renderButtons(blueTeamNumbers, blueButtonStates, handleBlueButtonClick, '#327fa8', '#3B72FF')}
+        {renderButtons(redTeamNumbers, redButtonStates, handleRedButtonClick, '#a83432', '#FF3B3B')}
       </div>
     </div>
   );
