@@ -1,27 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Timer = ({ active, time, setTime, initialDelayComplete, setInitialDelayComplete, setteleended, setgameended }) => {
+  const startTime = useRef(null);
+
   useEffect(() => {
     let interval;
     let timerDelay;
     if (active) {
+      startTime.current = Date.now();
       interval = setInterval(() => {
         setTime(prevTime => {
-          if (prevTime >= 15 && !initialDelayComplete) {
+          const elapsed = (Date.now() - startTime.current) / 1000;
+          if (elapsed >= 15 && !initialDelayComplete) {
             clearInterval(interval);
             timerDelay = setTimeout(() => {
               setInitialDelayComplete(true);
             }, 3000);
             return 0;
-          } if (initialDelayComplete && prevTime >= 105) {
+          } if (initialDelayComplete && elapsed >= 105) {
             setteleended(true);
-          } if (initialDelayComplete && prevTime >= 135) {
+          } if (initialDelayComplete && elapsed >= 135) {
             setgameended(true);
             clearInterval(interval);
             clearTimeout(timerDelay);
             return 135;
           }
-          return prevTime + 0.01;
+          return elapsed;
         });
       }, 10);
     }
