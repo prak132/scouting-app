@@ -4,7 +4,6 @@ import csv
 
 api_key = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw'
 event_code = '2024casj'
-url = f'https://www.thebluealliance.com/api/v3/event/{event_code}/matches/keys'
 matches_data = {}
 
 def get_teams_data(matchcode):
@@ -25,6 +24,7 @@ def get_teams_data(matchcode):
 
 
 def main():
+    url = f'https://www.thebluealliance.com/api/v3/event/{event_code}/matches/keys'
     headers = {
         'accept': 'application/json',
         'X-TBA-Auth-Key': api_key
@@ -34,14 +34,14 @@ def main():
         response.raise_for_status()
         if response.status_code == 200:
             data = response.json()
-            with open('match.json', 'w') as outfile:
+            with open('../scouting-app-2024/src/data/match.json', 'w') as outfile:
                 json.dump(data, outfile, indent=2)
             print("Done!")
         else:
             print(f"Failed with status code {response.status_code}")
     except requests.exceptions.RequestException as e:
         print("Failed. Error: {}".format(e))
-    with open('match.json', 'r') as f:
+    with open('../scouting-app-2024/src/data/match.json', 'r') as f:
         match_codes = json.load(f)
     num = len(match_codes)
     thing = 0
@@ -51,7 +51,7 @@ def main():
         lent = int(50*i//num)
         bar = '=' * (lent-1)+'>'+(''if lent==50 else'-'*(50-lent))
         print('\rProgress: |{}| {:.2f}% Complete'.format(bar, perc),end='',flush=True)
-    with open('team.json', 'w') as outfile:
+    with open('../scouting-app-2024/src/data/team.json', 'w') as outfile:
         parsed = {match: data for match, data in matches_data.items()}
         json.dump(parsed, outfile, indent=2)
     print("\ndone")
@@ -99,7 +99,7 @@ def main():
                 for item in teams:
                     writer.writerow([item])
             print("Team data fetched and saved to teams.json and teams.csv")
-            with open('team.json', 'r') as infile:
+            with open('../scouting-app-2024/src/data/team.json', 'r') as infile:
                 match_data = json.load(infile)
             team_matches = {team: [] for team in teams}
             for match_id, teams_in_match in match_data.items():
@@ -120,4 +120,4 @@ def main():
         print(f"Failed. Error: {e}")
 
 if __name__ == "__main__":
-  main()
+    main()
