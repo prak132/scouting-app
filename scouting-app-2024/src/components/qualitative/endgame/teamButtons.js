@@ -30,6 +30,7 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, red
                 height: '50px',
                 margin: '5px',
                 fontSize: '20px',
+                fontFamily: 'poppins',
                 fontWeight: '700',
                 boxShadow: buttonStates[index] ? '0px 0px 15px 1px rgba(255, 255, 255, 0.30)' : '0px 0px 30px 1px rgba(255, 255, 255, 0.30)',
               }}
