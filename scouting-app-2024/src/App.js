@@ -114,7 +114,6 @@ function App() {
     }
     localStorage.setItem("2024casj_qm"+matchValue, JSON.stringify(data));
     console.log(`Data stored for match 2024casj_qm+${matchValue}`);
-    window.location.reload(false);
   }
 
   const onlickYes = () => {
