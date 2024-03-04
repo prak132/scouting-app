@@ -1,17 +1,12 @@
 import React from 'react';
 
-const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, redTeamNumbers }) => {
-  const { blue: blueButtonStates, red: redButtonStates } = teamButtonState;
-  const handleBlueButtonClick = (index) => {
-    const newButtonStates = [...blueButtonStates];
+const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, redTeamNumbers, selAlliance }) => {
+  const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
+  const buttonStates = teamButtonState[selAlliance === "0" ? 'blue' : 'red'];
+  const handleButtonClick = (index) => {
+    const newButtonStates = [...buttonStates];
     newButtonStates[index] = !newButtonStates[index];
-    setTeamButtonState(prevState => ({ ...prevState, blue: newButtonStates }));
-  };
-
-  const handleRedButtonClick = (index) => {
-    const newButtonStates = [...redButtonStates];
-    newButtonStates[index] = !newButtonStates[index];
-    setTeamButtonState(prevState => ({ ...prevState, red: newButtonStates }));
+    setTeamButtonState(prevState => ({ ...prevState, [selAlliance === "0" ? 'blue' : 'red']: newButtonStates }));
   };
 
   const renderButtons = (teamNumbers, buttonStates, handleClick, borderColor) => {
@@ -47,8 +42,7 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, red
   return (
     <div>
       <div>
-        {renderButtons(blueTeamNumbers, blueButtonStates, handleBlueButtonClick, 'blue', '#3B72FF')}
-        {renderButtons(redTeamNumbers, redButtonStates, handleRedButtonClick, 'red', '#FF3B3B')}
+        {renderButtons(teamNumbers, buttonStates, handleButtonClick, selAlliance === "0" ? 'blue' : 'red')}
       </div>
     </div>
   );

@@ -15,6 +15,8 @@ import UndoDev from "./undoinfo.js";
 import Fin from "./components/gameend/layout.js";
 import Notif from "./toast.js";
 import Ntoif from "./toasty.js";
+import RedMap from "./assets/red_minimap.svg";
+import BlueMap from "./assets/blue_minimap.svg";
 
 function App() {
   // IMPORTANT FOR ALLIANCES AND OTHER STUFF
@@ -519,6 +521,7 @@ function App() {
               </button>
             </div>
             <div className="overlay"></div>
+            <RedMap />
           </div>
         )}
       </div>

@@ -13,20 +13,17 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
   }, [qualEndactions]);
 
   const handleEndgameButtonClick = (buttonName) => {
-    const selectedBlueTeams = teamButtonState.blue
-      .map((state, index) => state ? [blueTeamNumbers[index], time.toFixed(2)] : null)
+    const teamNumbers = selAlliance === "0" ? blueTeamNumbers : redTeamNumbers;
+    const selectedTeams = teamButtonState[selAlliance === "0" ? 'blue' : 'red']
+      .map((state, index) => state ? [teamNumbers[index], time.toFixed(2)] : null)
       .filter(item => item !== null);
-    const selectedRedTeams = teamButtonState.red
-      .map((state, index) => state ? [redTeamNumbers[index], time.toFixed(2)] : null)
-      .filter(item => item !== null);
-    if (selectedBlueTeams.length > 0 || selectedRedTeams.length > 0) {
+    if (selectedTeams.length > 0) {
       qualEndsetActions(prevActions => {
         const existingAction = prevActions[buttonName] || { blue: [], red: [] };
-        const blueArray = Array.isArray(existingAction.blue) ? existingAction.blue : [];
-        const redArray = Array.isArray(existingAction.red) ? existingAction.red : [];
+        const array = Array.isArray(existingAction[selAlliance === "0" ? 'blue' : 'red']) ? existingAction[selAlliance === "0" ? 'blue' : 'red'] : [];
         const updatedAction = {
-          blue: [...blueArray, ...selectedBlueTeams],
-          red: [...redArray, ...selectedRedTeams],
+          ...existingAction,
+          [selAlliance === "0" ? 'blue' : 'red']: [...array, ...selectedTeams],
         };
         return {
           ...prevActions,
@@ -35,12 +32,12 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
       });
       setTeamButtonState({ blue: Array(3).fill(false), red: Array(3).fill(false) });
       const actionVerb = buttonName.charAt(0).toUpperCase() + buttonName.slice(1);
-      const notifMessage = `${selectedBlueTeams.concat(selectedRedTeams).map(item => item[0]).join(", ")} ${actionVerb.toLowerCase()}`;
+      const notifMessage = `${selectedTeams.map(item => item[0]).join(", ")} ${actionVerb.toLowerCase()}`;
       setNotifContents(notifMessage);
       setLaunchNotif(true);
     }
   };
-  
+    
   return (
     <div
       style={{
@@ -79,7 +76,7 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
       <div>
       <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams} rows={qualEndRows} setRows={qualEndSetRows} teamOptions={qualEndTeamOptions} setTeamOptions={qualEndSetTeamOptions} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
       <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
-      <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} />
+      <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
       <Notif contents={notifContents} launchNotif={launchNotif} setLaunchNotif={setLaunchNotif} />
       </div>
       </div>
