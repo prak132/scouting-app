@@ -519,9 +519,9 @@ function App() {
               >
                 Start Match
               </button>
+              <img className="mapStyle" src={selAlliance === 'red' ? RedMap : BlueMap} alt='minimap'/>
             </div>
             <div className="overlay"></div>
-            <RedMap />
           </div>
         )}
       </div>
