@@ -270,6 +270,11 @@ button:hover {
   z-index: 999;
 }  
 
+.mapStyle {
+  height: '100%';
+  width: '100%';
+}
+
 .modalwharpopup {
   position: fixed;
   top: 50%;

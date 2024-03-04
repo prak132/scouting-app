@@ -21,7 +21,7 @@ csv_file_path = "api_code/teamdata.csv"
 # Defining all important variables
 scouter = turtle.Turtle()
 color = ''
-scouter_color = ['green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green']
+scouter_color = 'green'
 scouter_color_index = -1
 target_number = "1678"
 start = ''
@@ -95,7 +95,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-210, 190)
                 scouter.forward(10)
                 r = 10
@@ -105,7 +105,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-105, 190)
                 scouter.forward(10)
                 r = 10
@@ -115,7 +115,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(5, 190)
                 scouter.forward(10)
                 r = 10
@@ -125,7 +125,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(115, 190)
                 scouter.forward(10)
                 r = 10
@@ -135,7 +135,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(225, 190)
                 scouter.forward(10)
                 r = 10
@@ -146,7 +146,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-5, -245)
                 scouter.forward(10)
                 r = 10
@@ -156,7 +156,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-95, -245)
                 scouter.forward(10)
                 r = 10
@@ -166,7 +166,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-180, -245)
                 scouter.forward(10)
                 r = 10
@@ -178,7 +178,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-205, 185)
                 scouter.forward(10)
                 r = 10
@@ -188,7 +188,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(-100, 185)
                 scouter.forward(10)
                 r = 10
@@ -198,7 +198,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(10, 185)
                 scouter.forward(10)
                 r = 10
@@ -208,7 +208,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(120, 185)
                 scouter.forward(10)
                 r = 10
@@ -218,7 +218,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(225, 185)
                 scouter.forward(10)
                 r = 10
@@ -229,7 +229,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(15, -245)
                 scouter.forward(10)
                 r = 10
@@ -239,7 +239,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(105, -245)
                 scouter.forward(10)
                 r = 10
@@ -249,7 +249,7 @@ def notes(notes_taken, scouter):
                 scouter.penup()
                 scouter.pendown()
                 scouter.width(3)
-                scouter.pencolor(scouter_color[scouter_color_index])
+                scouter.pencolor(scouter_color)
                 scouter.goto(195, -245)
                 scouter.forward(10)
                 r = 10
