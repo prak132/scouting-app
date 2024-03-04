@@ -30,6 +30,7 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, red
                 height: '50px',
                 margin: '5px',
                 fontSize: '20px',
+                fontFamily: 'poppins',
                 fontWeight: '700',
                 boxShadow: buttonStates[index] ? '0px 0px 15px 1px rgba(255, 255, 255, 0.30)' : '0px 0px 30px 1px rgba(255, 255, 255, 0.30)',
               }}
@@ -46,8 +47,8 @@ const TeamButtons = ({ teamButtonState, setTeamButtonState, blueTeamNumbers, red
   return (
     <div>
       <div>
-        {renderButtons(blueTeamNumbers, blueButtonStates, handleBlueButtonClick, 'blue', '#3B72FF')}
-        {renderButtons(redTeamNumbers, redButtonStates, handleRedButtonClick, 'red', '#FF3B3B')}
+        {renderButtons(blueTeamNumbers, blueButtonStates, handleBlueButtonClick, '#327fa8', '#3B72FF')}
+        {renderButtons(redTeamNumbers, redButtonStates, handleRedButtonClick, '#a83432', '#FF3B3B')}
       </div>
     </div>
   );

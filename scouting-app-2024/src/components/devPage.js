@@ -74,7 +74,7 @@ const DevPage = ({ blueTeamNumbers, redTeamNumbers, selAlliance, matchValue, set
           />
           <datalist id="matchOptions">
             {matchesData.map((matchKey, index) => (
-              <option key={index} value={matchKey} />
+              <option key={index} value={matchKey.replace("2024casj_qm","")} />
             ))}
           </datalist>
         </div>

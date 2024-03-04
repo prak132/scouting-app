@@ -53,7 +53,7 @@ const EndgameButtons = ({ onEndgameButtonClick }) => {
             }}
             onClick={() => handleButtonClick('harmonized')}
           >
-            harmonize
+            Harmonize
           </button>
 
           
@@ -74,7 +74,7 @@ const EndgameButtons = ({ onEndgameButtonClick }) => {
             }}
             onClick={() => handleButtonClick('climbed')}
           >
-            climb
+            Climb
           </button>
         </div>
       </div>
