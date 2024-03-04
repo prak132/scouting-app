@@ -17,9 +17,9 @@ const Timer = ({ active, time, setTime, initialDelayComplete, setInitialDelayCom
               setInitialDelayComplete(true);
             }, 3000);
             return 0;
-          } if (initialDelayComplete && elapsed >= 105) {
+          } if (initialDelayComplete && elapsed >= 105) { //105
             setteleended(true);
-          } if (initialDelayComplete && elapsed >= 135) {
+          } if (initialDelayComplete && elapsed >= 135) { //135
             setgameended(true);
             clearInterval(interval);
             clearTimeout(timerDelay);
