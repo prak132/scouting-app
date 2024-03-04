@@ -271,8 +271,13 @@ button:hover {
 }  
 
 .mapStyle {
-  height: '100%';
-  width: '100%';
+  position: relative;
+  width: 100%;
+  border: 3px solid #8b8b8b;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .modalwharpopup {
@@ -317,9 +322,8 @@ button:hover {
 .team-numbers-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  gap: 10px
 }
 
 .position-buttons,

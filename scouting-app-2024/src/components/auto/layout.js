@@ -40,7 +40,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
     <div>
       <Notif contents={"Note Scored"} launchNotif={showNotif} setLaunchNotif={setShowNotif} />
       
-      <div style={{ paddingTop: "18vh" }}>
+      <div style={{ paddingTop: "25vh" }}>
         <div type="teleop-text">
           <div
             className="title"

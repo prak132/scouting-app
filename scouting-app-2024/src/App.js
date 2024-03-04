@@ -486,7 +486,7 @@ function App() {
                 fontSize: 22,
                 fontWeight: 500,
                 marginTop: 20,
-                marginBottom: '20%'
+                marginBottom: '10%'
               }}>
                 Choose Team & Position
               </div>
@@ -501,6 +501,7 @@ function App() {
                   </button>
                 ))}
               </div>
+              <img className="mapStyle" src={selAlliance === 'red' ? RedMap : BlueMap} alt='minimap'/>
               <div className="position-buttons-container">
                 {['Left', 'Middle', 'Right'].map((position) => (
                   <button
@@ -519,7 +520,6 @@ function App() {
               >
                 Start Match
               </button>
-              <img className="mapStyle" src={selAlliance === 'red' ? RedMap : BlueMap} alt='minimap'/>
             </div>
             <div className="overlay"></div>
           </div>
