@@ -7,6 +7,7 @@ import Notif from "./toast.js";
 const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEndactions, qualEndsetActions, teamButtonState, setTeamButtonState, qualEndRows, qualEndSetRows, qualEndTeamOptions, qualEndSetTeamOptions, blueTeamNumbers, redTeamNumbers, selAlliance}) => {
   const [notifContents, setNotifContents] = useState("");
   const [launchNotif, setLaunchNotif] = useState(false);
+  const [teamsClimbed, setTeamsClimbed] = useState([]);
 
   useEffect(() => {
     console.log("Actions:", qualEndactions);
@@ -17,7 +18,14 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
     const selectedTeams = teamButtonState[selAlliance === "0" ? 'blue' : 'red']
       .map((state, index) => state ? [teamNumbers[index], time.toFixed(2)] : null)
       .filter(item => item !== null);
-    if (selectedTeams.length > 0) {
+    if (selectedTeams.length < 2 && buttonName === "harmonized") {
+      setNotifContents("You need to select two teams to harmonize.");
+      setLaunchNotif(true);
+      return;
+    } else if (selectedTeams.length > 0) {
+      if (buttonName === "climbed") {
+        setTeamsClimbed([...teamsClimbed, ...selectedTeams.map(item => item[0])]);
+      }
       qualEndsetActions(prevActions => {
         const existingAction = prevActions[buttonName] || { blue: [], red: [] };
         const array = Array.isArray(existingAction[selAlliance === "0" ? 'blue' : 'red']) ? existingAction[selAlliance === "0" ? 'blue' : 'red'] : [];
@@ -75,7 +83,7 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
       <div style={{margin: 'auto'}}>
       <div>
       <EndgameTable qualEndscoredTeams={qualEndscoredTeams} qualEndsetScoredTeams={qualEndsetScoredTeams} rows={qualEndRows} setRows={qualEndSetRows} teamOptions={qualEndTeamOptions} setTeamOptions={qualEndSetTeamOptions} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
-      <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} />
+      <EndgameButtons onEndgameButtonClick={handleEndgameButtonClick} qualEndactions={qualEndactions} teamsClimbed={teamsClimbed} selAlliance={selAlliance}/>
       <TeamButtons teamButtonState={teamButtonState} setTeamButtonState={setTeamButtonState} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
       <Notif contents={notifContents} launchNotif={launchNotif} setLaunchNotif={setLaunchNotif} />
       </div>

@@ -501,7 +501,7 @@ function App() {
                   </button>
                 ))}
               </div>
-              <img className="mapStyle" src={selAlliance === 'red' ? RedMap : BlueMap} alt='minimap'/>
+              <img className="mapStyle" src={selAlliance === "0" ? BlueMap : RedMap} alt='minimap'/>
               <div className="position-buttons-container">
                 {['Left', 'Middle', 'Right'].map((position) => (
                   <button

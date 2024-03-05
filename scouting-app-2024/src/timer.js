@@ -11,15 +11,15 @@ const Timer = ({ active, time, setTime, initialDelayComplete, setInitialDelayCom
       interval = setInterval(() => {
         setTime(prevTime => {
           const elapsed = (Date.now() - startTime.current) / 1000;
-          if (elapsed >= 15 && !initialDelayComplete) {
+          if (elapsed >= 2 && !initialDelayComplete) {
             clearInterval(interval);
             timerDelay = setTimeout(() => {
               setInitialDelayComplete(true);
-            }, 3000);
+            }, 2);
             return 0;
-          } if (initialDelayComplete && elapsed >= 105) { //105
+          } if (initialDelayComplete && elapsed >= 3) { //105
             setteleended(true);
-          } if (initialDelayComplete && elapsed >= 135) { //135
+          } if (initialDelayComplete && elapsed >= 2) { //135
             setgameended(true);
             clearInterval(interval);
             clearTimeout(timerDelay);
