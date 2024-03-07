@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Logo from "../assets/monkeylogo.svg";
 import "./menu.css";
 
-const MenuElements = ({ onsendsomething, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance }) => {
+const MenuElements = ({ onsendsomething, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance, coolfakerefresh }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showConfirmRefreshModal, setShowConfirmRefreshModal] = useState(false);
   const [theme, setTheme] = useState('light');
@@ -24,7 +24,8 @@ const MenuElements = ({ onsendsomething, setBlueTeamNumbers, setRedTeamNumbers, 
     setSelAlliance("1");
     setBlueTeamNumbers(bug);
     setRedTeamNumbers(bug);
-    window.location.reload(false);
+    coolfakerefresh();
+    setShowConfirmRefreshModal(false);
   }
   
   const confirmRefresh = () => {

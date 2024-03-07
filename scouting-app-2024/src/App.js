@@ -194,6 +194,65 @@ function App() {
     }
   };
   
+  function coolfakerefresh() {
+    /*
+      replace window.location.reload(false);
+      first call this function
+      with moving back to the showTextBox page
+      setucurrentpage to 0
+    */
+    // this was all hand done
+    setBlueTeamNumbers([]);
+    setRedTeamNumbers([]);
+    setSelAlliance(0);
+    setLastRemovedAction('');
+    setShowNotif(false);
+    setShowNtoif(false);
+    setSentMatches([]);
+    setShowConfirmSendModal(false);
+    setTimerActive(false);
+    setTime(0);
+    setInitialDelayComplete(false);
+    setteleended(false);
+    setgameended(false);
+    quantTeleSetScoredTeams([]);
+    setquantEndSetScoredTeams([]);
+    qualTeleopsetScoredTeams([]);
+    qualTeleopsetText('');
+    qualTeleSetRows(Array.from({ length: 3 }, (_, index) => index + 1));
+    qualTelesetTeamOptions([]);
+    qualEndsetScoredTeams([]);
+    setTeamButtonState({
+      blue: Array(3).fill(false),
+      red: Array(3).fill(false)
+    });
+    qualEndsetActions({ climbed: [], harmonized: [] });
+    qualEndSetRows(Array.from({ length: 3 }, (_, index) => index + 1));
+    qualEndSetTeamOptions([]);
+    setClickedNotes([]);
+    setDisabledButtons([]);
+    setIsPreNoteScored(null);
+    setsomething(false);
+    setMatchValue("");
+    setActiveButton(null);
+    setModeActiveButton(null);
+    setDevMode(false);
+    setPreloadedtime(0);
+    setCurrentPage(0);
+    setIsQuantitativeMode(true);
+    setShowTextBox(true);
+    setIsModalOpen(false);
+    setTeamNumbers([]);
+    setSelectedPosition('');
+    setSelectedTeamNumber('');
+    setIsMatchReady(false);
+    devSetRows(Array.from({ length: 3 }, (_, index) => index + 1));
+    devSetTeamOptions([]);
+    devSetScoredTeams([]);
+    setDevModeKey('');
+    setMaxPageReached(0);
+    console.clear();
+  }
   
   
   const handleRightButtonClick = () => { 
@@ -292,7 +351,7 @@ function App() {
         }
       }
       console.log("All pending data sent");
-      window.location.reload(false);
+      coolfakerefresh();
     } else {
       setLastRemovedAction(`No data to send`);
       setShowNotif(true);
@@ -374,7 +433,7 @@ function App() {
       setLastRemovedAction(`All pending data sent`);
       setShowNtoif(true);
       setTimeout(() => setShowNtoif(false), 2000);
-      window.location.reload(false);
+      coolfakerefresh();
     } else {
       console.log("No data to send");
     }
@@ -494,7 +553,7 @@ function App() {
       )}
       {lastRemovedAction && <Ntoif contents={lastRemovedAction} launchNotif={showNtoif}/>}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
-      <MenuElements onsendsomething={onsendsomething} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>
+      <MenuElements onsendsomething={onsendsomething} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance} coolfakerefresh={coolfakerefresh} />
       {showTextBox && !devMode && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>}
       <div>
       {isModalOpen && !devMode && (
