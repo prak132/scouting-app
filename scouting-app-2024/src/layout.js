@@ -82,6 +82,8 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
           placeholder="Select a match"
           className="glowing-dropdown-input text"
           id="matchInput"
+          inputMode="numeric"
+          pattern="[0-9]*"        
         />
         <datalist id="matchOptions">
           {matchesData.map((matchKey, index) => (
