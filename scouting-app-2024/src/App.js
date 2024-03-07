@@ -17,6 +17,15 @@ import Notif from "./toast.js";
 import Ntoif from "./toasty.js";
 import RedMap from "./assets/red_minimap.svg";
 import BlueMap from "./assets/blue_minimap.svg";
+import img1 from "./assets/blue_minimap.svg";
+import img2 from "./assets/check.svg";
+import img3 from "./assets/errorx.svg";
+import img4 from "./assets/exclamation.svg";
+import img5 from "./assets/red_minimap.svg";
+import img6 from "./assets/monkeylogo.svg";
+import img7 from "./components/auto/assets/blue_auto.svg";
+import img8 from "./components/auto/assets/red_auto.svg";
+import img9 from "./components/auto/assets/check.svg";
 
 function App() {
   // IMPORTANT FOR ALLIANCES AND OTHER STUFF
@@ -454,6 +463,15 @@ function App() {
 
   return (
     <div>
+      <img src={img1} alt="img1" style={{display: "none"}}/>
+      <img src={img2} alt="img2" style={{display: "none"}}/>
+      <img src={img3} alt="img3" style={{display: "none"}}/>
+      <img src={img4} alt="img4" style={{display: "none"}}/>
+      <img src={img5} alt="img5" style={{display: "none"}}/>
+      <img src={img6} alt="img6" style={{display: "none"}}/>
+      <img src={img7} alt="img7" style={{display: "none"}}/>
+      <img src={img8} alt="img8" style={{display: "none"}}/>
+      <img src={img9} alt="img9" style={{display: "none"}}/>
       {showConfirmSendModal && (
         <div className="modalwharpopup">
           <div className="modal-content">
