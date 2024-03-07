@@ -531,6 +531,8 @@ function App() {
       <img src={img7} alt="img7" style={{display: "none"}}/>
       <img src={img8} alt="img8" style={{display: "none"}}/>
       <img src={img9} alt="img9" style={{display: "none"}}/>
+      <img src={RedMap} alt="img10" style={{display: "none"}}/>
+      <img src={BlueMap} alt="img11" style={{display: "none"}}/>
       {showConfirmSendModal && (
         <div className="modalwharpopup">
           <div className="modal-content">
