@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
+const { decompress, compress } = require("compress-json");
 const app = express();
 const port = 30100;
 app.use(cors());
@@ -18,7 +19,7 @@ const quantitativeHeaders = [
   "Preloaded Piece Time",
   "Auto Notes/Times",
   "Teleop Scoring",
-  "Endgame Scoring",  
+  "Endgame Scoring",
 ];
 
 const qualitativeHeaders = [
@@ -52,7 +53,7 @@ function jsonToCSV(jsonData, matchKey) {
 }
 
 function processQuantitativeData(data, headers, matchKey) {
-  const regExp = /2024week0_qm(\d+)/; 
+  const regExp = /2024casj_qm(\d+)/; 
   matchKey = matchKey.replace(regExp, '$1');
   const row = headers.map(header => {
     switch (header) {
@@ -87,7 +88,7 @@ function processQuantitativeData(data, headers, matchKey) {
 }
 
 function processQualitativeData(data, qualitativeHeaders , matchKey) {
-  const regExp = /2024week0_qm(\d+)/; 
+  const regExp = /2024casj_qm(\d+)/;
   matchKey = matchKey.replace(regExp, '$1');
   const row = qualitativeHeaders.map(header => {
     switch (header) {
@@ -154,7 +155,7 @@ function saveDataToFile(matchData) {
 function loadDataFromFile() {
   try {
     const data = fs.readFileSync(DATA_FILE, "utf8");
-    return JSON.parse(data);
+    return decompress(JSON.parse(data));
   } catch (err) {
     console.error("Error loading data from file:", err);
     return {};
@@ -172,6 +173,7 @@ app.post("/data", (req, res) => {
       matchData[matchValue] = [];
     }
     matchData[matchValue].push(...actualData);
+    matchData = compress(matchData)
     saveDataToFile(matchData);
     res.status(200).send({ message: "done" });
   } else {
@@ -279,6 +281,16 @@ app.get("/data/:matchValue/:dataPiece?", (req, res) => {
     } else {
       res.status(200).json(matchEntries);
     }
+  }
+});
+
+app.get("/alldata", (req, res) => {
+  try {
+    const allData = matchData;
+    res.status(200).json(allData);
+  } catch (err) {
+    console.error("Error retrieving all data:", err);
+    res.status(500).send({ message: "Internal server error" });
   }
 });
 
