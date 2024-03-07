@@ -20,7 +20,7 @@ var(--glow);
   --bigbutton: rgba(238, 255, 0, 0.2);
   --biggerbutton: rgba(234, 255, 0, 0.4);
   --texttt: rgba(251, 251, 119, 0.5);
-  --whart: rgb(171, 171, 171);
+  --whart: #ffec1d;
   --holdupp: #999999;
 }
 
@@ -172,7 +172,7 @@ button:hover {
   align-items: center;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.554);
-  background: var(--whart);
+  background: #000614;
   box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
   margin: 10px auto;
   color: rgba(232, 232, 232, 0.887);
@@ -240,7 +240,7 @@ button:hover {
   align-items: center;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.554);
-  background: var(--whart);
+  background: #000614;
   box-shadow: 0px 0px 100.9px 5px rgba(255, 255, 255, 0.2);
   margin: 0px auto;
   display: block;

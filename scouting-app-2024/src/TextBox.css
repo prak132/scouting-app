@@ -2,7 +2,7 @@
   --highlight-color: #000614;
   --glow: rgba(255, 255, 255, 0.2);
   --glowmore: rgba(255, 255, 255, 0.20);
-  --whartt: #000614;
+  --whartt: #ffec1d;;
 }
 
 [data-theme='dark'] {
@@ -34,7 +34,7 @@
   align-items: center;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.20);
-  background: var(--whartt);
+  background: #000614;
   box-shadow: 0px 0px 100.9px 5px var(--glow);
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.10);
