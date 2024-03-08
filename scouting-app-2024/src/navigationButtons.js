@@ -18,7 +18,7 @@ const PageButtons = ({ onLeftButtonClick, onRightButtonClick, setDevMode, devMod
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setDevModeKey(inputValue);
-    if (fhash(inputValue) === 7024517836730232) {
+    if (fhash(inputValue) === 165101928795890) {
       console.log("dev mode enabled");
       setDevMode(true);
     } else {
