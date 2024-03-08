@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EndgameButtons = ({ onEndgameButtonClick, teamsClimbed, qualEndactions, selAlliance}) => {
+const EndgameButtons = ({ onEndgameButtonClick }) => {
   const [buttonStates, setButtonStates] = useState({ harmonized: false, climbed: false });
 
   const handleButtonClick = (buttonName) => {
@@ -52,16 +52,6 @@ const EndgameButtons = ({ onEndgameButtonClick, teamsClimbed, qualEndactions, se
               fontWeight: '700',
             }}
             onClick={() => handleButtonClick('harmonized')}
-            disabled={
-              buttonStates.harmonized ||
-              (qualEndactions?.harmonized &&
-                qualEndactions.harmonized[selAlliance === '0' ? 'blue' : 'red'] &&
-                teamsClimbed.some((team) =>
-                  qualEndactions.harmonized[selAlliance === '0' ? 'blue' : 'red'].some(
-                    (selectedTeam) => selectedTeam[0] === team
-                  )
-                ))
-            }
           >
             Harmonize
           </button>

@@ -89,7 +89,7 @@ const TeleopLayout = ( {time, quantTelescoredTeams, quantTeleSetScoredTeams, blu
           fontSize: "4vw",
         }}
       >
-        Scoring • Timer: {time.toFixed(2)}s
+        Scoring • {selAlliance === '0' ? "Blue" : "Red"} • Timer: {time.toFixed(2)}s
       </div>
 
       <div>

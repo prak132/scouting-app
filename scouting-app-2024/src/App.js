@@ -513,6 +513,7 @@ function App() {
           devScoredTeams={devScoredTeams}
           devSetScoredTeams={devSetScoredTeams}
           handleFinishClick={handleStoreDataClick}
+          selectedTeamNumber={selectedTeamNumber}
         />}
       {showUndoDev && <UndoDev onUndoClick={undoLastAction} onInfoClick={handleInfoClick} />}
       </div>

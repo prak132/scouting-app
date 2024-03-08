@@ -4,7 +4,7 @@ import red_auto from "./assets/red_auto.svg";
 import blue_auto from "./assets/blue_auto.svg";
 import Notif from "./toast.js";
 
-const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono, selAlliance, disabledButtons, setDisabledButtons }) => {
+const AutoLayout = ({ time, clickedNotes, selectedTeamNumber, setClickedNotes, isPreNoteScored, onlickYes, onlickNo, somethingnonono, selAlliance, disabledButtons, setDisabledButtons }) => {
   const [showNotif, setShowNotif] = useState(false);
   const [autoMapSrc, setAutoMapSrc] = useState(red_auto);
   const [allianceClass, setAllianceClass] = useState("");
@@ -65,7 +65,7 @@ const AutoLayout = ({ time, clickedNotes, setClickedNotes, isPreNoteScored, onli
             fontSize: "4vw",
           }}
         >
-          Scoring • Timer: {time.toFixed(2)}s
+          Scoring • {selAlliance === '0' ? "Blue" : "Red"} • {selectedTeamNumber} • Timer: {time.toFixed(2)}s
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

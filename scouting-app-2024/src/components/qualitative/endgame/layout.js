@@ -78,7 +78,7 @@ const EndGameLayout = ( {time, qualEndscoredTeams, qualEndsetScoredTeams, qualEn
           fontSize: "4vw",
         }}
       >
-        Qualitiative • Timer: {time.toFixed(2)}s
+        Qualitiative • {selAlliance === '0' ? "Blue" : "Red"} • Timer: {time.toFixed(2)}s
       </div>
       <div style={{margin: 'auto'}}>
       <div>
