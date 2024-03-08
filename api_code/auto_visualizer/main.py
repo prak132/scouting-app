@@ -46,8 +46,6 @@ spreadsheet_id = '17r918d5YDvlpFe2qYwyBJHLqBSfRk5ylKCpdN8rFoBc'
 # Create a Google Drive service
 drive_service = build('drive', 'v3', credentials=creds)
 
-
-
 # Define start_pos function
 def start_pos(start_pos, scouter):
     scouter.setheading(90)
@@ -320,7 +318,7 @@ for match_index, match in enumerate(matches_1678.get(target_number, []), start=1
                                canvas.winfo_rootx() + canvas.winfo_width(),
                                canvas.winfo_rooty() + canvas.winfo_height()))
 
-    img_path = f"turtle_path_img_{match}.png"
+    img_path = f"api_code/auto_visualizer/turtle_path_img_{match}.png"
     img.save(img_path)
 
     # Upload the image to Google Drive
@@ -342,19 +340,6 @@ for match_index, match in enumerate(matches_1678.get(target_number, []), start=1
         valueInputOption='USER_ENTERED', body=body).execute()
 
     print(f'Image uploaded and linked in Google Sheets for Match {match} successfully!')
-
-    file_metadata = {'name': f'team_{target_number}_path_{match}.png', 'parents': ['1rEUiu_2Ub4B3VDty3PgcMH28w39_L9gi']}
-    media = MediaFileUpload(img_path, mimetype='image/png')
-    file = drive_service.files().create(body=file_metadata,
-                                         media_body=media,
-                                         fields='id').execute()
-
-    # Get the URL of the uploaded image
-    image_url = f"https://drive.google.com/uc?id={file.get('id')}"
-
-    # Insert the image URL into Google Sheets using Google Apps Script
-    
-
 
     # Clear the turtle's drawings for the next match
     scouter.clear()
