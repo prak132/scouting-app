@@ -3,8 +3,9 @@ from PIL import ImageGrab
 import requests
 import json
 import csv
-import random
-import time
+from googleapiclient.discovery import build
+from google.oauth2.service_account import Credentials
+from googleapiclient.http import MediaFileUpload
 
 # Fetching data from the provided URL
 url = "https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/alldata"
@@ -21,243 +22,252 @@ csv_file_path = "api_code/teamdata.csv"
 # Defining all important variables
 scouter = turtle.Turtle()
 color = ''
-scouter_color = 'green'
-scouter_color_index = -1
 target_number = "1678"
-start = ''
-
 matches_1678 = {}
+scouter_color = 'green'
+start = ''
+scouter.speed(0)
+scouter.hideturtle()
 
 # Read the CSV file and extract matches for Team 1678
 with open(csv_file_path, newline='') as csvfile:
     reader = csv.reader(csvfile)
-    for row in reader:
+    for i, row in enumerate(reader):
+        #print(f"Row {i}: {row}")  # Print out each row to debug
         team_number, *matches = row
         if team_number == target_number:
             matches_1678[target_number] = matches
-            
+
+# Initialize Google Sheets service
+creds = Credentials.from_service_account_file('api_code/auto_visualizer/path-visualizer-416423-e17294f591e9.json')
+service = build('sheets', 'v4', credentials=creds)
+spreadsheet_id = '17r918d5YDvlpFe2qYwyBJHLqBSfRk5ylKCpdN8rFoBc'
+
+# Create a Google Drive service
+drive_service = build('drive', 'v3', credentials=creds)
 
 # Define start_pos function
 def start_pos(start_pos, scouter):
     scouter.setheading(90)
     if color == 'Blue':
-        if start_pos == 'Left':
-            scouter.color('white')
-            scouter.penup()
-            scouter.goto(-170, -330)
-            scouter.pendown
-            turtle.pencolor('white')
-            scouter.left(90)
-        elif start_pos == 'Middle':
-            scouter.color('white')
-            scouter.penup()
-            scouter.goto(30, -330)
-            scouter.pendown
-            scouter.pencolor('white')
-            scouter.left(90)
-        elif start_pos == 'r=Right':
-            scouter.color('white')
-            scouter.penup()
-            scouter.goto(180, -330)
-            scouter.pendown
-            scouter.pencolor('white')
-            scouter.left(90)
+       if start_pos == 'Left':
+           scouter.color('white')
+           scouter.penup()
+           scouter.goto(-170, -330)
+           scouter.pendown
+           turtle.pencolor('white')
+           scouter.left(90)
+       elif start_pos == 'Middle':
+           scouter.color('white')
+           scouter.penup()
+           scouter.goto(30, -330)
+           scouter.pendown
+           
+           scouter.left(90)
+       elif start_pos == 'Right':
+           scouter.color('white')
+           scouter.penup()
+           scouter.goto(180, -330)
+           scouter.pendown
+           
+           scouter.left(90)
     elif color == 'Red':
-        if start_pos == 'Left':
-            scouter.color('white')
-            scouter.penup()
-            scouter.goto(-150, -330)
-            scouter.pendown
-            turtle.pencolor('white')
-            scouter.left(90)
-        elif start_pos == 'Middle':
-            scouter.color('white')
-            scouter.penup()
-            scouter.goto(30, -330)
-            scouter.pendown
-            scouter.pencolor('white')
-            scouter.left(90)
-        elif start_pos == 'Right':
-            scouter.color('white')
-            scouter.penup()
-            scouter.goto(180, -330)
-            scouter.pendown
-            scouter.pencolor('white')
-            scouter.left(90)
-
+       if start_pos == 'Left':
+           scouter.color('white')
+           scouter.penup()
+           scouter.goto(-150, -330)
+           scouter.pendown
+           
+           scouter.left(90)
+       elif start_pos == 'Middle':
+           scouter.color('white')
+           scouter.penup()
+           scouter.goto(30, -330)
+           scouter.pendown
+           
+           scouter.left(90)
+       elif start_pos == 'Right':
+           scouter.color('white')
+           scouter.penup()
+           scouter.goto(180, -330)
+           scouter.pendown
+           
+           scouter.left(90)
 
 # Define notes function
 def notes(notes_taken, scouter):
     scouter.setheading(90)
     if color == 'Blue':
-        for i in notes_taken:
-            if i == 0:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-210, 190)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 1:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-105, 190)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 2:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(5, 190)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 3:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(115, 190)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 4:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(225, 190)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            
-            elif i == 7:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-5, -245)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 6:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-95, -245)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 5:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-180, -245)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
+       for i in notes_taken:
+           if i == 0:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-210, 190)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 1:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-105, 190)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 2:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(5, 190)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 3:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(115, 190)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 4:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(225, 190)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+          
+           elif i == 7:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-5, -245)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 6:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-95, -245)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 5:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-180, -245)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
     elif color == 'Red':
-        for i in notes_taken:
-            if i == 0:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-205, 185)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 1:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(-100, 185)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 2:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(10, 185)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 3:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(120, 185)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 4:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(225, 185)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            
-            elif i == 5:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(15, -245)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 6:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(105, -245)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
-            elif i == 7:
-                scouter.penup()
-                scouter.pendown()
-                scouter.width(3)
-                scouter.pencolor(scouter_color)
-                scouter.goto(195, -245)
-                scouter.forward(10)
-                r = 10
-                scouter.circle(r)
-                scouter.penup()
+       for i in notes_taken:
+           if i == 0:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-205, 185)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 1:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(-100, 185)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 2:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(10, 185)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 3:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(120, 185)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 4:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(225, 185)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+          
+           elif i == 5:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(15, -245)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 6:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(105, -245)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
+           elif i == 7:
+               scouter.penup()
+               scouter.pendown()
+               scouter.width(3)
+               scouter.pencolor(scouter_color)
+               scouter.goto(195, -245)
+               scouter.forward(10)
+               r = 10
+               scouter.circle(r)
+               scouter.penup()
 
+wn = turtle.Screen()
+wn.setup(800, 1340)
 # Loop through each match for Team 1678
-for match in matches_1678.get(target_number, []):
+for match_index, match in enumerate(matches_1678.get(target_number, []), start=1):
     readable_data = []
 
     # Reading through the data for the current match
@@ -268,67 +278,68 @@ for match in matches_1678.get(target_number, []):
                 notescoring = entry["notescoring"]
                 color = entry["alliance"]
                 start = entry["robotposition"]
-                scouter_color_index+=1
                 for i in range(len(notescoring)):
                     temp = notescoring[i][0]
                     readable_data.append(temp)
                 break
             else:
                 print(f"Target name '{target_number}' not found in the data")
-                scouter.setheading(90)
-            #scouter.right(360)
     else:
-        scouter.setheading(90)
         print(f"Match '{match}' not found in the data")
-        scouter.setheading(90)
 
     # Set up the turtle screen
-    wn = turtle.Screen()
-    wn.setup(800, 1340)  # Adjusted to match the image dimensions
+      # Adjusted to match the image dimensions
 
-    # Set up the background image based on the alliance color
+    # Set up the background image based on the alliance color (Assuming background images are loaded here)
     if color == 'Blue':
-        try:
-            wn.bgpic("api_code/auto_visualizer/blue.png")
-        except Exception as e:
-            print("Error loading background image:", e)
+       try:
+           wn.bgpic("api_code/auto_visualizer/blue.png")
+       except Exception as e:
+           print("Error loading background image:", e)
     elif color == 'Red':
-        try:
-            wn.bgpic("api_code/auto_visualizer/red.png")
-        except Exception as e:
-            print("Error loading background image:", e)
+       try:
+           wn.bgpic("api_code/auto_visualizer/red.png")
+       except Exception as e:
+           print("Error loading background image:", e)
+
+
 
     # Set starting position and draw notes
     start_pos(start, scouter)
     notes(readable_data, scouter)
-    #scouter.goto(0,0)
+
     scouter.setheading(90)
-    #start_pos(start, scouter)
-    
-    
-    turtle_path = []
 
-    def record_position(x, y):
-        turtle_path.append((x, y))
-
-    scouter.ondrag(record_position)
-
-    # You may want to let the user control the turtle to draw the path here.
-
-    # Save the image after the turtle finishes its work
+    # Saving the image after the turtle finishes its work
     canvas = turtle.getcanvas()
     canvas.update()
     img = ImageGrab.grab(bbox=(canvas.winfo_rootx(),
-                                canvas.winfo_rooty(),
-                                canvas.winfo_rootx() + canvas.winfo_width(),
-                                canvas.winfo_rooty() + canvas.winfo_height()))
+                               canvas.winfo_rooty(),
+                               canvas.winfo_rootx() + canvas.winfo_width(),
+                               canvas.winfo_rooty() + canvas.winfo_height()))
 
-    # Save the path separately (Optional: You may save this in a different format)
-    #with open(f"api_code/auto_visualizer/turtle_path_{match}.txt", 'w') as f:
-        #for pos in turtle_path:
-           # f.write(f"{pos}\n")
+    img_path = f"api_code/auto_visualizer/turtle_path_img_{match}.png"
+    img.save(img_path)
 
-    img.save(f"api_code/auto_visualizer/turtle_path_img_{match}.png")
+    # Upload the image to Google Drive
+    file_metadata = {'name': f'team_{target_number}_path_{match}.png', 'parents': ['1rEUiu_2Ub4B3VDty3PgcMH28w39_L9gi']}
+    media = MediaFileUpload(img_path, mimetype='image/png')
+    file = drive_service.files().create(body=file_metadata,
+                                         media_body=media,
+                                         fields='id').execute()
+
+    # Get the URL of the uploaded image
+    image_url = f"https://drive.google.com/uc?id={file.get('id')}"
+
+    # Insert the image URL into Google Sheets
+    sheet_range = f'A{match_index}'
+    values = [[f'{image_url}']]
+    body = {'values': values}
+    result = service.spreadsheets().values().update(
+        spreadsheetId=spreadsheet_id, range=sheet_range,
+        valueInputOption='USER_ENTERED', body=body).execute()
+
+    print(f'Image uploaded and linked in Google Sheets for Match {match} successfully!')
 
     # Clear the turtle's drawings for the next match
     scouter.clear()
