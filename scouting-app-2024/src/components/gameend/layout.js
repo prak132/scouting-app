@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import Notesstuff from "./notesBox.js";
 
-
-const EndOfGameLayout = ({ onSendDataClick }) => {
+const EndOfGameLayout = ({ onSendDataClick, qualTeleoptext, qualTeleopsetText }) => {
  const [sendClicked, setSendClicked] = useState(false);
 
 
@@ -24,27 +24,28 @@ const EndOfGameLayout = ({ onSendDataClick }) => {
              wordWrap: "break-word",
              marginBottom: "-0.25vh",
              background:
-               "linear-gradient(#fff, #333), -webkit-linear-gradient(#fff, #333)",
+             "linear-gradient(#fff, #333), -webkit-linear-gradient(#fff, #333)",
              WebkitBackgroundClip: "text",
              WebkitTextFillColor: "transparent",
-           }}
+            }}
          >
            End of Game
          </div>
        </div>
      </div>
+    <Notesstuff qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText} />
      <div className="button-container">
        <button
          style={{
            borderRadius: "10px",
-           width: "50%",
-           height: "50px",
+           width: "100%",
+           height: "100px",
            margin: "5px",
            fontSize: "20px",
            fontWeight: "700",
            color: sendClicked ? "white" : "#7d7d7d",
            borderColor: sendClicked ? "white" : "#000614",
-           backgroundColor: '#000614',
+           backgroundColor: '#FFFFFF',
          }}
          onClick={handleSendClick}
        >
