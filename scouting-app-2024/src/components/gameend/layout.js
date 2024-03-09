@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Notesstuff from "./notesBox.js";
 
-const EndOfGameLayout = ({ onSendDataClick, qualTeleoptext, qualTeleopsetText }) => {
+const EndOfGameLayout = ({ onSendDataClick, qualTeleoptext, qualTeleopsetText, modeActiveButton }) => {
  const [sendClicked, setSendClicked] = useState(false);
 
 
@@ -33,7 +33,7 @@ const EndOfGameLayout = ({ onSendDataClick, qualTeleoptext, qualTeleopsetText })
          </div>
        </div>
      </div>
-    <Notesstuff qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText} />
+    {!(modeActiveButton === "quan") ? <Notesstuff qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText} /> : null}
      <div className="button-container">
        <button
          style={{
