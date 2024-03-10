@@ -39,7 +39,7 @@ const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeam
         Qualitiative • {selAlliance === '0' ? "Blue" : "Red"} • Timer: {time.toFixed(2)}s
       </div>
       <QualitativeTable qualTeleopscoredTeams={qualTeleopscoredTeams} qualTeleopsetScoredTeams={qualTeleopsetScoredTeams} qualTelerows={qualTelerows} qualTeleSetRows={qualTeleSetRows} qualTeleteamOptions={qualTeleteamOptions} qualTelesetTeamOptions={qualTelesetTeamOptions} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
-      <RectangleWithText qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText} />
+      <RectangleWithText qualTeleoptext={qualTeleoptext} qualTeleopsetText={qualTeleopsetText} blueTeamNumbers={blueTeamNumbers} redTeamNumbers={redTeamNumbers} selAlliance={selAlliance}/>
       <div type = "notes">
 
 
