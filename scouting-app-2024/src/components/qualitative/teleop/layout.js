@@ -32,8 +32,8 @@ const QualTeleopLayout = ( {time, qualTeleopscoredTeams, qualTeleopsetScoredTeam
       <div
         style={{
           color: "rgba(255, 255, 255, 0.50)",
-          width: "70vw",
-          fontSize: "15px",
+          width: "90%",
+          fontSize: "13px",
         }}
       >
         Qualitiative • {selAlliance === '0' ? "Blue" : "Red"} • Timer: {time.toFixed(2)}s

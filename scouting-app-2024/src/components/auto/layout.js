@@ -61,8 +61,8 @@ const AutoLayout = ({ time, clickedNotes, selectedTeamNumber, setClickedNotes, i
         <div
           style={{
             color: "rgba(255, 255, 255, 0.50)",
-            width: "70vw",
-            fontSize: "15px",
+            width: "90%",
+            fontSize: "13px",
           }}
         >
           Scoring • {selAlliance === '0' ? "Blue" : "Red"} • {selectedTeamNumber} • Timer: {time.toFixed(2)}s
