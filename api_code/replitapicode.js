@@ -1,136 +1,81 @@
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
-const { decompress, compress } = require("compress-json");
 const app = express();
 const port = 30100;
 app.use(cors());
 app.use(express.json());
 
+matchrn = "2024casf_qm";
+
 const DATA_FILE = "./matchData.json";
 
-const quantitativeHeaders = [
-  "Scouter Name",
-  "mode",
-  "match",
-  "alliance",
-  "Autonomous Team",
-  "Robot Auto Starting Position",
-  "Preloaded Piece Time",
-  "Auto Notes/Times",
-  "Teleop Scoring",
-  "Endgame Scoring",
-];
-
-const qualitativeHeaders = [
-  "Scouter Name",
-  "mode",
-  "match",
-  "alliance",
-  "Autonomous Team",
-  "Robot Auto Starting Position",
-  "Preloaded Piece Time",
-  "Auto Notes/Times",
-  "Defense",
-  "Climbed",
-  "Harmonized",
-  "Notes",
-];
-
 function jsonToCSV(jsonData, matchKey) {
-  let csvRowsQuantitative = [quantitativeHeaders.join(",")];
-  let csvRowsQualitative = [qualitativeHeaders.join(",")];
+  let csvRowsQuantitative = [];
+  let csvRowsQualitative = [];
 
-  jsonData.forEach(entry => {
-    if (entry.mode === "Quantitative") {
-      csvRowsQuantitative.push(processQuantitativeData(entry, quantitativeHeaders, matchKey));
-    } else if (entry.mode === "Qualitative") {
-      csvRowsQualitative.push(processQualitativeData(entry, qualitativeHeaders, matchKey));
+  jsonData.forEach((entry) => {
+    if (entry && entry.mode) {
+      if (entry.mode === "Quantitative") {
+        csvRowsQuantitative.push(
+          processQuantitativeData(entry, matchKey),
+        );
+      } else if (entry.mode === "Qualitative") {
+        csvRowsQualitative.push(
+          processQualitativeData(entry, matchKey),
+        );
+      }
+    } else {
+      console.error("Invalid entry in JSON data no idea why this happens:", entry);
     }
   });
 
-  return [...csvRowsQuantitative, "", ...csvRowsQualitative].join("\n");
+  return [...csvRowsQuantitative, ...csvRowsQualitative].join("\n");
 }
 
-function processQuantitativeData(data, headers, matchKey) {
-  const regExp = /2024casj_qm(\d+)/; 
-  matchKey = matchKey.replace(regExp, '$1');
-  const row = headers.map(header => {
-    switch (header) {
-      case "Scouter Name":
-        return `"${data.name}"`;
-      case "mode":
-        return `"${data.mode}"`
-      case "match":
-        return `"${matchKey}"`
-      case "alliance":
-        return `"${data.alliance}"`
-      case "Autonomous Team":
-        return data.autoteam;
-      case "Robot Auto Starting Position":
-        return `"${data.robotposition}"`;
-      case "Preloaded Piece Time":
-        return `"${data.preloadedtime}"` || "";
-      case "Auto Notes/Times":
-        value = formatArrayForCSV(data.notescoring);
-        return ["Auto", value];
-      case "Teleop Scoring":
-        value = formatArrayForCSV(data.telescore);
-        return ["Teleop", value];
-      case "Endgame Scoring":
-        value = formatArrayForCSV(data.endscore);
-        return ["Endgame", value];
-      default:
-        return "";
-    }
-  });
+function processQuantitativeData(data, matchKey) {
+  const regExp = /2024casf_qm(\d+)/;
+  matchKey = matchKey.replace(regExp, "$1");
+  const row = [
+    `"${data.name}"`,
+    `"QN"`,
+    `"${matchKey}"`,
+    `"${data.alliance.toLowerCase()}"`,
+    data.autoteam,
+    `"${data.robotposition}"`,
+    `"${data.preloadedtime}"` || "",
+    ["AUTO", formatArrayForCSV(data.notescoring)],
+    ["TELEOP", formatArrayForCSV(data.telescore)],
+    ["ENDGAME", formatArrayForCSV(data.endscore)],
+  ];
   return row.join(",");
 }
 
-function processQualitativeData(data, qualitativeHeaders , matchKey) {
-  const regExp = /2024casj_qm(\d+)/;
-  matchKey = matchKey.replace(regExp, '$1');
-  const row = qualitativeHeaders.map(header => {
-    switch (header) {
-      case "Scouter Name":
-        return `"${data.name}"`;
-      case "mode":
-        return `"${data.mode}"`
-      case "match":
-        return `"${matchKey}"`
-      case "alliance":
-        return `"${data.alliance}"`
-      case "Autonomous Team":
-        return data.autoteam;
-      case "Robot Auto Starting Position":
-        return `"${data.robotposition}"`;
-      case "Preloaded Piece Time":
-        return data.preloadedtime.toString();
-      case "Auto Notes/Times":
-        value = formatArrayForCSV(data.notescoring);
-        return ["Auto", value];
-      case "Defense":
-        value = formatArrayForCSV(data.telescore);
-        return ["Defense", value];
-      case "Climbed":
-        value = formatClimbedHarmonizedForCSV(data.endact.climbed).flat().join(",");
-        return ["Climbed", value];
-      case "Harmonized":
-        value = formatClimbedHarmonizedForCSV(data.endact.harmonized).flat().join(",");
-        return ["Harmonized", value];
-      case "Notes":
-        value = data.teletex ? `"${data.teletex}"` : "";
-        return ["Notes", value];
-      default:
-        return "";
-    }
-  });
+function processQualitativeData(data, matchKey) {
+  const regExp = /2024casf_qm(\d+)/;
+  matchKey = matchKey.replace(regExp, "$1");
+  const row = [
+    `"${data.name}"`,
+    `"QL"`,
+    `"${matchKey}"`,
+    `"${data.alliance.toLowerCase()}"`,
+    data.autoteam,
+    `"${data.robotposition}"`,
+    data.preloadedtime.toString(),
+    ["AUTO", formatArrayForCSV(data.notescoring)],
+    ["DEFENSE", formatArrayForCSV(data.telescore)],
+    ["CLIMBED", formatClimbedHarmonizedForCSV(data.endact.climbed).flat().join(",")],
+    ["HARMONIZED", formatClimbedHarmonizedForCSV(data.endact.harmonized).flat().join(",")],
+    ["NOTES", data.teletex.trim() ? `"${data.teletex.trim()}"` : ""],
+  ];
   return row.join(",");
 }
 
 function formatArrayForCSV(dataArray) {
   if (Array.isArray(dataArray)) {
-    return dataArray.map(item => Array.isArray(item) ? item.join(",") : item.toString()).join(",");
+    return dataArray
+      .map((item) => (Array.isArray(item) ? item.join(",") : item.toString()))
+      .join(",");
   }
   return "";
 }
@@ -138,11 +83,10 @@ function formatArrayForCSV(dataArray) {
 function formatClimbedHarmonizedForCSV(dataArray) {
   if (!dataArray || Object.keys(dataArray).length === 0) return [];
 
-  return Object.keys(dataArray).flatMap(color => {
-    return dataArray[color].map(item => [color, item[0], item[1]]);
+  return Object.keys(dataArray).flatMap((color) => {
+    return dataArray[color].map((item) => [color, item[0], item[1]]);
   });
 }
-
 
 function saveDataToFile(matchData) {
   fs.writeFile(DATA_FILE, JSON.stringify(matchData, null, 2), (err) => {
@@ -155,7 +99,7 @@ function saveDataToFile(matchData) {
 function loadDataFromFile() {
   try {
     const data = fs.readFileSync(DATA_FILE, "utf8");
-    return decompress(JSON.parse(data));
+    return JSON.parse(data);
   } catch (err) {
     console.error("Error loading data from file:", err);
     return {};
@@ -173,7 +117,6 @@ app.post("/data", (req, res) => {
       matchData[matchValue] = [];
     }
     matchData[matchValue].push(...actualData);
-    matchData = compress(matchData)
     saveDataToFile(matchData);
     res.status(200).send({ message: "done" });
   } else {
@@ -184,11 +127,14 @@ app.post("/data", (req, res) => {
 app.get("/data/:matchValue", (req, res) => {
   const { matchValue } = req.params;
   const format = req.query.format;
-  const isGamePeriod = !matchValue.includes("qm") && !matchValue.includes("sf") && !matchValue.includes("f1m");
+  const isGamePeriod =
+    !matchValue.includes("qm")
   if (isGamePeriod) {
-    const gamePeriodMatches = Object.keys(matchData).filter(key => key.startsWith(matchValue));
+    const gamePeriodMatches = Object.keys(matchData).filter((key) =>
+      key.startsWith(matchValue),
+    );
     let combinedData = [];
-    gamePeriodMatches.forEach(matchKey => {
+    gamePeriodMatches.forEach((matchKey) => {
       const matchEntries = matchData[matchKey];
       if (matchEntries && matchEntries.length > 0) {
         const csvDataForMatch = jsonToCSV(matchEntries, matchKey);
@@ -197,11 +143,13 @@ app.get("/data/:matchValue", (req, res) => {
     });
 
     if (combinedData.length > 0) {
-      const combinedCSV = combinedData.join("\n\n");
+      const combinedCSV = combinedData.join("\n");
       res.header("Content-Type", "text/csv");
       res.status(200).send(combinedCSV);
     } else {
-      res.status(404).send({ message: "No data found for the specified game period." });
+      res
+        .status(404)
+        .send({ message: "No data found for the specified game period." });
     }
   } else {
     const matchEntries = matchData[matchValue];
@@ -214,25 +162,33 @@ app.get("/data/:matchValue", (req, res) => {
         res.status(200).json(matchEntries);
       }
     } else {
-      res.status(404).send({ message: "Data not found for the specified match." });
+      res
+        .status(404)
+        .send({ message: "Data not found for the specified match." });
     }
   }
 });
 
-
 app.get("/data/devdata/:gameKey", (req, res) => {
   const { gameKey } = req.params;
-  const isGamePeriod = !gameKey.includes("qm") && !gameKey.includes("sf") && !gameKey.includes("f1m");
+  const isGamePeriod =
+    !gameKey.includes("qm") &&
+    !gameKey.includes("sf") &&
+    !gameKey.includes("f1m");
 
   if (isGamePeriod) {
-    const gamePeriodMatches = Object.keys(matchData).filter(key => key.startsWith(gameKey));
+    const gamePeriodMatches = Object.keys(matchData).filter((key) =>
+      key.startsWith(gameKey),
+    );
     let devData = ["Match#, Team#, Score (0-5)"];
 
-    gamePeriodMatches.forEach(matchKey => {
-      const matchEntries = matchData[matchKey].filter(entry => entry.mode === "Dev");
+    gamePeriodMatches.forEach((matchKey) => {
+      const matchEntries = matchData[matchKey].filter(
+        (entry) => entry.mode === "Dev",
+      );
 
-      matchEntries.forEach(entry => {
-        entry.ratings.forEach(rating => {
+      matchEntries.forEach((entry) => {
+        entry.ratings.forEach((rating) => {
           const teamNum = rating[0];
           const scoreNum = rating[1];
           devData.push(`${matchKey}, ${teamNum}, ${scoreNum}`);
@@ -245,33 +201,44 @@ app.get("/data/devdata/:gameKey", (req, res) => {
       res.header("Content-Type", "text/csv");
       res.status(200).send(formattedData);
     } else {
-      res.status(404).send({ message: "No 'Dev' data found for the specified game period." });
+      res
+        .status(404)
+        .send({
+          message: "No 'Dev' data found for the specified game period.",
+        });
     }
   } else {
-    res.status(400).send({ message: "Please provide a valid game period key." });
+    res
+      .status(400)
+      .send({ message: "Please provide a valid game period key." });
   }
 });
-
 
 app.get("/data/:matchValue/:dataPiece?", (req, res) => {
   const { matchValue, dataPiece } = req.params;
   const format = req.query.format;
   const matchEntries = matchData[matchValue];
   if (!matchEntries) {
-    return res.status(404).send({ message: "Data not found for the specified match." });
+    return res
+      .status(404)
+      .send({ message: "Data not found for the specified match." });
   }
   if (dataPiece) {
-    const specificData = matchEntries.map(entry => entry[dataPiece]);
+    const specificData = matchEntries.map((entry) => entry[dataPiece]);
     if (specificData.length) {
       if (format === "csv") {
-        const csvData = jsonToCSV(specificData.map(item => ({ [dataPiece]: item })));
+        const csvData = jsonToCSV(
+          specificData.map((item) => ({ [dataPiece]: item })),
+        );
         res.header("Content-Type", "text/csv");
         res.status(200).send(csvData);
       } else {
         res.status(200).json(specificData);
       }
     } else {
-      res.status(404).send({ message: `${dataPiece} not found in match ${matchValue}` });
+      res
+        .status(404)
+        .send({ message: `${dataPiece} not found in match ${matchValue}` });
     }
   } else {
     if (format === "csv") {
@@ -282,6 +249,32 @@ app.get("/data/:matchValue/:dataPiece?", (req, res) => {
       res.status(200).json(matchEntries);
     }
   }
+});
+
+app.get('/data/metric/:gameKey', (req, res) => {
+  const { gameKey } = req.params;
+  const matchData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  const matchingKeys = Object.keys(matchData).filter(key => key.startsWith(gameKey));
+  if (matchingKeys.length === 0) {
+    return res.status(404).json({ error: 'Game key not found' });
+  }
+  let matches = matchingKeys.flatMap(key => matchData[key]);
+  const teams = [...new Set(matches.map(match => match.autoteam))];
+  const teamData = teams.map(team => {
+    const teamMatches = matches.filter(match => match.autoteam === team);
+    let totalNoteEvents = 0;
+    let notes = 0;
+    const totalNotes = teamMatches.reduce((total, match) => {
+      totalNoteEvents++;
+      notes += match.notescoring.length;
+      return notes;
+    }, 0);
+    const averageNotes = totalNotes / totalNoteEvents;
+    return { team, averageNotes };
+  });
+  const csv = 'team,averageNotes\n' + teamData.map(row => `${row.team},${row.averageNotes}`).join('\n');
+  res.setHeader('Content-Type', 'text/csv');
+  res.send(csv);
 });
 
 app.get("/alldata", (req, res) => {
