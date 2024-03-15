@@ -391,7 +391,7 @@ function App() {
   };
 
   async function sendsomestuff(payload) {
-    const response = await fetch('https://0ee1d6b5-1234-4f5b-9b73-6c504c42fd15-00-bs9n3rjs4ihf.riker.replit.dev/data', {
+    const response = await fetch('https://d9ce-2601-646-8700-3fff-9a60-7c73-440c-ea6b.ngrok-free.app/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
