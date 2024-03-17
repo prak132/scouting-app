@@ -387,7 +387,7 @@ function App() {
   };
 
   async function sendsomestuff(payload) {
-    const response = await fetch('https://d9ce-2601-646-8700-3fff-9a60-7c73-440c-ea6b.ngrok-free.app/data', {
+    const response = await fetch('https://eft-knowing-horse.ngrok-free.app/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
