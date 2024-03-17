@@ -86,7 +86,6 @@ function App() {
   // offense or defense
   const [modeActiveButton, setModeActiveButton] = useState(null);
   const [devMode, setDevMode] = useState(false);
-  const [preloadedtime, setPreloadedtime] = useState(0);
 
   async function handleStoreDataClick() {
     let data = {};
@@ -102,7 +101,6 @@ function App() {
         name: nameValue,
         robotposition: selectedPosition,
         autoteam: selectedTeamNumber,
-        preloadedtime: preloadedtime.toFixed(2),
         alliance: selAlliance === "0" ? "Blue" : "Red",
         notescoring: clickedNotes,
         telescore: quantTelescoredTeams,
@@ -114,7 +112,6 @@ function App() {
         name: nameValue,
         robotposition: selectedPosition,
         autoteam: selectedTeamNumber,
-        preloadedtime: preloadedtime.toFixed(2),
         alliance: selAlliance === "0" ? "Blue" : "Red",
         notescoring: clickedNotes,
         telescore: qualTeleopscoredTeams,
@@ -128,8 +125,8 @@ function App() {
   }
 
   const onlickYes = () => {
+    clickedNotes.push([-1, time.toFixed(2)]);
     setIsPreNoteScored(true);
-    setPreloadedtime(time);
     setsomething(true);
   }
 
@@ -237,7 +234,6 @@ function App() {
     setActiveButton(null);
     setModeActiveButton(null);
     setDevMode(false);
-    setPreloadedtime(0);
     setCurrentPage(0);
     setIsQuantitativeMode(true);
     setShowTextBox(true);

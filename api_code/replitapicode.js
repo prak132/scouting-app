@@ -18,58 +18,190 @@ function jsonToCSV(jsonData, matchKey) {
     if (entry && entry.mode) {
       if (entry.mode === "Quantitative") {
         csvRowsQuantitative.push(
-          processQuantitativeData(entry, matchKey),
+          ...processQuantitativeData(entry, matchKey),
         );
       } else if (entry.mode === "Qualitative") {
         csvRowsQualitative.push(
-          processQualitativeData(entry, matchKey),
+          ...processQualitativeData(entry, matchKey),
         );
       }
     } else {
-      console.error("Invalid entry in JSON data no idea why this happens:", entry);
+      console.error("Invalid entry in JSON data:", entry);
     }
   });
 
   return [...csvRowsQuantitative, ...csvRowsQualitative].join("\n");
 }
 
+
 function processQuantitativeData(data, matchKey) {
   const regExp = /2024casf_qm(\d+)/;
   matchKey = matchKey.replace(regExp, "$1");
-  const row = [
-    `"${data.name}"`,
-    `"QN"`,
-    `"${matchKey}"`,
-    `"${data.alliance.toLowerCase()}"`,
-    data.autoteam,
-    `"${data.robotposition}"`,
-    `"${data.preloadedtime}"` || "",
-    ["AUTO", formatArrayForCSV(data.notescoring)],
-    ["TELEOP", formatArrayForCSV(data.telescore)],
-    ["ENDGAME", formatArrayForCSV(data.endscore)],
-  ];
-  return row.join(",");
-}
+  let rows = [];
+  if (data.notescoring) {
+    data.notescoring.forEach((score) => {
+      rows.push([
+        `"${data.name}"`,
+        `"QN"`,
+        `"${matchKey}"`,
+        `"${data.alliance.toLowerCase()}"`,
+        `"${data.autoteam}"`,
+        `"${data.robotposition}"`,
+        "AUTO",
+      ].concat(score));
+    });
+  }
+  if (data.telescore) {
+    data.telescore.forEach((score) => {
+      rows.push([
+        `"${data.name}"`,
+        `"QN"`,
+        `"${matchKey}"`,
+        `"${data.alliance.toLowerCase()}"`,
+        data.autoteam,
+        `"${data.robotposition}"`,
+        "TELEOP",
+      ].concat(score));
+    });
+  }
+  if (data.endscore) {
+    data.endscore.forEach((thing) => {
+      rows.push([
+        `"${data.name}"`,
+        `"QN"`,
+        `"${matchKey}"`,
+        `"${data.alliance.toLowerCase()}"`,
+        data.autoteam,
+        `"${data.robotposition}"`,
+        "ENDGAME",
+      ].concat(thing));
+    });
+  }
 
+  return rows.map(row => row.join(","));
+}
 function processQualitativeData(data, matchKey) {
   const regExp = /2024casf_qm(\d+)/;
   matchKey = matchKey.replace(regExp, "$1");
-  const row = [
+  let rows = [];
+
+  if (data.notescoring) {
+    data.notescoring.forEach((score) => {
+      rows.push([
+        `"${data.name}"`,
+        `"QL"`,
+        `"${matchKey}"`,
+        `"${data.alliance.toLowerCase()}"`,
+        `"${data.autoteam}"`,
+        `"${data.robotposition}"`,
+        "AUTO",
+      ].concat(score));
+    });
+  }
+
+  if (Array.isArray(data.telescore)) {
+    data.telescore.forEach((defense) => {
+      rows.push([
+        `"${data.name}"`,
+        `"QL"`,
+        `"${matchKey}"`,
+        `"${data.alliance.toLowerCase()}"`,
+        `"${data.autoteam}"`,
+        `"${data.robotposition}"`,
+        "DEFENSE"
+      ].concat(defense));
+    });
+  }
+
+  if (Array.isArray(data.endscore)) {
+    data.endscore.forEach((defense) => {
+      rows.push([
+        `"${data.name}"`,
+        `"QL"`,
+        `"${matchKey}"`,
+        `"${data.alliance.toLowerCase()}"`,
+        `"${data.autoteam}"`,
+        `"${data.robotposition}"`,
+        "DEFENSE"
+      ].concat(defense));
+    });
+  }
+
+  var thing = data.alliance.toLowerCase();
+  if (thing === "red") {
+    if (Array.isArray(data.endact.climbed.red)) {
+      data.endact.climbed.red.forEach((climbed) => {
+        rows.push([
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "CLIMBED"
+        ].concat(climbed));
+      });
+    }
+  }
+  if (thing === "blue") {
+    if (Array.isArray(data.endact.climbed.blue)) {
+      data.endact.climbed.blue.forEach((climbed) => {
+        rows.push([
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "CLIMBED"
+        ].concat(climbed));
+      });
+    }
+  }
+  if (thing === "red") {
+    if (Array.isArray(data.endact.harmonized.red)) {
+      data.endact.harmonized.red.forEach((harmonized) => {
+        rows.push([
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "HARMONIZED"
+        ].concat(harmonized));
+      });
+    }
+  }
+  if (thing === "blue") {
+    if (Array.isArray(data.endact.harmonized.blue)) {
+      data.endact.harmonized.blue.forEach((harmonized) => {
+        rows.push([
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "HARMONIZED"
+        ].concat(harmonized));
+      });
+    }
+  }
+
+  rows.push([
     `"${data.name}"`,
     `"QL"`,
     `"${matchKey}"`,
     `"${data.alliance.toLowerCase()}"`,
-    data.autoteam,
+    `"${data.autoteam}"`,
     `"${data.robotposition}"`,
-    data.preloadedtime.toString(),
-    ["AUTO", formatArrayForCSV(data.notescoring)],
-    ["DEFENSE", formatArrayForCSV(data.telescore)],
-    ["CLIMBED", formatClimbedHarmonizedForCSV(data.endact.climbed).flat().join(",")],
-    ["HARMONIZED", formatClimbedHarmonizedForCSV(data.endact.harmonized).flat().join(",")],
-    ["NOTES", data.teletex.trim() ? `"${data.teletex.trim()}"` : ""],
-  ];
-  return row.join(",");
+    "NOTES",
+    `"${(data.teletex).trim()}"` // (data.teletex).replace(/\n/g, ' ')
+  ]);
+  return rows.map(row => row.join(","));
 }
+
 
 function formatArrayForCSV(dataArray) {
   if (Array.isArray(dataArray)) {
