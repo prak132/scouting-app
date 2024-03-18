@@ -5,7 +5,7 @@ import matchesData from "./data/match.json";
 import matchDetails from "./data/team.json";
 import Notif from "./toast.js";
 
-const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameValue, matchValue, setMatchValue, activeButton, setActiveButton, modeActiveButton, setModeActiveButton, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance}) => {    
+const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameValue, matchValue, setMatchValue, activeButton, setActiveButton, modeActiveButton, setModeActiveButton, setBlueTeamNumbers, setRedTeamNumbers, setSelAlliance, handleOVMButtonClick}) => {    
   const [showNotif, setShowNotif] = useState(false);
 
   const handleNameChange = (e) => {
@@ -63,6 +63,13 @@ const TextBox = ({ setQuantitativeMode, onNextButtonClick, nameValue, setNameVal
   return (
     <div className="center-container">
       {showNotif && <Notif contents="Match Not Found" launchNotif={showNotif} />}
+      <button
+          type="button"
+          onClick={handleOVMButtonClick}
+          className={`OVMButton`}
+        >
+        Observer Mode
+      </button>
       <div className="textbox-container">
         <input
           type="text"

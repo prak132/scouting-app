@@ -26,6 +26,7 @@ import img6 from "./assets/monkeylogo.svg";
 import img7 from "./components/auto/assets/blue_auto.svg";
 import img8 from "./components/auto/assets/red_auto.svg";
 import img9 from "./components/auto/assets/check.svg";
+import OVMpage from "./OVM.js";
 
 function App() {
   // IMPORTANT FOR ALLIANCES AND OTHER STUFF
@@ -53,6 +54,7 @@ function App() {
   const [qualTeleopscoredTeams, qualTeleopsetScoredTeams] = useState([]);
   // qual teleop notes
   const [qualTeleoptext, qualTeleopsetText] = useState('');
+  const [ovmTextThing, ovmTextsetThing] = useState('');
   // qual teleop table
   const [qualTelerows, qualTeleSetRows] = useState(Array.from({ length: 3 }, (_, index) => index + 1));
   const [qualTeleteamOptions, qualTelesetTeamOptions] = useState([]);
@@ -71,7 +73,12 @@ function App() {
   const [disabledButtons, setDisabledButtons] = useState([]);
   const [isPreNoteScored, setIsPreNoteScored] = useState(null);
   const [somethingnonono, setsomething] = useState(false);
+  const [OVM, setOVM] = useState(false);
   // data of the person scouting,
+  function handleOVMButtonClick () {
+    setOVM(true);
+    setShowTextBox(false);
+  }
   const [nameValue, setNameValue] = useState("");
   useEffect(() => {
     const storedNameValue = Cookies.get("nameVal");
@@ -95,7 +102,14 @@ function App() {
         name: "Aadharsh",
         ratings: devScoredTeams,
       };
-    } else if (modeActiveButton === "quan") {
+    } else if (OVM) {
+      data = {
+        mode: "OM",
+        name: nameValue,
+        notes: ovmTextThing,
+      };
+    }
+    else if (modeActiveButton === "quan") {
       data = {
         mode: "Quantitative",
         name: nameValue,
@@ -247,6 +261,8 @@ function App() {
     devSetScoredTeams([]);
     setDevModeKey('');
     setMaxPageReached(0);
+    ovmTextsetThing('');
+    setOVM(false);
     console.clear();
   }
   
@@ -444,6 +460,9 @@ function App() {
   };
 
   const choosePage = () => {
+    if (OVM) {
+      return <OVMpage ovmTextThing={ovmTextThing} ovmTextsetThing={ovmTextsetThing} onSendDataClick={handleSendDataClick} nameValue={nameValue} setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} />;
+    }  
     let pages = isQuantitativeMode ? quantpages : qualpages;
     if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}
     const PageComponent = pages[currentPage];
@@ -553,7 +572,7 @@ function App() {
       {lastRemovedAction && <Ntoif contents={lastRemovedAction} launchNotif={showNtoif}/>}
       {lastRemovedAction && <Notif contents={lastRemovedAction} launchNotif={showNotif}/>}
       <MenuElements onsendsomething={onsendsomething} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance} coolfakerefresh={coolfakerefresh} />
-      {showTextBox && !devMode && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>}
+      {showTextBox && !devMode && <TextBox setQuantitativeMode={handleSetQuantitativeMode} onNextButtonClick={handleNextButtonClick} nameValue={nameValue}setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} activeButton={activeButton} handleOVMButtonClick={handleOVMButtonClick} setActiveButton={setActiveButton} modeActiveButton={modeActiveButton} setModeActiveButton={setModeActiveButton} setBlueTeamNumbers={setBlueTeamNumbers} setRedTeamNumbers={setRedTeamNumbers} setSelAlliance={setSelAlliance}/>}
       <div>
       {isModalOpen && !devMode && (
           <div className="modalthingpopup">
