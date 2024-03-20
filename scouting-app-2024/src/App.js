@@ -403,20 +403,27 @@ function App() {
   };
 
   async function sendsomestuff(payload) {
-    const response = await fetch('https://eft-knowing-horse.ngrok-free.app/data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+    const urls = [
+      'https://eft-knowing-horse.ngrok-free.app/data',
+      'https://a6317d1d-b519-421a-902d-18069f2ccd87-00-163c5eeh1muo2.picard.replit.dev/data'
+    ];
+  
+    const requests = urls.map(url =>
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+    );
+    const response = await Promise.race(requests);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const responseData = await response.json();
     console.log("Response data:", responseData);
   }
-
   function onsendsomething() {
     setShowConfirmSendModal(true);
   }
