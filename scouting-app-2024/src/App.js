@@ -75,6 +75,10 @@ function App() {
   const [somethingnonono, setsomething] = useState(false);
   const [OVM, setOVM] = useState(false);
   // data of the person scouting,
+
+  // OM stuff
+  const [selectedTeamOVM, setSelectedTeamOVM] = useState(null);
+
   function handleOVMButtonClick () {
     setOVM(true);
     setShowTextBox(false);
@@ -100,12 +104,15 @@ function App() {
       data = {
         mode: "Dev",
         name: "Aadharsh",
+        num: selectedTeamNumber,
         ratings: devScoredTeams,
       };
     } else if (OVM) {
       data = {
         mode: "OM",
         name: nameValue,
+        alliance: selectedTeamOVM === "0" ? "Blue" : "Red",
+        team: selectedTeamNumber,
         notes: ovmTextThing,
       };
     }
@@ -263,6 +270,7 @@ function App() {
     setMaxPageReached(0);
     ovmTextsetThing('');
     setOVM(false);
+    setSelectedTeamOVM(null);
     console.clear();
   }
   
@@ -468,7 +476,7 @@ function App() {
 
   const choosePage = () => {
     if (OVM) {
-      return <OVMpage ovmTextThing={ovmTextThing} ovmTextsetThing={ovmTextsetThing} onSendDataClick={handleSendDataClick} nameValue={nameValue} setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} />;
+      return <OVMpage ovmTextThing={ovmTextThing} ovmTextsetThing={ovmTextsetThing} onSendDataClick={handleSendDataClick} nameValue={nameValue} setNameValue={setNameValue} matchValue={matchValue} setMatchValue={setMatchValue} teamNumbers={teamNumbers} handleSelectTeamNumber={handleSelectTeamNumber} selectedTeamNumber={selectedTeamNumber} setTeamNumbers={setTeamNumbers} selectedTeamOVM={selectedTeamOVM} setSelectedTeamOVM={setSelectedTeamOVM}/>;
     }  
     let pages = isQuantitativeMode ? quantpages : qualpages;
     if (devMode) {pages = [DevPage, AutoLayout, QuantTeleopLayout, QuantEndGameLayout, QualTeleopLayout, QualEndGameLayout, TextBox];}

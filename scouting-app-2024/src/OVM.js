@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import matchesData from "./data/match.json";
+import teamData from "./data/team.json";
 
-const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, setNameValue, matchValue, setMatchValue} ) => {
+const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, setNameValue, matchValue, setMatchValue, teamNumbers, handleSelectTeamNumber, selectedTeamNumber, setTeamNumbers, selectedTeamOVM, setSelectedTeamOVM} ) => {
     const [sendClicked, setSendClicked] = useState(false);
+    const [blueTeamNumbers, setBlueTeamNumbers] = useState([]);
+    const [redTeamNumbers, setRedTeamNumbers] = useState([]);
 
     const handleNameChange = (e) => {
         setNameValue(e.target.value);
@@ -10,7 +13,13 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
 
     const handleMatchChange = (e) => {
         setMatchValue(e.target.value);
-    };    
+        const matchKey = '2024casf_qm' + e.target.value;
+        const matchData = teamData[matchKey];  
+        if (matchData) {
+            setBlueTeamNumbers(matchData.blue);
+            setRedTeamNumbers(matchData.red);
+        }
+    };
 
     const handleSendClick = () => {
       setSendClicked(true);
@@ -60,7 +69,30 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
             ))}
             </datalist>
         </div>
-        <h2
+        <div className="position-buttons">
+        <div className="blue-team">
+                {blueTeamNumbers.map((number) => (
+                    <button
+                    key={number}
+                    className={`position-buttons ${selectedTeamNumber === number ? 'position-selected' : ''}`}
+                    onClick={() => { handleSelectTeamNumber(number); setSelectedTeamOVM("0"); }}
+                    >
+                    {number}
+                    </button>
+                ))}
+            </div>
+            <div className="red-team">
+                {redTeamNumbers.map((number) => (
+                    <button
+                    key={number}
+                    className={`position-buttons ${selectedTeamNumber === number ? 'position-selected' : ''}`}
+                    onClick={() => { handleSelectTeamNumber(number); setSelectedTeamOVM("1"); }}
+                    >
+                    {number}
+                    </button>
+                ))}
+            </div>
+        </div>        <h2
             style={{
             margin: '0',
             fontFamily: 'Poppins',
