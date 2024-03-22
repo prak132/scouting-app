@@ -141,8 +141,8 @@ function App() {
         endact: qualEndactions,
       };
     }
-    localStorage.setItem("2024casf_qm"+matchValue, JSON.stringify(data));
-    console.log(`Data stored for match 2024casf_qm+${matchValue}`);
+    localStorage.setItem("2024idbo_qm"+matchValue, JSON.stringify(data));
+    console.log(`Data stored for match 2024idbo_qm+${matchValue}`);
   }
 
   const onlickYes = () => {
@@ -437,7 +437,7 @@ function App() {
   }
 
   async function handleSendDataClick() {
-    if (!localStorage.getItem("2024casf_qm"+matchValue)) {
+    if (!localStorage.getItem("2024idbo_qm"+matchValue)) {
       await handleStoreDataClick();
     }
     let localKeys = Object.keys(localStorage);

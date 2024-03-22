@@ -13,7 +13,7 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
 
     const handleMatchChange = (e) => {
         setMatchValue(e.target.value);
-        const matchKey = '2024casf_qm' + e.target.value;
+        const matchKey = '2024idbo_qm' + e.target.value;
         const matchData = teamData[matchKey];  
         if (matchData) {
             setBlueTeamNumbers(matchData.blue);
@@ -65,7 +65,7 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
             />
             <datalist id="matchOptions">
             {matchesData.map((matchKey, index) => (
-                <option key={index} value={matchKey.replace('2024casf_qm', '')} />
+                <option key={index} value={matchKey.replace('2024idbo_qm', '')} />
             ))}
             </datalist>
         </div>

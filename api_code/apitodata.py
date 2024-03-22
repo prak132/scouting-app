@@ -3,7 +3,7 @@ import requests
 import csv
 
 api_key = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw'
-event_code = '2024casf'
+event_code = '2024idbo'
 matches_data = {}
 
 def get_teams_data(matchcode):
