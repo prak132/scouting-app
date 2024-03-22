@@ -135,6 +135,7 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
             placeholder="Describe driver abilities. Make sure to add team number as well"
         />
         <button
+            disabled={nameValue === "" || matchValue === "" || selectedTeamNumber === "" || ovmTextThing === ""}
             style={{
             borderRadius: "10px",
             width: "100%",

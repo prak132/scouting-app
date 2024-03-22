@@ -4,7 +4,11 @@ const RectangleWithText = ( {qualTeleoptext, qualTeleopsetText, blueTeamNumbers,
   const teamNumbers = selAlliance === "0" ? (Array.isArray(blueTeamNumbers) ? blueTeamNumbers : []) : selAlliance === "1" ? (Array.isArray(redTeamNumbers) ? redTeamNumbers : []) : [];
   // just contains the text in the notes box
   const formattedTeamNumbers = teamNumbers.map(number => `${number} - `).join('\n');
-  qualTeleopsetText(formattedTeamNumbers);
+  
+  if (!qualTeleoptext) {
+    qualTeleopsetText(formattedTeamNumbers);
+  }
+
   const handleTextChange = (event) => {
     qualTeleopsetText(event.target.value);
   };

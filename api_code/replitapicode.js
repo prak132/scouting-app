@@ -13,26 +13,45 @@ const DATA_FILE = "./matchData.json";
 function jsonToCSV(jsonData, matchKey) {
   let csvRowsQuantitative = [];
   let csvRowsQualitative = [];
+  let csvRowsOM = [];
 
   jsonData.forEach((entry) => {
     if (entry && entry.mode) {
       if (entry.mode === "Quantitative") {
-        csvRowsQuantitative.push(
-          ...processQuantitativeData(entry, matchKey),
-        );
+        csvRowsQuantitative.push(...processQuantitativeData(entry, matchKey));
       } else if (entry.mode === "Qualitative") {
-        csvRowsQualitative.push(
-          ...processQualitativeData(entry, matchKey),
-        );
+        csvRowsQualitative.push(...processQualitativeData(entry, matchKey));
+      } else if (entry.mode === "OM") {
+        csvRowsOM.push(...precoessOMData(entry, matchKey));
       }
     } else {
       console.error("Invalid entry in JSON data:", entry);
     }
   });
 
-  return [...csvRowsQuantitative, ...csvRowsQualitative].join("\n");
+  return [...csvRowsQuantitative, ...csvRowsQualitative, ...csvRowsOM].join(
+    "\n",
+  );
 }
 
+function precoessOMData(data, matchKey) {
+  const regExp = /2024casf_qm(\d+)/;
+  matchKey = matchKey.replace(regExp, "$1");
+  let rows = [];
+  if (data.name) {
+    rows.push([
+      `"${data.name}"`,
+      `"OM"`,
+      `"${matchKey}"`,
+      `"${data.alliance.toLowerCase()}"`,
+      `"${data.team}"`,
+      "",
+      "NOTES",
+      `"${data.notes}"`,
+    ]);
+  }
+  return rows.map((row) => row.join(","));
+}
 
 function processQuantitativeData(data, matchKey) {
   const regExp = /2024casf_qm(\d+)/;
@@ -40,45 +59,51 @@ function processQuantitativeData(data, matchKey) {
   let rows = [];
   if (data.notescoring) {
     data.notescoring.forEach((score) => {
-      rows.push([
-        `"${data.name}"`,
-        `"QN"`,
-        `"${matchKey}"`,
-        `"${data.alliance.toLowerCase()}"`,
-        `"${data.autoteam}"`,
-        `"${data.robotposition}"`,
-        "AUTO",
-      ].concat(score));
+      rows.push(
+        [
+          `"${data.name}"`,
+          `"QN"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "AUTO",
+        ].concat(score),
+      );
     });
   }
   if (data.telescore) {
     data.telescore.forEach((score) => {
-      rows.push([
-        `"${data.name}"`,
-        `"QN"`,
-        `"${matchKey}"`,
-        `"${data.alliance.toLowerCase()}"`,
-        data.autoteam,
-        `"${data.robotposition}"`,
-        "TELEOP",
-      ].concat(score));
+      rows.push(
+        [
+          `"${data.name}"`,
+          `"QN"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          data.autoteam,
+          `"${data.robotposition}"`,
+          "TELEOP",
+        ].concat(score),
+      );
     });
   }
   if (data.endscore) {
     data.endscore.forEach((thing) => {
-      rows.push([
-        `"${data.name}"`,
-        `"QN"`,
-        `"${matchKey}"`,
-        `"${data.alliance.toLowerCase()}"`,
-        data.autoteam,
-        `"${data.robotposition}"`,
-        "ENDGAME",
-      ].concat(thing));
+      rows.push(
+        [
+          `"${data.name}"`,
+          `"QN"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          data.autoteam,
+          `"${data.robotposition}"`,
+          "ENDGAME",
+        ].concat(thing),
+      );
     });
   }
 
-  return rows.map(row => row.join(","));
+  return rows.map((row) => row.join(","));
 }
 function processQualitativeData(data, matchKey) {
   const regExp = /2024casf_qm(\d+)/;
@@ -87,43 +112,49 @@ function processQualitativeData(data, matchKey) {
 
   if (data.notescoring) {
     data.notescoring.forEach((score) => {
-      rows.push([
-        `"${data.name}"`,
-        `"QL"`,
-        `"${matchKey}"`,
-        `"${data.alliance.toLowerCase()}"`,
-        `"${data.autoteam}"`,
-        `"${data.robotposition}"`,
-        "AUTO",
-      ].concat(score));
+      rows.push(
+        [
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "AUTO",
+        ].concat(score),
+      );
     });
   }
 
   if (Array.isArray(data.telescore)) {
     data.telescore.forEach((defense) => {
-      rows.push([
-        `"${data.name}"`,
-        `"QL"`,
-        `"${matchKey}"`,
-        `"${data.alliance.toLowerCase()}"`,
-        `"${data.autoteam}"`,
-        `"${data.robotposition}"`,
-        "DEFENSE"
-      ].concat(defense));
+      rows.push(
+        [
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "DEFENSE",
+        ].concat(defense),
+      );
     });
   }
 
   if (Array.isArray(data.endscore)) {
     data.endscore.forEach((defense) => {
-      rows.push([
-        `"${data.name}"`,
-        `"QL"`,
-        `"${matchKey}"`,
-        `"${data.alliance.toLowerCase()}"`,
-        `"${data.autoteam}"`,
-        `"${data.robotposition}"`,
-        "DEFENSE"
-      ].concat(defense));
+      rows.push(
+        [
+          `"${data.name}"`,
+          `"QL"`,
+          `"${matchKey}"`,
+          `"${data.alliance.toLowerCase()}"`,
+          `"${data.autoteam}"`,
+          `"${data.robotposition}"`,
+          "DEFENSE",
+        ].concat(defense),
+      );
     });
   }
 
@@ -131,60 +162,68 @@ function processQualitativeData(data, matchKey) {
   if (thing === "red") {
     if (Array.isArray(data.endact.climbed.red)) {
       data.endact.climbed.red.forEach((climbed) => {
-        rows.push([
-          `"${data.name}"`,
-          `"QL"`,
-          `"${matchKey}"`,
-          `"${data.alliance.toLowerCase()}"`,
-          `"${data.autoteam}"`,
-          `"${data.robotposition}"`,
-          "CLIMBED"
-        ].concat(climbed));
+        rows.push(
+          [
+            `"${data.name}"`,
+            `"QL"`,
+            `"${matchKey}"`,
+            `"${data.alliance.toLowerCase()}"`,
+            `"${data.autoteam}"`,
+            `"${data.robotposition}"`,
+            "CLIMBED",
+          ].concat(climbed),
+        );
       });
     }
   }
   if (thing === "blue") {
     if (Array.isArray(data.endact.climbed.blue)) {
       data.endact.climbed.blue.forEach((climbed) => {
-        rows.push([
-          `"${data.name}"`,
-          `"QL"`,
-          `"${matchKey}"`,
-          `"${data.alliance.toLowerCase()}"`,
-          `"${data.autoteam}"`,
-          `"${data.robotposition}"`,
-          "CLIMBED"
-        ].concat(climbed));
+        rows.push(
+          [
+            `"${data.name}"`,
+            `"QL"`,
+            `"${matchKey}"`,
+            `"${data.alliance.toLowerCase()}"`,
+            `"${data.autoteam}"`,
+            `"${data.robotposition}"`,
+            "CLIMBED",
+          ].concat(climbed),
+        );
       });
     }
   }
   if (thing === "red") {
     if (Array.isArray(data.endact.harmonized.red)) {
       data.endact.harmonized.red.forEach((harmonized) => {
-        rows.push([
-          `"${data.name}"`,
-          `"QL"`,
-          `"${matchKey}"`,
-          `"${data.alliance.toLowerCase()}"`,
-          `"${data.autoteam}"`,
-          `"${data.robotposition}"`,
-          "HARMONIZED"
-        ].concat(harmonized));
+        rows.push(
+          [
+            `"${data.name}"`,
+            `"QL"`,
+            `"${matchKey}"`,
+            `"${data.alliance.toLowerCase()}"`,
+            `"${data.autoteam}"`,
+            `"${data.robotposition}"`,
+            "HARMONIZED",
+          ].concat(harmonized),
+        );
       });
     }
   }
   if (thing === "blue") {
     if (Array.isArray(data.endact.harmonized.blue)) {
       data.endact.harmonized.blue.forEach((harmonized) => {
-        rows.push([
-          `"${data.name}"`,
-          `"QL"`,
-          `"${matchKey}"`,
-          `"${data.alliance.toLowerCase()}"`,
-          `"${data.autoteam}"`,
-          `"${data.robotposition}"`,
-          "HARMONIZED"
-        ].concat(harmonized));
+        rows.push(
+          [
+            `"${data.name}"`,
+            `"QL"`,
+            `"${matchKey}"`,
+            `"${data.alliance.toLowerCase()}"`,
+            `"${data.autoteam}"`,
+            `"${data.robotposition}"`,
+            "HARMONIZED",
+          ].concat(harmonized),
+        );
       });
     }
   }
@@ -197,11 +236,10 @@ function processQualitativeData(data, matchKey) {
     `"${data.autoteam}"`,
     `"${data.robotposition}"`,
     "NOTES",
-    `"${(data.teletex).trim()}"` // (data.teletex).replace(/\n/g, ' ')
+    `"${data.teletex.trim()}"`, // (data.teletex).replace(/\n/g, ' ')
   ]);
-  return rows.map(row => row.join(","));
+  return rows.map((row) => row.join(","));
 }
-
 
 function formatArrayForCSV(dataArray) {
   if (Array.isArray(dataArray)) {
@@ -259,8 +297,7 @@ app.post("/data", (req, res) => {
 app.get("/data/:matchValue", (req, res) => {
   const { matchValue } = req.params;
   const format = req.query.format;
-  const isGamePeriod =
-    !matchValue.includes("qm")
+  const isGamePeriod = !matchValue.includes("qm");
   if (isGamePeriod) {
     const gamePeriodMatches = Object.keys(matchData).filter((key) =>
       key.startsWith(matchValue),
@@ -333,11 +370,9 @@ app.get("/data/devdata/:gameKey", (req, res) => {
       res.header("Content-Type", "text/csv");
       res.status(200).send(formattedData);
     } else {
-      res
-        .status(404)
-        .send({
-          message: "No 'Dev' data found for the specified game period.",
-        });
+      res.status(404).send({
+        message: "No 'Dev' data found for the specified game period.",
+      });
     }
   } else {
     res
@@ -383,17 +418,19 @@ app.get("/data/:matchValue/:dataPiece?", (req, res) => {
   }
 });
 
-app.get('/data/metric/:gameKey', (req, res) => {
+app.get("/data/metric/:gameKey", (req, res) => {
   const { gameKey } = req.params;
-  const matchData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-  const matchingKeys = Object.keys(matchData).filter(key => key.startsWith(gameKey));
+  const matchData = JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+  const matchingKeys = Object.keys(matchData).filter((key) =>
+    key.startsWith(gameKey),
+  );
   if (matchingKeys.length === 0) {
-    return res.status(404).json({ error: 'Game key not found' });
+    return res.status(404).json({ error: "Game key not found" });
   }
-  let matches = matchingKeys.flatMap(key => matchData[key]);
-  const teams = [...new Set(matches.map(match => match.autoteam))];
-  const teamData = teams.map(team => {
-    const teamMatches = matches.filter(match => match.autoteam === team);
+  let matches = matchingKeys.flatMap((key) => matchData[key]);
+  const teams = [...new Set(matches.map((match) => match.autoteam))];
+  const teamData = teams.map((team) => {
+    const teamMatches = matches.filter((match) => match.autoteam === team);
     let totalNoteEvents = 0;
     let notes = 0;
     const totalNotes = teamMatches.reduce((total, match) => {
@@ -404,8 +441,10 @@ app.get('/data/metric/:gameKey', (req, res) => {
     const averageNotes = totalNotes / totalNoteEvents;
     return { team, averageNotes };
   });
-  const csv = 'team,averageNotes\n' + teamData.map(row => `${row.team},${row.averageNotes}`).join('\n');
-  res.setHeader('Content-Type', 'text/csv');
+  const csv =
+    "team,averageNotes\n" +
+    teamData.map((row) => `${row.team},${row.averageNotes}`).join("\n");
+  res.setHeader("Content-Type", "text/csv");
   res.send(csv);
 });
 
