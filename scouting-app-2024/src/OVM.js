@@ -69,8 +69,8 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
             ))}
             </datalist>
         </div>
-        <div className="position-buttons">
-        <div className="blue-team">
+        <div className="position-buttons" style={{ marginBottom: '20px' }}>
+            <div className="blue-team">
                 {blueTeamNumbers.map((number) => (
                     <button
                     key={number}
@@ -92,7 +92,8 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
                     </button>
                 ))}
             </div>
-        </div>        <h2
+        </div>
+        <h2
             style={{
             margin: '0',
             fontFamily: 'Poppins',

@@ -340,8 +340,15 @@ button:hover {
   justify-content: center;
 }
 
+.blue-team {
+  margin-top: 150px;
+}
+.red-team {
+  margin-bottom: 100px;
+}
+
 .blue-team, .red-team {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
