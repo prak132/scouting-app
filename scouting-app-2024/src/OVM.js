@@ -71,7 +71,7 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
         </div>
         <div className="position-buttons" style={{ marginBottom: '20px' }}>
             <div className="blue-team">
-                {blueTeamNumbers.map((number) => (
+                {matchValue && blueTeamNumbers.map((number) => (
                     <button
                     key={number}
                     className={`position-buttons ${selectedTeamNumber === number ? 'position-selected' : ''}`}
@@ -82,7 +82,7 @@ const OVMode = ( {ovmTextThing, ovmTextsetThing, onSendDataClick, nameValue, set
                 ))}
             </div>
             <div className="red-team">
-                {redTeamNumbers.map((number) => (
+                {matchValue && redTeamNumbers.map((number) => (
                     <button
                     key={number}
                     className={`position-buttons ${selectedTeamNumber === number ? 'position-selected' : ''}`}
