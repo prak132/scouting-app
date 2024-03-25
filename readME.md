@@ -7,7 +7,7 @@ blueidapidocs: https://www.thebluealliance.com/apidocs/v3
 - [x] fix navbar
 - [x] navbar function
 - [x] start page fix/design
-- [ ] add the random squiggle things
+- [ ] add the random squiggle things (Doomed :frowning:)
 - [x] start auto page
 - [x] popup of questions - auto
 - [x] add functions to undo and info button
