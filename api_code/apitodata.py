@@ -1,9 +1,35 @@
 import json
 import requests
 import csv
+import re
+import os
 
 api_key = 'l3mMnNWP1BVGuj9iEMoqpoZb3Oe18tpmpA79GQShKGBEW63PvIO2e4ksnDDFatbw'
-event_code = '2024idbo'
+old_event_code = '2024idbo'
+
+# files that have the old event keys
+file_paths = [
+    "../api_code/apicode/api.js",
+    "../scouting-app-2024/src/App.js",
+    "../scouting-app-2024/src/layout.js",
+    "../scouting-app-2024/src/OVM.js"
+]
+
+pattern = re.compile(re.escape(old_event_code))
+event_code = '2024sunshow'
+
+for file_path in file_paths:
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            content = file.read()
+        modified_content = pattern.sub(event_code, content)
+        with open(file_path, 'w') as file:
+            file.write(modified_content)
+        print(f"Modified: {file_path}")
+    else:
+        print(f"File not found: {file_path}")
+
+
 matches_data = {}
 
 def get_teams_data(matchcode):

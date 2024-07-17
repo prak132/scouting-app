@@ -6,7 +6,7 @@ const port = 30100;
 app.use(cors());
 app.use(express.json());
 
-matchrn = "2024casf_qm";
+matchrn = "2024sunshow_qm";
 
 const DATA_FILE = "./matchData.json";
 
@@ -35,7 +35,7 @@ function jsonToCSV(jsonData, matchKey) {
 }
 
 function precoessOMData(data, matchKey) {
-  const regExp = /2024casf_qm(\d+)/;
+  const regExp = /2024sunshow_qm(\d+)/;
   matchKey = matchKey.replace(regExp, "$1");
   let rows = [];
   if (data.name) {
@@ -54,7 +54,7 @@ function precoessOMData(data, matchKey) {
 }
 
 function processQuantitativeData(data, matchKey) {
-  const regExp = /2024casf_qm(\d+)/;
+  const regExp = /2024sunshow_qm(\d+)/;
   matchKey = matchKey.replace(regExp, "$1");
   let rows = [];
   if (data.notescoring) {
@@ -106,7 +106,7 @@ function processQuantitativeData(data, matchKey) {
   return rows.map((row) => row.join(","));
 }
 function processQualitativeData(data, matchKey) {
-  const regExp = /2024casf_qm(\d+)/;
+  const regExp = /2024sunshow_qm(\d+)/;
   matchKey = matchKey.replace(regExp, "$1");
   let rows = [];
 
