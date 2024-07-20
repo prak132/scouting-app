@@ -413,7 +413,7 @@ function App() {
   async function sendsomestuff(payload) {
     const urls = [
       'https://eft-knowing-horse.ngrok-free.app/data',
-      'https://a6317d1d-b519-421a-902d-18069f2ccd87-00-163c5eeh1muo2.picard.replit.dev/data'
+      'https://1a9c5b3b-b45e-4740-a56c-54bbab663e48-00-25xu9aqmkvv0i.janeway.replit.dev/data'
     ];
   
     const requests = urls.map(url =>
